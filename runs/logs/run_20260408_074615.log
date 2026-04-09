@@ -1,0 +1,56 @@
+2026-04-08 07:46:15,421 | INFO | Run log file: runs/logs/run_20260408_074615.log
+2026-04-08 07:46:15,421 | INFO | CLI mode override: arxiv_only
+2026-04-08 07:46:15,421 | INFO | Starting pipeline run
+2026-04-08 07:46:15,421 | INFO | Pipeline mode: arxiv_only
+2026-04-08 07:46:15,422 | INFO | Lookback config: {'years': 3, 'months': 0, 'days': 0}
+2026-04-08 07:46:15,422 | INFO | Search max_results: 20
+2026-04-08 07:46:15,422 | INFO | Query config: use_and_query=True, enforce_domain_prefilter=True, prefilter_min_matches=1, require_anchor_match=True
+2026-04-08 07:46:15,422 | INFO | Selection top_n: 3
+2026-04-08 07:46:15,422 | INFO | Inference model: Qwen/Qwen3-VL-30B-A3B-Instruct-FP8
+2026-04-08 07:46:15,422 | INFO | Structured review config: enabled=True, mode=separate, file=/home/nodozi/projects/mlir_wp/arxiv-daily-digest/pipeline_data/review_questions.json, max_questions=15, include_in_digest=True
+2026-04-08 07:46:15,422 | INFO | arXiv tuning: {'arxiv_page_size': 0, 'arxiv_delay_seconds': 6.0, 'arxiv_num_retries': 6, 'arxiv_max_attempts': 4, 'arxiv_backoff_seconds': 20.0}
+2026-04-08 07:46:15,422 | INFO | Network retry config: {'openai_retry_max_attempts': 8, 'openai_retry_base_seconds': 5.0, 'openai_retry_max_seconds': 120.0, 'poll_interval_seconds': 30.0, 'max_consecutive_poll_errors': 0}
+2026-04-08 07:46:15,422 | INFO | LLM payload source: arXiv title + abstract metadata only (no PDF/full-paper download).
+2026-04-08 07:46:15,422 | INFO | arXiv query: ("claims reserving" OR "loss reserving" OR "IBNR" OR "claim development" OR "run-off" OR "individual claims reserving" OR "individual loss reserving" OR "micro-level reserving" OR "insurance reserving" OR "chain ladder" OR "actuarial reserving") AND ("transformer" OR "recurrent neural network" OR "mixture density network" OR "machine learning" OR "neural network")
+2026-04-08 07:46:15,422 | INFO | Domain prefilter terms: ['claims reserving', 'loss reserving', 'insurance reserving', 'actuarial reserving', 'individual claims reserving', 'individual loss reserving', 'micro-level reserving', 'IBNR', 'chain ladder']
+2026-04-08 07:46:15,422 | INFO | Anchor terms: ['claims reserving', 'loss reserving', 'insurance reserving', 'actuarial reserving', 'individual claims reserving', 'individual loss reserving', 'micro-level reserving', 'IBNR', 'chain ladder', 'reserving']
+2026-04-08 07:46:15,422 | INFO | Fetching papers from arXiv
+2026-04-08 07:46:15,422 | INFO | arXiv fetch attempt 1/4 (page_size=20, delay_seconds=6.0, num_retries=6)
+2026-04-08 07:46:16,827 | INFO | arXiv candidates returned: 20
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 1/20 id=2602.15385v2 in_window=True domain_match=True prefilter_hits=['claims reserving', 'individual claims reserving'] anchor_hits=['claims reserving', 'individual claims reserving', 'reserving'] published=2026-02-17 06:46:17+00:00 title=From Chain-Ladder to Individual Claims Reserving
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 2/20 id=2601.07637v1 in_window=True domain_match=True prefilter_hits=['claims reserving', 'individual claims reserving'] anchor_hits=['claims reserving', 'individual claims reserving', 'reserving'] published=2026-01-12 15:17:18+00:00 title=Reinforcement Learning for Micro-Level Claims Reserving
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 3/20 id=2601.05274v1 in_window=True domain_match=True prefilter_hits=['loss reserving', 'actuarial reserving', 'individual loss reserving'] anchor_hits=['loss reserving', 'actuarial reserving', 'individual loss reserving', 'reserving'] published=2025-12-28 05:51:05+00:00 title=On the use of case estimate and transactional payment data in neural networks for individual loss reserving
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 4/20 id=2505.02256v1 in_window=True domain_match=False prefilter_hits=[] anchor_hits=[] published=2025-05-04 21:29:32+00:00 title=OASIS: Optimized Lightweight Autoencoder System for Distributed In-Sensor computing
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 5/20 id=2504.09396v2 in_window=True domain_match=True prefilter_hits=['loss reserving', 'insurance reserving', 'actuarial reserving'] anchor_hits=['loss reserving', 'insurance reserving', 'actuarial reserving', 'reserving'] published=2025-04-13 01:43:25+00:00 title=Adaptive Insurance Reserving with CVaR-Constrained Reinforcement Learning under Macroeconomic Regimes
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 6/20 id=2503.09885v1 in_window=True domain_match=False prefilter_hits=[] anchor_hits=[] published=2025-03-12 22:53:27+00:00 title=QuickDraw: Fast Visualization, Analysis and Active Learning for Medical Image Segmentation
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 7/20 id=2409.15892v1 in_window=True domain_match=False prefilter_hits=[] anchor_hits=[] published=2024-09-24 09:04:47+00:00 title=Symmetries and Expressive Requirements for Learning General Policies
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 8/20 id=2402.10421v3 in_window=True domain_match=True prefilter_hits=['loss reserving'] anchor_hits=['loss reserving', 'reserving'] published=2024-02-16 03:00:01+00:00 title=Recurrent Neural Networks for Multivariate Loss Reserving and Risk Capital Analysis
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 9/20 id=2312.14549v3 in_window=True domain_match=True prefilter_hits=['IBNR'] anchor_hits=['IBNR', 'reserving'] published=2023-12-22 09:25:47+00:00 title=A machine learning approach based on survival analysis for IBNR frequencies in non-life reserving
+2026-04-08 07:46:16,827 | INFO | [arxiv_raw] 10/20 id=2306.17693v1 in_window=True domain_match=False prefilter_hits=[] anchor_hits=[] published=2023-06-30 14:19:44+00:00 title=Thompson sampling for improved exploration in GFlowNets
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 11/20 id=2302.02300v3 in_window=False domain_match=False prefilter_hits=[] anchor_hits=[] published=2023-02-05 04:48:30+00:00 title=Run-Off Election: Improved Provable Defense against Data Poisoning Attacks
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 12/20 id=2302.00817v2 in_window=False domain_match=False prefilter_hits=[] anchor_hits=[] published=2023-02-02 01:40:48+00:00 title=Recurrent Graph Convolutional Networks for Spatiotemporal Prediction of Snow Accumulation Using Airborne Radar
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 13/20 id=2210.01099v1 in_window=False domain_match=True prefilter_hits=['loss reserving'] anchor_hits=['loss reserving', 'reserving'] published=2022-09-30 03:53:34+00:00 title=Model error and its estimation, with particular application to loss reserving
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 14/20 id=2201.13267v1 in_window=False domain_match=True prefilter_hits=['loss reserving', 'micro-level reserving'] anchor_hits=['loss reserving', 'micro-level reserving', 'reserving'] published=2022-01-27 02:49:42+00:00 title=Micro-level Reserving for General Insurance Claims using a Long Short-Term Memory Network
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 15/20 id=2108.07924v1 in_window=False domain_match=True prefilter_hits=['loss reserving'] anchor_hits=['loss reserving', 'reserving'] published=2021-08-18 01:41:31+00:00 title=Stochastic loss reserving with mixture density neural networks
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 16/20 id=2011.11546v1 in_window=False domain_match=False prefilter_hits=[] anchor_hits=[] published=2020-11-23 17:01:02+00:00 title=Microalgae-based bioremediation of water contaminated by pesticides in peri-urban agricultural areas
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 17/20 id=2008.07564v1 in_window=False domain_match=True prefilter_hits=['chain ladder'] anchor_hits=['chain ladder', 'reserving'] published=2020-08-17 18:26:05+00:00 title=Stochastic reserving with a stacked model based on a hybridized Artificial Neural Network
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 18/20 id=2008.05693v4 in_window=False domain_match=True prefilter_hits=['loss reserving'] anchor_hits=['loss reserving', 'reserving'] published=2020-08-13 05:24:34+00:00 title=SynthETIC: an individual insurance claim simulator with feature control
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 19/20 id=2004.08204v1 in_window=False domain_match=False prefilter_hits=[] anchor_hits=[] published=2020-04-14 17:52:07+00:00 title=Modeling Institutional Credit Risk with Financial News
+2026-04-08 07:46:16,828 | INFO | [arxiv_raw] 20/20 id=1910.12692v3 in_window=False domain_match=False prefilter_hits=[] anchor_hits=['reserving'] published=2019-10-28 14:08:53+00:00 title=A hierarchical reserving model for reported non-life insurance claims
+2026-04-08 07:46:16,828 | INFO | After lookback filter: 10
+2026-04-08 07:46:16,828 | INFO | Dropped by domain prefilter: 4
+2026-04-08 07:46:16,828 | INFO | [drop_domain_prefilter] id=2505.02256v1 title=OASIS: Optimized Lightweight Autoencoder System for Distributed In-Sensor computing prefilter_hits=[] anchor_hits=[]
+2026-04-08 07:46:16,828 | INFO | [drop_domain_prefilter] id=2503.09885v1 title=QuickDraw: Fast Visualization, Analysis and Active Learning for Medical Image Segmentation prefilter_hits=[] anchor_hits=[]
+2026-04-08 07:46:16,828 | INFO | [drop_domain_prefilter] id=2409.15892v1 title=Symmetries and Expressive Requirements for Learning General Policies prefilter_hits=[] anchor_hits=[]
+2026-04-08 07:46:16,828 | INFO | [drop_domain_prefilter] id=2306.17693v1 title=Thompson sampling for improved exploration in GFlowNets prefilter_hits=[] anchor_hits=[]
+2026-04-08 07:46:16,828 | INFO | After combined query+prefilter: 6
+2026-04-08 07:46:16,828 | INFO | Dropped as already seen: 6
+2026-04-08 07:46:16,828 | INFO | [drop_seen] id=2602.15385v2 title=From Chain-Ladder to Individual Claims Reserving
+2026-04-08 07:46:16,828 | INFO | [drop_seen] id=2601.07637v1 title=Reinforcement Learning for Micro-Level Claims Reserving
+2026-04-08 07:46:16,828 | INFO | [drop_seen] id=2601.05274v1 title=On the use of case estimate and transactional payment data in neural networks for individual loss reserving
+2026-04-08 07:46:16,828 | INFO | [drop_seen] id=2504.09396v2 title=Adaptive Insurance Reserving with CVaR-Constrained Reinforcement Learning under Macroeconomic Regimes
+2026-04-08 07:46:16,828 | INFO | [drop_seen] id=2402.10421v3 title=Recurrent Neural Networks for Multivariate Loss Reserving and Risk Capital Analysis
+2026-04-08 07:46:16,828 | INFO | [drop_seen] id=2312.14549v3 title=A machine learning approach based on survival analysis for IBNR frequencies in non-life reserving
+2026-04-08 07:46:16,829 | INFO | arXiv-only snapshot written to runs/search/arxiv_search_20260408_074615.json
+2026-04-08 07:46:16,830 | INFO | Results markdown written to runs/results/digest_20260408_074615.md
+2026-04-08 07:46:16,830 | INFO | Run complete. Results file: runs/results/digest_20260408_074615.md

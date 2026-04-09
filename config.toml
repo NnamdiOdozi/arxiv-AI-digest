@@ -1,0 +1,205 @@
+# Runtime overrides for arxiv-daily-digest local customization.
+#
+# Lookback behavior:
+# - If years/months/days are all 0, the script keeps the original behavior:
+#   Monday = 3-day lookback, other days = 1-day lookback.
+# - If any value is > 0, the script uses that custom lookback window.
+[lookback]
+years = 10
+months = 0
+days = 0
+
+[search]
+# Increase this for long lookback windows (for example 1000+ for multi-month/year scans).
+max_results = 2000
+# arXiv client page size for each API request (0 = auto => min(max_results, 100)).
+arxiv_page_size = 0
+# Base delay between arXiv requests in seconds (arXiv asks for at least 3s).
+arxiv_delay_seconds = 6.0
+# Retries per individual arXiv request attempt.
+arxiv_num_retries = 6
+# Full fetch attempts across HTTP 429 responses.
+arxiv_max_attempts = 8
+# Backoff base seconds for 429s (attempt_n sleeps attempt_n * arxiv_backoff_seconds).
+arxiv_backoff_seconds = 60.0
+
+[query]
+# arXiv query strategy:
+# - true: (domain_terms) AND (method_terms)
+# - false: (domain_terms) OR (method_terms)
+use_and_query = true
+# Extra guardrail: keep papers only if title/abstract contains prefilter terms.
+# If prefilter_terms is empty, domain_terms are used.
+enforce_domain_prefilter = false
+# Require at least this many prefilter matches.
+prefilter_min_matches = 1
+# Optional second guardrail: require at least one anchor term hit.
+require_anchor_match = false
+# Matching mode for prefilter and anchor matching:
+# - "stem": allows variants (predict/prediction, model/modelling, reserve/reserving)
+# - "exact": exact whole-token matching only
+term_match_mode = "stem"
+domain_terms = [
+  "general insurance",
+  "P&C insurance",
+  "P&C business",
+  "property and casualty insurance",
+  "non-life insurance",
+  "non-life business",
+  "property and casualty",
+  "claims reserving",
+  "claim loss",
+  "claims loss",
+  "claim reserving",
+  "our claim liabilities",
+  "claim liabilities",
+  "claims liabilities",
+  "claim experience",
+  "claims experience",
+  "case estimates",
+  "loss reserving",
+  "IBNR",
+  "claim development",
+  "claims development",
+  "claims incurred",
+  "incurred claims",
+  "claims run-off",
+  "individual claims reserving",
+  "individual loss reserving",
+  "micro-level reserving",
+  "micro reserving",
+  "granular reserving",
+  "insurance reserving",
+  "chain ladder",
+  "actuarial reserving",
+]
+method_terms = [
+  "machine learning",
+  "ml",
+  "artificial intelligence",
+  "ai",
+  "gen ai",
+  "generative artificial intelligence",
+  "simulation",
+  "forecast",
+  "forecasting",
+  "predict",
+  "estimation",
+  "model",
+  "modelling",
+  "generalized linear model",
+  "glm",
+  "neural network",
+  "network",
+  "transformer",
+  "recurrent neural network",
+  "mixture density network",
+]
+# Explicit prefilter list (safer than broad domain terms for false-positive control).
+prefilter_terms = [
+  "claims reserving",
+  "claim reserving",
+  "loss reserving",
+  "insurance reserving",
+  "actuarial reserving",
+  "individual claims reserving",
+  "individual loss reserving",
+  "micro-level reserving",
+  "micro reserving",
+  "claim development",
+  "claims development",
+  "development triangle",
+  "development triangles",
+  "claims run-off",
+  "run-off",
+  "IBNR",
+  "incurred but not reported",
+  "RBNS",
+  "reported but not settled",
+  "claim liabilities",
+  "claims liabilities",
+  "loss reserve",
+  "loss reserves",
+  "claim reserve",
+  "claim reserves",
+  "case estimate",
+  "case estimates",
+  "outstanding claims",
+  "general insurance",
+  "non-life insurance",
+  "p&c insurance",
+  "property and casualty insurance"
+]
+
+anchor_terms = [
+  "claims reserving",
+  "loss reserving",
+  "insurance reserving",
+  "actuarial reserving",
+  "individual claims reserving",
+  "individual loss reserving",
+  "IBNR",
+  "incurred but not reported",
+  "RBNS",
+  "reported but not settled",
+  "claim development",
+  "claims development"
+]
+
+[selection]
+# Number of relevant papers to keep in final digest.
+top_n = 100
+
+[output]
+# Keep false to use markdown files only and skip Slack.
+send_to_slack = false
+# Per-run timestamped log file path: {log_dir}/run_YYYYMMDD_HHMMSS.log
+log_dir = "runs/logs"
+# Per-run markdown digest path: {results_dir}/digest_YYYYMMDD_HHMMSS.md
+results_dir = "runs/results"
+# Batch request payload files written before submission.
+batch_requests_dir = "runs/batch_requests"
+# arXiv-only snapshot JSON output directory (used by `python main.py --arxiv-only`).
+search_results_dir = "runs/search"
+# Include full raw pre-filter arXiv trace in snapshot JSON.
+# Set false to focus file contents on post-filter candidates.
+arxiv_snapshot_include_search_trace = false
+
+[network]
+# Retries for OpenAI/Doubleword API calls used in upload, submit, and polling.
+openai_retry_max_attempts = 8
+openai_retry_base_seconds = 5.0
+openai_retry_max_seconds = 120.0
+# Polling interval while waiting for async batch completion.
+poll_interval_seconds = 30.0
+# 0 = never give up on transient poll failures (recommended for unstable links).
+max_consecutive_poll_errors = 0
+
+[inference]
+# Doubleword model options:
+# model = "Qwen/Qwen3-VL-30B-A3B-Instruct-FP8"   # current default
+# model = "Qwen/Qwen3-VL-235B-A22B-Instruct-FP8"
+# model = "Qwen/Qwen3.5-35B-A3B-FP8"             # high intelligence, strong price/performance
+# model = "Qwen/Qwen3-14B"                        # small, low cost
+# model = "Qwen/Qwen3.5-397B-A17B"               # most powerful, highest cost (released Feb 2026)
+# model = "openai/gpt-oss-20b"                    # low latency, 21B params, 3.6B active
+model = "Qwen/Qwen3-VL-235B-A22B-Instruct-FP8"
+# Batch completion window passed to Doubleword/OpenAI batch API.
+completion_window = "1h"
+requeue_max_rounds = 1
+
+[review]
+# Review modes:
+# - "separate": main.py does pass-1 only; run_structured_review.py performs pass-2 later.
+# - "inline": main.py runs pass-1 then pass-2 back-to-back in the same run.
+# - "off": disable pass-2 entirely.
+mode = "separate"
+enabled = true
+# Source question template file.
+# Prefer the compact schema (question + keys only) to avoid carrying sample answers.
+questions_file = "pipeline_data/review_questions.json"
+# Keep this low to control extra token cost; 0 = all questions from file.
+# Set to 15 to answer all questions currently in review_questions.json.
+max_questions = 15
+# Include the structured profile answers in the digest markdown.
+include_in_digest = true

@@ -1,0 +1,82 @@
+2026-04-07 14:28:36,082 | INFO | Run log file: runs/logs/run_20260407_142836.log
+2026-04-07 14:28:36,082 | INFO | Starting pipeline run
+2026-04-07 14:28:36,082 | INFO | Lookback config: {'years': 3, 'months': 0, 'days': 0}
+2026-04-07 14:28:36,083 | INFO | Search max_results: 10
+2026-04-07 14:28:36,083 | INFO | Query config: use_and_query=True, enforce_domain_prefilter=True
+2026-04-07 14:28:36,083 | INFO | Selection top_n: 3
+2026-04-07 14:28:36,083 | INFO | Inference model: Qwen/Qwen3-VL-30B-A3B-Instruct-FP8
+2026-04-07 14:28:36,083 | INFO | arXiv tuning: {'arxiv_page_size': 0, 'arxiv_delay_seconds': 6.0, 'arxiv_num_retries': 6, 'arxiv_max_attempts': 4, 'arxiv_backoff_seconds': 20.0}
+2026-04-07 14:28:36,083 | INFO | arXiv query: ("claims reserving" OR "loss reserving" OR "IBNR" OR "RBNS" OR "claim development" OR "run-off" OR "individual claims" OR "micro-level reserving" OR "insurance reserving" OR "chain ladder" OR "actuarial reserving") AND ("transformer" OR "recurrent neural network" OR "mixture density network" OR "machine learning" OR "neural network")
+2026-04-07 14:28:36,083 | INFO | Domain prefilter terms: ['claims reserving', 'loss reserving', 'IBNR', 'RBNS', 'claim development', 'run-off', 'individual claims', 'micro-level reserving', 'insurance reserving', 'chain ladder', 'actuarial reserving']
+2026-04-07 14:28:36,083 | INFO | Fetching papers from arXiv
+2026-04-07 14:28:36,083 | INFO | arXiv fetch attempt 1/4 (page_size=10, delay_seconds=6.0, num_retries=6)
+2026-04-07 14:33:16,790 | INFO | arXiv HTTP 429 on attempt 1/4; backing off for 20.0 seconds before retry
+2026-04-07 14:52:22,769 | INFO | arXiv fetch attempt 2/4 (page_size=10, delay_seconds=6.0, num_retries=6)
+2026-04-07 14:52:26,552 | INFO | arXiv candidates returned: 10
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 1/10 id=2602.15385v2 in_window=True domain_match=True published=2026-02-17 06:46:17+00:00 title=From Chain-Ladder to Individual Claims Reserving
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 2/10 id=2602.12559v2 in_window=True domain_match=False published=2026-02-13 03:17:06+00:00 title=Convergence Analysis of Block Newton Methods for 1D Shallow Neural Network Approximation
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 3/10 id=2601.07637v1 in_window=True domain_match=True published=2026-01-12 15:17:18+00:00 title=Reinforcement Learning for Micro-Level Claims Reserving
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 4/10 id=2601.05274v1 in_window=True domain_match=True published=2025-12-28 05:51:05+00:00 title=On the use of case estimate and transactional payment data in neural networks for individual loss reserving
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 5/10 id=2512.19920v3 in_window=True domain_match=True published=2025-12-22 22:51:48+00:00 title=Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 6/10 id=2507.21873v1 in_window=True domain_match=True published=2025-07-29 14:43:25+00:00 title=A Neuro-Symbolic Approach for Probabilistic Reasoning on Graph Data
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 7/10 id=2506.12552v1 in_window=True domain_match=True published=2025-06-14 15:49:20+00:00 title=Profiling News Media for Factuality and Bias Using LLMs and the Fact-Checking Methodology of Human Experts
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 8/10 id=2505.11755v2 in_window=True domain_match=True published=2025-05-16 23:30:13+00:00 title=Reachability Barrier Networks: Learning Hamilton-Jacobi Solutions for Smooth and Flexible Control Barrier Functions
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 9/10 id=2505.02256v1 in_window=True domain_match=False published=2025-05-04 21:29:32+00:00 title=OASIS: Optimized Lightweight Autoencoder System for Distributed In-Sensor computing
+2026-04-07 14:52:26,552 | INFO | [arxiv_raw] 10/10 id=2504.09396v2 in_window=True domain_match=True published=2025-04-13 01:43:25+00:00 title=Adaptive Insurance Reserving with CVaR-Constrained Reinforcement Learning under Macroeconomic Regimes
+2026-04-07 14:52:26,552 | INFO | After lookback filter: 10
+2026-04-07 14:52:26,552 | INFO | Dropped by domain prefilter: 2
+2026-04-07 14:52:26,552 | INFO | [drop_domain_prefilter] id=2602.12559v2 title=Convergence Analysis of Block Newton Methods for 1D Shallow Neural Network Approximation
+2026-04-07 14:52:26,552 | INFO | [drop_domain_prefilter] id=2505.02256v1 title=OASIS: Optimized Lightweight Autoencoder System for Distributed In-Sensor computing
+2026-04-07 14:52:26,552 | INFO | After combined query+prefilter: 8
+2026-04-07 14:52:26,552 | INFO | Dropped as already seen: 0
+2026-04-07 14:52:26,552 | INFO | Papers to score: 8
+2026-04-07 14:52:26,552 | INFO | [dw_queue] request=1/8 paper_id=2602.15385v2 title=From Chain-Ladder to Individual Claims Reserving
+2026-04-07 14:52:26,553 | INFO | [dw_queue] request=2/8 paper_id=2601.07637v1 title=Reinforcement Learning for Micro-Level Claims Reserving
+2026-04-07 14:52:26,553 | INFO | [dw_queue] request=3/8 paper_id=2601.05274v1 title=On the use of case estimate and transactional payment data in neural networks for individual loss reserving
+2026-04-07 14:52:26,553 | INFO | [dw_queue] request=4/8 paper_id=2512.19920v3 title=Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning
+2026-04-07 14:52:26,553 | INFO | [dw_queue] request=5/8 paper_id=2507.21873v1 title=A Neuro-Symbolic Approach for Probabilistic Reasoning on Graph Data
+2026-04-07 14:52:26,553 | INFO | [dw_queue] request=6/8 paper_id=2506.12552v1 title=Profiling News Media for Factuality and Bias Using LLMs and the Fact-Checking Methodology of Human Experts
+2026-04-07 14:52:26,553 | INFO | [dw_queue] request=7/8 paper_id=2505.11755v2 title=Reachability Barrier Networks: Learning Hamilton-Jacobi Solutions for Smooth and Flexible Control Barrier Functions
+2026-04-07 14:52:26,553 | INFO | [dw_queue] request=8/8 paper_id=2504.09396v2 title=Adaptive Insurance Reserving with CVaR-Constrained Reinforcement Learning under Macroeconomic Regimes
+2026-04-07 14:52:26,554 | INFO | Batch request file created: batch_requests_20260407_142836.jsonl
+2026-04-07 14:52:26,937 | INFO | Uploaded batch input file: d40b2744-fd3e-480a-8788-80000a826184
+2026-04-07 14:52:27,489 | INFO | Batch submitted: 884f91fa-d5a1-43a7-a235-70094103c888
+2026-04-07 14:52:27,489 | INFO | This pipeline uses Doubleword/OpenAI Batch API (asynchronous batch inference)
+2026-04-07 14:52:27,489 | INFO | Waiting for batch to complete...
+2026-04-07 14:52:27,706 | INFO | Status: validating
+2026-04-07 14:52:27,706 | INFO | Completed: 0/8
+2026-04-07 14:52:57,856 | INFO | Status: in_progress
+2026-04-07 14:52:57,857 | INFO | Completed: 0/8
+2026-04-07 14:53:27,960 | INFO | Status: in_progress
+2026-04-07 14:53:27,961 | INFO | Completed: 0/8
+2026-04-07 14:53:58,155 | INFO | Status: in_progress
+2026-04-07 14:53:58,155 | INFO | Completed: 0/8
+2026-04-07 14:54:28,416 | INFO | Status: completed
+2026-04-07 14:54:28,416 | INFO | Completed: 8/8
+2026-04-07 14:54:28,416 | INFO | Batch completed!
+2026-04-07 14:54:28,627 | INFO | Parsed 2601.07637v1: score=9
+2026-04-07 14:54:28,627 | INFO | Parsed 2602.15385v2: score=8
+2026-04-07 14:54:28,627 | INFO | Parsed 2601.05274v1: score=8
+2026-04-07 14:54:28,627 | INFO | Parsed 2505.11755v2: score=3
+2026-04-07 14:54:28,627 | INFO | Parsed 2512.19920v3: score=3
+2026-04-07 14:54:28,627 | INFO | Parsed 2504.09396v2: score=7
+2026-04-07 14:54:28,627 | INFO | Parsed 2506.12552v1: score=3
+2026-04-07 14:54:28,627 | INFO | Parsed 2507.21873v1: score=4
+2026-04-07 14:54:28,627 | INFO | Parsed evaluations: 8
+2026-04-07 14:54:28,627 | INFO | [score] id=2601.07637v1 score=9 relevant=True needs_summary=False
+2026-04-07 14:54:28,627 | INFO | [score] id=2602.15385v2 score=8 relevant=True needs_summary=False
+2026-04-07 14:54:28,628 | INFO | [score] id=2601.05274v1 score=8 relevant=True needs_summary=True
+2026-04-07 14:54:28,628 | INFO | [score] id=2504.09396v2 score=7 relevant=True needs_summary=True
+2026-04-07 14:54:28,628 | INFO | [score] id=2507.21873v1 score=4 relevant=False needs_summary=True
+2026-04-07 14:54:28,628 | INFO | [score] id=2505.11755v2 score=3 relevant=False needs_summary=True
+2026-04-07 14:54:28,628 | INFO | [score] id=2512.19920v3 score=3 relevant=False needs_summary=True
+2026-04-07 14:54:28,628 | INFO | [score] id=2506.12552v1 score=3 relevant=False needs_summary=True
+2026-04-07 14:54:28,628 | INFO | Found 4 relevant papers out of 8 total
+2026-04-07 14:54:28,628 | INFO | Returning top 3 papers
+2026-04-07 14:54:28,628 | INFO |   1. [9/10] 2601.07637v1
+2026-04-07 14:54:28,628 | INFO |   2. [8/10] 2602.15385v2
+2026-04-07 14:54:28,628 | INFO |   3. [8/10] 2601.05274v1
+2026-04-07 14:54:28,628 | INFO | Results markdown written to runs/results/digest_20260407_142836.md
+2026-04-07 14:54:28,628 | INFO | Slack delivery disabled by config
+2026-04-07 14:54:28,629 | INFO | Updated seen_papers tracking
+2026-04-07 14:54:28,629 | INFO | Run complete. Results file: runs/results/digest_20260407_142836.md

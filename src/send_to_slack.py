@@ -1,13 +1,20 @@
 from datetime import datetime
 import requests
 
-def get_top_papers(results, top_n=10):
+def _log(log_fn, message):
+    if log_fn:
+        log_fn(message)
+    else:
+        print(message)
+
+
+def get_top_papers(results, top_n=10, log_fn=None):
     """Filter to only relevant papers and get top N by score"""
     
     # Filter to relevant only
     relevant = [r for r in results if r.get('is_relevant', False)]
     
-    print(f"\nFound {len(relevant)} relevant papers out of {len(results)} total")
+    _log(log_fn, f"Found {len(relevant)} relevant papers out of {len(results)} total")
     
     # Sort by relevance_score descending
     relevant.sort(key=lambda x: x.get('relevance_score', 0), reverse=True)
@@ -15,9 +22,9 @@ def get_top_papers(results, top_n=10):
     # Return top N
     top_papers = relevant[:top_n]
     
-    print(f"Returning top {len(top_papers)} papers")
+    _log(log_fn, f"Returning top {len(top_papers)} papers")
     for i, p in enumerate(top_papers, 1):
-        print(f"  {i}. [{p['relevance_score']}/10] {p['paper_id']}")
+        _log(log_fn, f"  {i}. [{p['relevance_score']}/10] {p['paper_id']}")
     
     return top_papers
 

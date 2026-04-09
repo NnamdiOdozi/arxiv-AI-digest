@@ -1,0 +1,10 @@
+{
+  "prompt_hash": "45367c3d",
+  "timestamp": "20260409_104642",
+  "model": "Qwen/Qwen3-VL-30B-A3B-Instruct-FP8",
+  "files": {
+    "summary-matching_task": {
+      "safe_filename": "matching_task"
+    }
+  }
+}

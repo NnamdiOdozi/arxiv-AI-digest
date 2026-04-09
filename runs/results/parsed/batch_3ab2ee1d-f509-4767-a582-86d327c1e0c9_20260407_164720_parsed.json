@@ -1,0 +1,18 @@
+[
+  {
+    "relevance_score": 8,
+    "is_relevant": true,
+    "needs_summary": true,
+    "summary": "The paper applies survival analysis with machine learning methods\u2014Cox model, neural networks, and XGBoost\u2014to forecast IBNR frequencies using individual claims data, estimating development factors through hazard function estimation in reverse time.",
+    "key_insight": "Using survival analysis with ML models on individual claim data enables coherent, flexible prediction of IBNR frequencies across different time granularities.",
+    "paper_id": "2312.14549v3"
+  },
+  {
+    "relevance_score": 9,
+    "is_relevant": true,
+    "needs_summary": true,
+    "summary": "The paper introduces a recurrent neural network (Deep Triangle) for multivariate loss reserving that captures dependencies between lines of business and uses GANs to generate synthetic loss triangles for risk capital analysis, demonstrating superior performance over copula regression models.",
+    "key_insight": "Recurrent neural networks can effectively model multivariate loss reserving with dependence between lines of business, improving reserve predictions and enabling more accurate risk capital estimation.",
+    "paper_id": "2402.10421v3"
+  }
+]

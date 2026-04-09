@@ -1,0 +1,107 @@
+[
+  {
+    "question": "What modelling techniques are used in this paper? Select one or more from [Neural network, Gradient boosting machine, Regression tree, Random forest, CART, GLM/statistical learning, Survey/literature review, Non-ML, Hybrid]. If unclear, use Unknown. Explain briefly.",
+    "keys": [
+      "modelling_technique_values",
+      "modelling_technique_explanation"
+    ]
+  },
+  {
+    "question": "What is the granularity of the source data used in this paper? Select one from [Individual claims, Low-level aggregation (triangle cell level), Medium-level aggregation (segment/cohort level), High-level aggregation (portfolio level), Not stated/Not applicable]. Explain briefly.",
+    "keys": [
+      "input_data_granularity_value",
+      "input_data_granularity_explanation"
+    ]
+  },
+  {
+    "question": "What is the granularity of the data actually consumed by the modelling technique? Select one from [Individual claims, Low-level aggregation (triangle cell level), Medium-level aggregation (segment/cohort level), High-level aggregation (portfolio level), Not stated/Not applicable]. Explain briefly and keep this distinct from source-data granularity.",
+    "keys": [
+      "model_data_granularity_value",
+      "model_data_granularity_explanation"
+    ]
+  },
+  {
+    "question": "Which time period dimensions are used? Select one or more from [Accident period, Development period, Calendar period, Reporting period, Settlement period, Various/Not stated]. Explain briefly.",
+    "keys": [
+      "time_period_values",
+      "time_period_explanation"
+    ]
+  },
+  {
+    "question": "What time period lengths are used? Select one or more from [Year, Half-year, Quarter, Month, Finer than month, Specific dates, Mixed lengths, Not stated]. Explain briefly.",
+    "keys": [
+      "time_period_length_values",
+      "time_period_length_explanation"
+    ]
+  },
+  {
+    "question": "What target/response measures are modelled? Select one or more from [Claim counts, Paid amounts, Case estimates, Claim payment counts, Incurred amounts, Other/Not stated]. Explain briefly.",
+    "keys": [
+      "target_variable_values",
+      "target_variable_explanation"
+    ]
+  },
+  {
+    "question": "What type of data is used? Select one or more from [Real, Simulated, Both real and simulated, Masked/anonymized real, Unknown]. Explain briefly.",
+    "keys": [
+      "data_source_values",
+      "data_source_explanation"
+    ]
+  },
+  {
+    "question": "Is the data published and available to us? Select one from [Available to us, Not available to us, Simulated from public code only, Unknown]. Explain briefly.",
+    "keys": [
+      "data_published_value",
+      "data_published_explanation"
+    ]
+  },
+  {
+    "question": "Which lines of business are relevant? Select one or more from [Fire, Home, Motor (all coverage), Construction, Marine, Aviation, Employers Liability, Motor Liability, Public Liability, Professional Indemnity, Directors and Officers, Medical malpractice, Disability and Health, Mortgage, Other inferred, Not stated]. If the paper implies classes without naming them directly, infer plausible classes and state that inference.",
+    "keys": [
+      "business_line_values",
+      "business_line_explanation"
+    ]
+  },
+  {
+    "question": "What input data measures are used? Select one or more from [Claim counts, Paid amounts, Case estimates, Partial payments, Accident period, Development period, Reporting period, Exposure, Transaction dates, Other - specify]. Explain briefly.",
+    "keys": [
+      "input_data_measures_values",
+      "input_data_measures_explanation"
+    ]
+  },
+  {
+    "question": "Is model validation performed? Select one from [Yes, No, Unclear]. Explain briefly.",
+    "keys": [
+      "model_validation_value",
+      "model_validation_explanation"
+    ]
+  },
+  {
+    "question": "How are prediction errors estimated? Select one from [In-sample, Out-of-sample, Both, Other-specify, Not stated]. Explain briefly.",
+    "keys": [
+      "prediction_error_value",
+      "prediction_error_explanation"
+    ]
+  },
+  {
+    "question": "Does the paper claim outperformance versus traditional chain-ladder approaches? Select one from [Supremacy_claimed, Not_claimed, Mixed_or_conditional, Unclear]. Explain briefly.",
+    "keys": [
+      "supremacy_value",
+      "supremacy_explanation"
+    ]
+  },
+  {
+    "question": "Is code for the model approach publicly available? Select one from [Yes_full, Yes_partial, No, Unknown]. Explain briefly and distinguish code from data availability, stating what programming language was used and what machine learning libraries such as Pytorch, Tensorflow etc.",
+    "keys": [
+      "code_available_value",
+      "code_available_value_explanation"
+    ]
+  },
+  {
+    "question": "Identify keyword usage. Check explicit occurrence in title, abstract, and (if present in summary text) key terms section. Select one or more from [Chain ladder, Rate of finalization, Superimposed inflation, Other, None] and explain how the match was determined (exact term, close synonym, or absent).",
+    "keys": [
+      "keywords_value",
+      "keywords_explanation"
+    ]
+  }
+]

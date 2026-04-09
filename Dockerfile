@@ -8,10 +8,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all code
-COPY *.py .
+COPY src/ ./src/
 
 # Create data directory for persistent storage
 RUN mkdir -p /app/data
 
 # Run the script
-CMD ["python", "main.py"]
+CMD ["python", "src/main.py"]

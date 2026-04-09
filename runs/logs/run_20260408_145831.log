@@ -1,0 +1,384 @@
+2026-04-08 14:58:31,607 | INFO | Run log file: runs/logs/run_20260408_145831.log
+2026-04-08 14:58:31,607 | INFO | CLI mode override: full
+2026-04-08 14:58:31,607 | INFO | Starting pipeline run
+2026-04-08 14:58:31,607 | INFO | Pipeline mode: full
+2026-04-08 14:58:31,607 | INFO | Lookback config: {'years': 10, 'months': 0, 'days': 0}
+2026-04-08 14:58:31,607 | INFO | Search max_results: 100
+2026-04-08 14:58:31,607 | INFO | Query config: use_and_query=True, enforce_domain_prefilter=False, prefilter_min_matches=1, require_anchor_match=False, term_match_mode=stem
+2026-04-08 14:58:31,607 | INFO | Selection top_n: 20
+2026-04-08 14:58:31,607 | INFO | Inference model: Qwen/Qwen3-VL-30B-A3B-Instruct-FP8
+2026-04-08 14:58:31,607 | INFO | Structured review config: enabled=True, mode=separate, file=/home/nodozi/projects/mlir_wp/arxiv-daily-digest/pipeline_data/review_questions.json, max_questions=15, include_in_digest=True
+2026-04-08 14:58:31,607 | INFO | arXiv tuning: {'arxiv_page_size': 0, 'arxiv_delay_seconds': 6.0, 'arxiv_num_retries': 6, 'arxiv_max_attempts': 4, 'arxiv_backoff_seconds': 20.0}
+2026-04-08 14:58:31,607 | INFO | Network retry config: {'openai_retry_max_attempts': 8, 'openai_retry_base_seconds': 5.0, 'openai_retry_max_seconds': 120.0, 'poll_interval_seconds': 30.0, 'max_consecutive_poll_errors': 0, 'completion_window': '24h'}
+2026-04-08 14:58:31,607 | INFO | LLM payload source: arXiv title + abstract metadata only (no PDF/full-paper download).
+2026-04-08 14:58:31,607 | INFO | arXiv query: ("general insurance" OR "P&C insurance" OR "P&C business" OR "property and casualty insurance" OR "non-life insurance" OR "non-life business" OR "property and casualty" OR "claims reserving" OR "claim loss" OR "claims loss" OR "claim reserving" OR "our claim liabilities" OR "claim liabilities" OR "claims liabilities" OR "claim experience" OR "claims experience" OR "case estimates" OR "loss reserving" OR "IBNR" OR "claim development" OR "claims development" OR "claims incurred" OR "incurred claims" OR "claims run-off" OR "individual claims reserving" OR "individual loss reserving" OR "micro-level reserving" OR "micro reserving" OR "granular reserving" OR "insurance reserving" OR "chain ladder" OR "actuarial reserving") AND ("machine learning" OR "ml" OR "artificial intelligence" OR "ai" OR "gen ai" OR "generative artificial intelligence" OR "simulation" OR "forecast" OR "forecasting" OR "predict" OR "estimation" OR "model" OR "modelling" OR "generalized linear model" OR "glm" OR "neural network" OR "network" OR "transformer" OR "recurrent neural network" OR "mixture density network")
+2026-04-08 14:58:31,607 | INFO | Domain prefilter terms: disabled
+2026-04-08 14:58:31,607 | INFO | Anchor terms: disabled
+2026-04-08 14:58:31,607 | INFO | Fetching papers from arXiv
+2026-04-08 14:58:31,608 | INFO | arXiv fetch attempt 1/4 (page_size=100, delay_seconds=6.0, num_retries=6)
+2026-04-08 14:58:52,940 | INFO | arXiv candidates returned: 100
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 1/100 id=2604.05143v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-04-06 20:11:04+00:00 lead_author=Platon Promyslov title=Existence of a classical solution to the integro-differential equation arising in the Cramér--Lundberg non-life insurance model with proportional investment
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 2/100 id=2604.02400v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-04-02 15:28:37+00:00 lead_author=Jean-Philippe Boucher title=Varying risk exposure in auto insurance: a weighted tweedie framework for experience rating an cancellation penalties
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 3/100 id=2603.20333v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-03-20 07:23:32+00:00 lead_author=Oleksii Bychkov title=Bounded Coupled AI Learning Dynamics in Tri-Hierarchical Drone Swarms
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 4/100 id=2603.14543v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-03-15 18:33:56+00:00 lead_author=Michael Balzer title=Gradient Boosting for Spatial Panel Models with Random and Fixed Effects
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 5/100 id=2603.13803v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-03-14 07:22:43+00:00 lead_author=Amogh Vinaykumar title=ALTIS: Automated Loss Triage and Impact Scoring from Sentinel-1 SAR for Property-Level Flood Damage Assessment
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 6/100 id=2603.13103v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-03-13 15:58:40+00:00 lead_author=Qishen Zhong title=A Feasibility-Enhanced Control Barrier Function Method for Multi-UAV Collision Avoidance
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 7/100 id=2603.11258v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-03-11 19:37:15+00:00 lead_author=Nicolas Baradel title=Continuous-time modeling and bootstrap for Schnieper's reserving
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 8/100 id=2603.01821v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-03-02 12:53:29+00:00 lead_author=Jonathan Klinge title=Asymptotics of Ruin Probabilities in a Subordinated Cramér-Lundberg Model
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 9/100 id=2602.20412v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-02-23 23:22:41+00:00 lead_author=Aayush Dhakal title=SimLBR: Learning to Detect Fake Images by Learning to Detect Real Images
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 10/100 id=2602.20404v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-02-23 22:56:32+00:00 lead_author=Xihe Gu title=$κ$-Explorer: A Unified Framework for Active Model Estimation in MDPs
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 11/100 id=2602.15481v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-02-17 10:35:41+00:00 lead_author=Aadirupa Saha title=LLM-as-Judge on a Budget
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 12/100 id=2602.15385v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-02-17 06:46:17+00:00 lead_author=Ronald Richman title=From Chain-Ladder to Individual Claims Reserving
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 13/100 id=2602.06486v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-02-06 08:26:09+00:00 lead_author=Lanbo Lin title=JADE: Expert-Grounded Dynamic Evaluation for Open-Ended Professional Tasks
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 14/100 id=2602.05586v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-02-05 12:15:04+00:00 lead_author=Tommaso Zaccherini title=Observer-based Control of Multi-agent Systems under STL Specifications
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 15/100 id=2601.17621v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-01-24 22:53:50+00:00 lead_author=Tim Ritmeester title=Non-parametric finite-sample credible intervals with one-dimensional priors: a middle ground between Bayesian and frequentist intervals
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 16/100 id=2601.07637v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-01-12 15:17:18+00:00 lead_author=Benjamin Avanzi title=Reinforcement Learning for Micro-Level Claims Reserving
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 17/100 id=2601.05964v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-01-09 17:34:16+00:00 lead_author=Luis E. Nieto-Barajas title=Negative binomial models for development triangles of counts
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 18/100 id=2601.05859v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2026-01-09 15:34:39+00:00 lead_author=Joseph Marsh title=Neural Methods for Multiple Systems Estimation Models
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 19/100 id=2601.05274v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-12-28 05:51:05+00:00 lead_author=Benjamin Avanzi title=On the use of case estimate and transactional payment data in neural networks for individual loss reserving
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 20/100 id=2512.20305v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-12-23 12:16:06+00:00 lead_author=Mebin Jose title=A Structured Nonparametric Framework for Nonlinear Accelerated Failure Time Models (KAN-AFT)
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 21/100 id=2512.18558v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-12-21 01:19:24+00:00 lead_author=Shuwei Pei title=Distributionally Robust Multi-Agent Reinforcement Learning for Intelligent Traffic Control
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 22/100 id=2512.11197v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-12-12 00:59:21+00:00 lead_author=Emmanuel Hamel title=A Unified Micro-Model for Loss Reserves, IBNR and Unearned Premium Risk with Dependence, Inflation, and Discounting
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 23/100 id=2511.14441v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-11-18 12:40:41+00:00 lead_author=Daniel Klippert title=Skewness-Robust Causal Discovery in Location-Scale Noise Models
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 24/100 id=2511.01420v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-11-03 10:13:12+00:00 lead_author=Christoph Lenzen title=Gradient Clock Synchronization with Practically Constant Local Skew
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 25/100 id=2510.27519v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-10-31 14:46:25+00:00 lead_author=Shinichi Nakagawa title=Mastering an Accurate and Generalizable Simulation-Based Method to Obtain Bias-corrected Point Estimates and Sampling Variance for Any Effect Sizes
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 26/100 id=2510.27204v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-10-31 05:54:48+00:00 lead_author=Arthur Charpentier title=Functional Analysis of Loss-development Patterns in P&C Insurance
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 27/100 id=2510.05723v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-10-07 09:43:35+00:00 lead_author=J. A. Gracey title=Six loop critical exponent analysis for Lee-Yang and percolation theory
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 28/100 id=2510.04556v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-10-06 07:41:09+00:00 lead_author=Alexej Brauer title=Model Monitoring: A General Framework with an Application to Non-life Insurance Pricing
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 29/100 id=2509.24158v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-09-29 01:17:28+00:00 lead_author=Qi Xu title=Blockwise Missingness meets AI: A Tractable Solution for Semiparametric Inference
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 30/100 id=2509.20803v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-09-25 06:33:16+00:00 lead_author=Woongchae Yoo title=Statistical Learning of Trade Credit Insurance Network Data with Applications to Ratemaking and Reserving
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 31/100 id=2509.08956v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-09-10 19:30:04+00:00 lead_author=Luke Snow title=Multi-Agent Inverse Reinforcement Learning for Identifying Pareto-Efficient Coordination -- A Distributionally Robust Approach
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 32/100 id=2509.08479v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-09-10 10:37:38+00:00 lead_author=Mikheil Tsitsishvili title=From Kardar-Parisi-Zhang scaling to soliton proliferation in Josephson junction arrays
+2026-04-08 14:58:52,940 | INFO | [arxiv_raw] 33/100 id=2509.08467v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-09-10 10:15:59+00:00 lead_author=Patrick J. Laub title=An Interpretable Deep Learning Model for General Insurance Pricing
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 34/100 id=2509.05426v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-09-05 18:12:08+00:00 lead_author=Pengfei Cai title=Sparse Seemingly Unrelated Regression (SSUR) Copula Mixed Models for Multivariate Loss Reserving
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 35/100 id=2508.16444v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-08-22 14:58:39+00:00 lead_author=Benjamin Avanzi title=Dynamic Financial Analysis (DFA) of General Insurers under Climate Change
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 36/100 id=2506.22513v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-06-26 06:25:36+00:00 lead_author=Aditya Sharma title=Automated Defect Identification and Categorization in NDE 4.0 with the Application of Artificial Intelligence
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 37/100 id=2506.18136v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-06-22 18:39:01+00:00 lead_author=Daisuke Kurisu title=Regression Discontinuity Designs for Functional Data and Random Objects in Geodesic Spaces
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 38/100 id=2506.15855v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-06-18 20:04:28+00:00 lead_author=Iris Lang title=Bayesian Non-Negative Matrix Factorization with Correlated Mutation Type Probabilities for Mutational Signatures
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 39/100 id=2506.07622v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-06-09 10:39:28+00:00 lead_author=Jaap Eising title=Set-valued regression and cautious suboptimization: From noisy data to optimality
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 40/100 id=2506.00695v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-05-31 20:01:21+00:00 lead_author=Ben Zindorf title=Multi-Controlled Quantum Gates in Linear Nearest Neighbor
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 41/100 id=2505.17360v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-05-23 00:30:55+00:00 lead_author=Rares-Darius Buhai title=The Quasi-Polynomial Low-Degree Conjecture is False
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 42/100 id=2505.16486v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-05-22 10:13:10+00:00 lead_author=Giorgio Consigli title=Asset liability management under sequential stochastic dominance constraints
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 43/100 id=2505.08943v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-05-13 20:14:37+00:00 lead_author=Philip A. Ernst title=The value of partial information
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 44/100 id=2504.21822v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-04-30 17:26:41+00:00 lead_author=Francois Foucart title=On the difficulty of capturing the distribution function of neutrinos in neutron star merger simulations
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 45/100 id=2504.09974v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-04-14 08:26:06+00:00 lead_author=Kasra Azizi title=Towards Resilient Tracking in Autonomous Vehicles: A Distributionally Robust Input and State Estimation Approach
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 46/100 id=2504.09396v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-04-13 01:43:25+00:00 lead_author=Stella C. Dong title=Adaptive Insurance Reserving with CVaR-Constrained Reinforcement Learning under Macroeconomic Regimes
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 47/100 id=2504.09292v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-04-12 17:29:29+00:00 lead_author=Rajesh Selukar title=Stochastic Claims Reserving Using State Space Modeling
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 48/100 id=2504.07014v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-04-09 16:31:07+00:00 lead_author=Gennady Y. Chitov title=Fermi surface as a quantum critical manifold: gaplessness, order parameter, and scaling in $d$-dimensions
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 49/100 id=2503.21321v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-03-27 09:59:45+00:00 lead_author=Markéta Krùpovà title=Explainable Boosting Machine for Predicting Claim Severity and Frequency in Car Insurance
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 50/100 id=2503.17173v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-03-21 14:19:45+00:00 lead_author=Sanjif Shanmugavelu title=Robustness of deep learning classification to adversarial input on GPUs: asynchronous parallel accumulation is a source of vulnerability
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 51/100 id=2502.20785v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-02-28 07:06:19+00:00 lead_author=Hyewon Jeon title=GraphCheck: Multipath Fact-Checking with Entity-Relationship Graphs
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 52/100 id=2502.15598v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-02-21 17:16:57+00:00 lead_author=Sebastian Calcetero Vanegas title=A Population Sampling Framework for Claim Reserving in General Insurance
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 53/100 id=2502.14479v4 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-02-20 11:53:20+00:00 lead_author=Arno Botha title=Modelling the term-structure of default risk under IFRS 9 within a multistate regression framework
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 54/100 id=2502.11788v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-02-17 13:26:36+00:00 lead_author=Boucher Jean-Philippe title=Comparison of offset and ratio weighted regressions in tweedie models with application to mid-term cancellations
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 55/100 id=2501.09660v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-01-16 16:57:02+00:00 lead_author=Jan M. Swart title=Peierls bounds from random Toom contours
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 56/100 id=2501.01686v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2025-01-03 08:04:30+00:00 lead_author=Chu-Hee Cho title=Endpoint estimates for maximal operators associated to the wave equation
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 57/100 id=2412.07962v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-12-10 22:58:36+00:00 lead_author=Christopher Bian title=Mayfly: Private Aggregate Insights from Ephemeral Streams of On-Device User Data
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 58/100 id=2411.12784v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-11-19 10:00:44+00:00 lead_author=Daniel Redondo-Sánchez title=Cancer incidence estimation from mortality data: a validation study within a population-based cancer registry
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 59/100 id=2410.20841v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-10-28 08:53:47+00:00 lead_author=Huan-Yu Liu title=Quantum Computational Insurance and Actuarial Science
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 60/100 id=2410.15705v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-10-21 07:21:29+00:00 lead_author=Takuma Yoshida title=Variable screening for covariate dependent extreme value index estimation
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 61/100 id=2410.15079v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-10-19 11:54:43+00:00 lead_author=Jens M. Melenk title=Parsimonious convolution quadrature
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 62/100 id=2410.14985v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-10-19 05:24:11+00:00 lead_author=Andrew Fleck title=Stochastic Loss Reserving: Dependence and Estimation
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 63/100 id=2410.04369v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-10-06 06:05:26+00:00 lead_author=Roba Bairakdar title=Deviance Voronoi Residuals for Space-Time Point Process Models: An Application to Earthquake Insurance Risk
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 64/100 id=2409.12896v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-09-19 16:37:56+00:00 lead_author=Hassan Abdelrahman title=Marked Cox Models for IBNR Claims Count: Continuous and Discretized Approaches with Dirichlet-Driven Reporting Delays
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 65/100 id=2409.07795v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-09-12 06:55:55+00:00 lead_author=Seong-ho Lee title=Robust and efficient estimation in the presence of a randomly censored covariate
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 66/100 id=2408.01175v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-08-02 10:54:21+00:00 lead_author=Dirk Becherer title=Common Noise by Random Measures: Constructing Mean-Field Equilibria for Competitive Investment and Hedging
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 67/100 id=2407.18377v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-07-25 20:22:38+00:00 lead_author=Maochao Xu title=Bayesian Nowcasting Data Breach IBNR Incidents
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 68/100 id=2407.15177v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-07-21 14:25:29+00:00 lead_author=Henry Beuster title=Measurements of the Safety Function Response Time on a Private 5G and IO-Link Wireless Testbed
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 69/100 id=2408.00003v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-07-17 22:48:36+00:00 lead_author=Dhiti Osatakul title=Bonus-malus Systems vs Delays in Claims Reporting and Settlement: Analysis of Ruin Probabilities
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 70/100 id=2407.12564v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-07-17 13:48:05+00:00 lead_author=Franco Cordeiro title=Shackling Uncertainty using Mixed Criticality in Monte-Carlo Tree Search
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 71/100 id=2406.18472v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-06-26 16:29:48+00:00 lead_author=Damiano Greco title=Ground states of a nonlocal variational problem and Thomas-Fermi limit for the Choquard equation
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 72/100 id=2406.10733v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-06-15 20:41:52+00:00 lead_author=Žikica Lukić title=A Laplace transform-based test for the equality of positive semidefinite matrix distributions
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 73/100 id=2406.03252v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-06-05 13:30:45+00:00 lead_author=Nicolas Baradel title=Continuous-time modeling and bootstrap for chain-ladder reserving
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 74/100 id=2405.09797v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-05-16 04:01:53+00:00 lead_author=Guilherme Duarte title=Extrapolating Single-Treatment Effects Out of Factorial Experiments
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 75/100 id=2405.06261v4 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-05-10 06:24:35+00:00 lead_author=V. Arvind Rameshwar title=On Improving the Composition Privacy Loss in Differential Privacy for Fixed Estimation Error
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 76/100 id=2405.02871v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-05-05 09:57:11+00:00 lead_author=Nicolas Baradel title=Modeling frequency distribution above a priority in presence of IBNR
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 77/100 id=2404.10275v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-04-16 04:21:59+00:00 lead_author=Vincent Grari title=OptiGrad: A Fair and more Efficient Price Elasticity Optimization via a Gradient Based Learning
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 78/100 id=2404.07248v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-04-10 15:40:55+00:00 lead_author=Marie Michaelides title=Parametric estimation of conditional Archimedean copula generators for censored data
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 79/100 id=2402.14983v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-02-22 21:46:24+00:00 lead_author=Panyi Dong title=Privacy-Enhancing Collaborative Information Sharing through Federated Learning -- A Case of the Insurance Industry
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 80/100 id=2402.10421v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-02-16 03:00:01+00:00 lead_author=Pengfei Cai title=Recurrent Neural Networks for Multivariate Loss Reserving and Risk Capital Analysis
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 81/100 id=2401.17334v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-01-29 22:15:08+00:00 lead_author=Ivan Medovikov title=Efficient estimation of parameters in marginals in semiparametric multivariate models
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 82/100 id=2401.16529v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-01-29 20:02:08+00:00 lead_author=Yidi Wang title=Unleashing the Power of Preemptive Priority-based Scheduling for Real-Time GPU Tasks
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 83/100 id=2401.07724v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2024-01-15 14:38:49+00:00 lead_author=Marie Michaelides title=A non-parametric estimator for Archimedean copulas under flexible censoring scenarios and an application to claims reserving
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 84/100 id=2312.14549v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-12-22 09:25:47+00:00 lead_author=Munir Hiabu title=A machine learning approach based on survival analysis for IBNR frequencies in non-life reserving
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 85/100 id=2312.14324v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-12-21 22:33:25+00:00 lead_author=Oliver Lunding Sandqvist title=A multistate approach to disability insurance reserving with information delays
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 86/100 id=2312.04108v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-12-07 07:49:49+00:00 lead_author=Nolwenn Fougeron title=Current poisson's ratio values of finite element models are too low to consider soft tissues nearly-incompressible: illustration on the human heel region
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 87/100 id=2312.03139v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-12-05 21:19:08+00:00 lead_author=William L. Leão title=A Bayesian Skew-heavy-tailed modelling for loss reserving
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 88/100 id=2311.11900v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-11-20 16:34:48+00:00 lead_author=Mulah Moriah title=Measuring and Mitigating Biases in Motor Insurance Pricing
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 89/100 id=2311.10917v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-11-18 00:03:55+00:00 lead_author=Leonard Mushunje title=Modeling trading games in a stochastic non-life insurance market
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 90/100 id=2311.07384v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-11-13 15:09:49+00:00 lead_author=Martin Bladt title=Individual claims reserving using the Aalen--Johansen estimator
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 91/100 id=2311.07597v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-11-10 12:06:23+00:00 lead_author=Alexej Brauer title=Enhancing Actuarial Non-Life Pricing Models via Transformers
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 92/100 id=2310.12056v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-10-18 15:43:03+00:00 lead_author=Nils Engler title=Mack's estimator motivated by large exposure asymptotics in a compound Poisson setting
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 93/100 id=2310.11471v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-10-16 20:43:25+00:00 lead_author=Selim Gatti title=Modeling lower-truncated and right-censored insurance claims with an extension of the MBBEFD class
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 94/100 id=2310.04786v2 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-10-07 12:17:33+00:00 lead_author=Benjamin Avanzi title=On the evolution of data breach reporting patterns and frequency in the United States: a cross-state analysis
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 95/100 id=2307.07771v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-07-15 10:54:46+00:00 lead_author=Banghee So title=Enhanced Gradient Boosting for Zero-Inflated Insurance Claims and Comparative Analysis of CatBoost, XGBoost, and LightGBM
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 96/100 id=2307.05366v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-07-11 15:46:20+00:00 lead_author=Wenceslao Arroyo-Machado title=From academic to media capital: To what extent does the scientific reputation of universities translate into Wikipedia attention?
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 97/100 id=2307.10808v3 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-07-05 07:24:23+00:00 lead_author=Sebastian Calcetero-Vanegas title=Claim Reserving via Inverse Probability Weighting: A Micro-Level Chain-Ladder Method
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 98/100 id=2306.09020v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-06-15 10:28:06+00:00 lead_author=Seung Min Baik title=Distributionally Robust Stratified Sampling for Stochastic Simulations with Multiple Uncertain Input Models
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 99/100 id=2306.01502v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-06-02 12:49:58+00:00 lead_author=Andrius Grigutis title=Ruin probability for renewal risk models with neutral net profit condition
+2026-04-08 14:58:52,941 | INFO | [arxiv_raw] 100/100 id=2305.18265v1 in_window=True domain_match=True prefilter_hits=[] anchor_hits=[] published=2023-05-29 17:39:22+00:00 lead_author=Gengyu Wang title=Check-COVID: Fact-Checking COVID-19 News Claims with Scientific Evidence
+2026-04-08 14:58:52,941 | INFO | After lookback filter: 100
+2026-04-08 14:58:52,941 | INFO | Dropped by domain prefilter: 0
+2026-04-08 14:58:52,941 | INFO | After combined query+prefilter: 100
+2026-04-08 14:58:52,941 | INFO | Dropped as already seen: 13
+2026-04-08 14:58:52,941 | INFO | Seen registry total: 13
+2026-04-08 14:58:52,941 | INFO | [drop_seen] id=2604.05143v1 title=Existence of a classical solution to the integro-differential equation arising in the Cramér--Lundberg non-life insurance model with proportional investment
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2604.02400v1 title=Varying risk exposure in auto insurance: a weighted tweedie framework for experience rating an cancellation penalties
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2603.20333v1 title=Bounded Coupled AI Learning Dynamics in Tri-Hierarchical Drone Swarms
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2603.14543v1 title=Gradient Boosting for Spatial Panel Models with Random and Fixed Effects
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2603.13803v1 title=ALTIS: Automated Loss Triage and Impact Scoring from Sentinel-1 SAR for Property-Level Flood Damage Assessment
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2603.13103v1 title=A Feasibility-Enhanced Control Barrier Function Method for Multi-UAV Collision Avoidance
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2603.11258v1 title=Continuous-time modeling and bootstrap for Schnieper's reserving
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2603.01821v1 title=Asymptotics of Ruin Probabilities in a Subordinated Cramér-Lundberg Model
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2602.20412v1 title=SimLBR: Learning to Detect Fake Images by Learning to Detect Real Images
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2602.20404v1 title=$κ$-Explorer: A Unified Framework for Active Model Estimation in MDPs
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2510.05723v2 title=Six loop critical exponent analysis for Lee-Yang and percolation theory
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2506.15855v2 title=Bayesian Non-Negative Matrix Factorization with Correlated Mutation Type Probabilities for Mutational Signatures
+2026-04-08 14:58:52,942 | INFO | [drop_seen] id=2505.16486v1 title=Asset liability management under sequential stochastic dominance constraints
+2026-04-08 14:58:52,943 | INFO | Search snapshot written to runs/search/arxiv_search_20260408_145831.json
+2026-04-08 14:58:52,944 | INFO | Papers to score: 87
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=1/87 paper_id=2602.15481v1 title=LLM-as-Judge on a Budget
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=2/87 paper_id=2602.15385v2 title=From Chain-Ladder to Individual Claims Reserving
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=3/87 paper_id=2602.06486v1 title=JADE: Expert-Grounded Dynamic Evaluation for Open-Ended Professional Tasks
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=4/87 paper_id=2602.05586v1 title=Observer-based Control of Multi-agent Systems under STL Specifications
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=5/87 paper_id=2601.17621v2 title=Non-parametric finite-sample credible intervals with one-dimensional priors: a middle ground between Bayesian and frequentist intervals
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=6/87 paper_id=2601.07637v1 title=Reinforcement Learning for Micro-Level Claims Reserving
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=7/87 paper_id=2601.05964v1 title=Negative binomial models for development triangles of counts
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=8/87 paper_id=2601.05859v1 title=Neural Methods for Multiple Systems Estimation Models
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=9/87 paper_id=2601.05274v1 title=On the use of case estimate and transactional payment data in neural networks for individual loss reserving
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=10/87 paper_id=2512.20305v2 title=A Structured Nonparametric Framework for Nonlinear Accelerated Failure Time Models (KAN-AFT)
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=11/87 paper_id=2512.18558v1 title=Distributionally Robust Multi-Agent Reinforcement Learning for Intelligent Traffic Control
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=12/87 paper_id=2512.11197v1 title=A Unified Micro-Model for Loss Reserves, IBNR and Unearned Premium Risk with Dependence, Inflation, and Discounting
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=13/87 paper_id=2511.14441v1 title=Skewness-Robust Causal Discovery in Location-Scale Noise Models
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=14/87 paper_id=2511.01420v1 title=Gradient Clock Synchronization with Practically Constant Local Skew
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=15/87 paper_id=2510.27519v1 title=Mastering an Accurate and Generalizable Simulation-Based Method to Obtain Bias-corrected Point Estimates and Sampling Variance for Any Effect Sizes
+2026-04-08 14:58:52,944 | INFO | [dw_queue] request=16/87 paper_id=2510.27204v1 title=Functional Analysis of Loss-development Patterns in P&C Insurance
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=17/87 paper_id=2510.04556v2 title=Model Monitoring: A General Framework with an Application to Non-life Insurance Pricing
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=18/87 paper_id=2509.24158v1 title=Blockwise Missingness meets AI: A Tractable Solution for Semiparametric Inference
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=19/87 paper_id=2509.20803v1 title=Statistical Learning of Trade Credit Insurance Network Data with Applications to Ratemaking and Reserving
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=20/87 paper_id=2509.08956v1 title=Multi-Agent Inverse Reinforcement Learning for Identifying Pareto-Efficient Coordination -- A Distributionally Robust Approach
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=21/87 paper_id=2509.08479v2 title=From Kardar-Parisi-Zhang scaling to soliton proliferation in Josephson junction arrays
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=22/87 paper_id=2509.08467v1 title=An Interpretable Deep Learning Model for General Insurance Pricing
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=23/87 paper_id=2509.05426v1 title=Sparse Seemingly Unrelated Regression (SSUR) Copula Mixed Models for Multivariate Loss Reserving
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=24/87 paper_id=2508.16444v3 title=Dynamic Financial Analysis (DFA) of General Insurers under Climate Change
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=25/87 paper_id=2506.22513v1 title=Automated Defect Identification and Categorization in NDE 4.0 with the Application of Artificial Intelligence
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=26/87 paper_id=2506.18136v1 title=Regression Discontinuity Designs for Functional Data and Random Objects in Geodesic Spaces
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=27/87 paper_id=2506.07622v1 title=Set-valued regression and cautious suboptimization: From noisy data to optimality
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=28/87 paper_id=2506.00695v2 title=Multi-Controlled Quantum Gates in Linear Nearest Neighbor
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=29/87 paper_id=2505.17360v1 title=The Quasi-Polynomial Low-Degree Conjecture is False
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=30/87 paper_id=2505.08943v1 title=The value of partial information
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=31/87 paper_id=2504.21822v2 title=On the difficulty of capturing the distribution function of neutrinos in neutron star merger simulations
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=32/87 paper_id=2504.09974v1 title=Towards Resilient Tracking in Autonomous Vehicles: A Distributionally Robust Input and State Estimation Approach
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=33/87 paper_id=2504.09396v2 title=Adaptive Insurance Reserving with CVaR-Constrained Reinforcement Learning under Macroeconomic Regimes
+2026-04-08 14:58:52,945 | INFO | [dw_queue] request=34/87 paper_id=2504.09292v1 title=Stochastic Claims Reserving Using State Space Modeling
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=35/87 paper_id=2504.07014v2 title=Fermi surface as a quantum critical manifold: gaplessness, order parameter, and scaling in $d$-dimensions
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=36/87 paper_id=2503.21321v1 title=Explainable Boosting Machine for Predicting Claim Severity and Frequency in Car Insurance
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=37/87 paper_id=2503.17173v2 title=Robustness of deep learning classification to adversarial input on GPUs: asynchronous parallel accumulation is a source of vulnerability
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=38/87 paper_id=2502.20785v3 title=GraphCheck: Multipath Fact-Checking with Entity-Relationship Graphs
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=39/87 paper_id=2502.15598v1 title=A Population Sampling Framework for Claim Reserving in General Insurance
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=40/87 paper_id=2502.14479v4 title=Modelling the term-structure of default risk under IFRS 9 within a multistate regression framework
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=41/87 paper_id=2502.11788v2 title=Comparison of offset and ratio weighted regressions in tweedie models with application to mid-term cancellations
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=42/87 paper_id=2501.09660v1 title=Peierls bounds from random Toom contours
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=43/87 paper_id=2501.01686v2 title=Endpoint estimates for maximal operators associated to the wave equation
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=44/87 paper_id=2412.07962v2 title=Mayfly: Private Aggregate Insights from Ephemeral Streams of On-Device User Data
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=45/87 paper_id=2411.12784v1 title=Cancer incidence estimation from mortality data: a validation study within a population-based cancer registry
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=46/87 paper_id=2410.20841v2 title=Quantum Computational Insurance and Actuarial Science
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=47/87 paper_id=2410.15705v1 title=Variable screening for covariate dependent extreme value index estimation
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=48/87 paper_id=2410.15079v1 title=Parsimonious convolution quadrature
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=49/87 paper_id=2410.14985v1 title=Stochastic Loss Reserving: Dependence and Estimation
+2026-04-08 14:58:52,946 | INFO | [dw_queue] request=50/87 paper_id=2410.04369v1 title=Deviance Voronoi Residuals for Space-Time Point Process Models: An Application to Earthquake Insurance Risk
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=51/87 paper_id=2409.12896v1 title=Marked Cox Models for IBNR Claims Count: Continuous and Discretized Approaches with Dirichlet-Driven Reporting Delays
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=52/87 paper_id=2409.07795v2 title=Robust and efficient estimation in the presence of a randomly censored covariate
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=53/87 paper_id=2408.01175v3 title=Common Noise by Random Measures: Constructing Mean-Field Equilibria for Competitive Investment and Hedging
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=54/87 paper_id=2407.18377v1 title=Bayesian Nowcasting Data Breach IBNR Incidents
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=55/87 paper_id=2407.15177v1 title=Measurements of the Safety Function Response Time on a Private 5G and IO-Link Wireless Testbed
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=56/87 paper_id=2408.00003v1 title=Bonus-malus Systems vs Delays in Claims Reporting and Settlement: Analysis of Ruin Probabilities
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=57/87 paper_id=2407.12564v1 title=Shackling Uncertainty using Mixed Criticality in Monte-Carlo Tree Search
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=58/87 paper_id=2406.18472v1 title=Ground states of a nonlocal variational problem and Thomas-Fermi limit for the Choquard equation
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=59/87 paper_id=2406.10733v1 title=A Laplace transform-based test for the equality of positive semidefinite matrix distributions
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=60/87 paper_id=2406.03252v2 title=Continuous-time modeling and bootstrap for chain-ladder reserving
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=61/87 paper_id=2405.09797v3 title=Extrapolating Single-Treatment Effects Out of Factorial Experiments
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=62/87 paper_id=2405.06261v4 title=On Improving the Composition Privacy Loss in Differential Privacy for Fixed Estimation Error
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=63/87 paper_id=2405.02871v2 title=Modeling frequency distribution above a priority in presence of IBNR
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=64/87 paper_id=2404.10275v1 title=OptiGrad: A Fair and more Efficient Price Elasticity Optimization via a Gradient Based Learning
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=65/87 paper_id=2404.07248v1 title=Parametric estimation of conditional Archimedean copula generators for censored data
+2026-04-08 14:58:52,947 | INFO | [dw_queue] request=66/87 paper_id=2402.14983v1 title=Privacy-Enhancing Collaborative Information Sharing through Federated Learning -- A Case of the Insurance Industry
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=67/87 paper_id=2402.10421v3 title=Recurrent Neural Networks for Multivariate Loss Reserving and Risk Capital Analysis
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=68/87 paper_id=2401.17334v1 title=Efficient estimation of parameters in marginals in semiparametric multivariate models
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=69/87 paper_id=2401.16529v1 title=Unleashing the Power of Preemptive Priority-based Scheduling for Real-Time GPU Tasks
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=70/87 paper_id=2401.07724v1 title=A non-parametric estimator for Archimedean copulas under flexible censoring scenarios and an application to claims reserving
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=71/87 paper_id=2312.14549v3 title=A machine learning approach based on survival analysis for IBNR frequencies in non-life reserving
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=72/87 paper_id=2312.14324v2 title=A multistate approach to disability insurance reserving with information delays
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=73/87 paper_id=2312.04108v1 title=Current poisson's ratio values of finite element models are too low to consider soft tissues nearly-incompressible: illustration on the human heel region
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=74/87 paper_id=2312.03139v1 title=A Bayesian Skew-heavy-tailed modelling for loss reserving
+2026-04-08 14:58:52,948 | INFO | [dw_queue] request=75/87 paper_id=2311.11900v2 title=Measuring and Mitigating Biases in Motor Insurance Pricing
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=76/87 paper_id=2311.10917v1 title=Modeling trading games in a stochastic non-life insurance market
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=77/87 paper_id=2311.07384v3 title=Individual claims reserving using the Aalen--Johansen estimator
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=78/87 paper_id=2311.07597v2 title=Enhancing Actuarial Non-Life Pricing Models via Transformers
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=79/87 paper_id=2310.12056v1 title=Mack's estimator motivated by large exposure asymptotics in a compound Poisson setting
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=80/87 paper_id=2310.11471v2 title=Modeling lower-truncated and right-censored insurance claims with an extension of the MBBEFD class
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=81/87 paper_id=2310.04786v2 title=On the evolution of data breach reporting patterns and frequency in the United States: a cross-state analysis
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=82/87 paper_id=2307.07771v3 title=Enhanced Gradient Boosting for Zero-Inflated Insurance Claims and Comparative Analysis of CatBoost, XGBoost, and LightGBM
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=83/87 paper_id=2307.05366v1 title=From academic to media capital: To what extent does the scientific reputation of universities translate into Wikipedia attention?
+2026-04-08 14:58:52,949 | INFO | [dw_queue] request=84/87 paper_id=2307.10808v3 title=Claim Reserving via Inverse Probability Weighting: A Micro-Level Chain-Ladder Method
+2026-04-08 14:58:52,950 | INFO | [dw_queue] request=85/87 paper_id=2306.09020v1 title=Distributionally Robust Stratified Sampling for Stochastic Simulations with Multiple Uncertain Input Models
+2026-04-08 14:58:52,950 | INFO | [dw_queue] request=86/87 paper_id=2306.01502v1 title=Ruin probability for renewal risk models with neutral net profit condition
+2026-04-08 14:58:52,950 | INFO | [dw_queue] request=87/87 paper_id=2305.18265v1 title=Check-COVID: Fact-Checking COVID-19 News Claims with Scientific Evidence
+2026-04-08 14:58:52,951 | INFO | Batch request file created: runs/batch_requests/batch_requests_20260408_145831.jsonl
+2026-04-08 14:58:53,643 | INFO | Uploaded batch input file: 379be33f-54ac-4740-82a2-299544234bf5
+2026-04-08 14:58:54,135 | INFO | Batch submitted: 15c22c5e-b739-4335-8e1d-2b9d4f1e434f
+2026-04-08 14:58:54,135 | INFO | This pipeline uses Doubleword/OpenAI Batch API (asynchronous batch inference)
+2026-04-08 14:58:54,136 | INFO | Waiting for batch to complete...
+2026-04-08 14:58:54,304 | INFO | Status: validating
+2026-04-08 14:58:54,304 | INFO | Completed: 0/87
+2026-04-08 14:59:24,413 | INFO | Status: completed
+2026-04-08 14:59:24,413 | INFO | Completed: 87/87
+2026-04-08 14:59:24,414 | INFO | Batch completed!
+2026-04-08 14:59:24,656 | INFO | Parsed 2511.14441v1: score=3
+2026-04-08 14:59:24,656 | INFO | Parsed 2512.20305v2: score=6
+2026-04-08 14:59:24,656 | INFO | Parsed 2601.05274v1: score=8
+2026-04-08 14:59:24,656 | INFO | Parsed 2509.08479v2: score=0
+2026-04-08 14:59:24,656 | INFO | Parsed 2512.18558v1: score=2
+2026-04-08 14:59:24,656 | INFO | Parsed 2509.05426v1: score=8
+2026-04-08 14:59:24,657 | INFO | Parsed 2509.24158v1: score=5
+2026-04-08 14:59:24,657 | INFO | Parsed 2511.01420v1: score=0
+2026-04-08 14:59:24,657 | INFO | Parsed 2404.07248v1: score=7
+2026-04-08 14:59:24,657 | INFO | Parsed 2512.11197v1: score=9
+2026-04-08 14:59:24,657 | INFO | Parsed 2402.14983v1: score=7
+2026-04-08 14:59:24,657 | INFO | Parsed 2509.08956v1: score=2
+2026-04-08 14:59:24,657 | INFO | Parsed 2601.05859v1: score=5
+2026-04-08 14:59:24,657 | INFO | Failed to parse JSON for 2506.00695v2
+2026-04-08 14:59:24,657 | INFO | Parsed 2407.18377v1: score=7
+2026-04-08 14:59:24,657 | INFO | Parsed 2409.12896v1: score=8
+2026-04-08 14:59:24,657 | INFO | Parsed 2510.27519v1: score=4
+2026-04-08 14:59:24,657 | INFO | Parsed 2505.08943v1: score=3
+2026-04-08 14:59:24,658 | INFO | Parsed 2510.27204v1: score=8
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2407.15177v1
+2026-04-08 14:59:24,658 | INFO | Parsed 2509.08467v1: score=6
+2026-04-08 14:59:24,658 | INFO | Parsed 2401.07724v1: score=7
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2501.09660v1
+2026-04-08 14:59:24,658 | INFO | Parsed 2406.10733v1: score=3
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2510.04556v2
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2509.20803v1
+2026-04-08 14:59:24,658 | INFO | Parsed 2401.16529v1: score=2
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2504.09292v1
+2026-04-08 14:59:24,658 | INFO | Parsed 2311.07384v3: score=8
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2504.21822v2
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2503.17173v2
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2601.05964v1
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2311.11900v2
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2410.20841v2
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2406.18472v1
+2026-04-08 14:59:24,658 | INFO | Failed to parse JSON for 2504.07014v2
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2506.22513v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2502.15598v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2406.03252v2
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2504.09974v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2306.01502v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2504.09396v2
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2411.12784v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2311.10917v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2306.09020v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2408.00003v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2602.15481v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2501.01686v2
+2026-04-08 14:59:24,659 | INFO | Parsed 2312.03139v1: score=8
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2508.16444v3
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2407.12564v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2502.14479v4
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2602.05586v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2506.07622v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2409.07795v2
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2401.17334v1
+2026-04-08 14:59:24,659 | INFO | Failed to parse JSON for 2503.21321v1
+2026-04-08 14:59:24,660 | INFO | Parsed 2410.15079v1: score=2
+2026-04-08 14:59:24,660 | INFO | Parsed 2311.07597v2: score=6
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2505.17360v1
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2408.01175v3
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2412.07962v2
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2602.06486v1
+2026-04-08 14:59:24,660 | INFO | Parsed 2405.02871v2: score=6
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2405.06261v4
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2307.05366v1
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2601.07637v1
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2601.17621v2
+2026-04-08 14:59:24,660 | INFO | Parsed 2312.14324v2: score=7
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2410.14985v1
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2307.10808v3
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2506.18136v1
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2405.09797v3
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2602.15385v2
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2410.04369v1
+2026-04-08 14:59:24,660 | INFO | Parsed 2502.11788v2: score=7
+2026-04-08 14:59:24,660 | INFO | Parsed 2404.10275v1: score=3
+2026-04-08 14:59:24,660 | INFO | Failed to parse JSON for 2305.18265v1
+2026-04-08 14:59:24,661 | INFO | Parsed 2312.14549v3: score=8
+2026-04-08 14:59:24,661 | INFO | Failed to parse JSON for 2402.10421v3
+2026-04-08 14:59:24,661 | INFO | Failed to parse JSON for 2502.20785v3
+2026-04-08 14:59:24,661 | INFO | Parsed 2310.12056v1: score=8
+2026-04-08 14:59:24,661 | INFO | Failed to parse JSON for 2310.11471v2
+2026-04-08 14:59:24,661 | INFO | Failed to parse JSON for 2312.04108v1
+2026-04-08 14:59:24,661 | INFO | Parsed 2307.07771v3: score=7
+2026-04-08 14:59:24,661 | INFO | Failed to parse JSON for 2310.04786v2
+2026-04-08 14:59:24,661 | INFO | Failed to parse JSON for 2410.15705v1
+2026-04-08 14:59:24,662 | INFO | Saved raw batch responses to runs/results/parsed/batch_15c22c5e-b739-4335-8e1d-2b9d4f1e434f_20260408_145831_raw.jsonl
+2026-04-08 14:59:24,662 | INFO | Saved parsed evaluations to runs/results/parsed/batch_15c22c5e-b739-4335-8e1d-2b9d4f1e434f_20260408_145831_parsed_success.jsonl (33 entries)
+2026-04-08 14:59:24,662 | INFO | Saved parse failures to runs/results/parsed/batch_15c22c5e-b739-4335-8e1d-2b9d4f1e434f_20260408_145831_parse_failures.jsonl (54 entries)
+2026-04-08 14:59:24,662 | INFO | Parsed evaluations: 33
+2026-04-08 14:59:24,662 | INFO | [score] id=2512.11197v1 score=9 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2601.05274v1 score=8 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2509.05426v1 score=8 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2409.12896v1 score=8 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2510.27204v1 score=8 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2311.07384v3 score=8 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2312.03139v1 score=8 relevant=True needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2312.14549v3 score=8 relevant=True needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2310.12056v1 score=8 relevant=True needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2404.07248v1 score=7 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2402.14983v1 score=7 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2407.18377v1 score=7 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2401.07724v1 score=7 relevant=True needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2312.14324v2 score=7 relevant=True needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2502.11788v2 score=7 relevant=True needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2307.07771v3 score=7 relevant=True needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2512.20305v2 score=6 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2509.08467v1 score=6 relevant=False needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2311.07597v2 score=6 relevant=False needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2405.02871v2 score=6 relevant=False needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2509.24158v1 score=5 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2601.05859v1 score=5 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2510.27519v1 score=4 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2511.14441v1 score=3 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2505.08943v1 score=3 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2406.10733v1 score=3 relevant=False needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2404.10275v1 score=3 relevant=False needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2512.18558v1 score=2 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2509.08956v1 score=2 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2401.16529v1 score=2 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [score] id=2410.15079v1 score=2 relevant=False needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2509.08479v2 score=0 relevant=False needs_summary=False
+2026-04-08 14:59:24,662 | INFO | [score] id=2511.01420v1 score=0 relevant=False needs_summary=True
+2026-04-08 14:59:24,662 | INFO | [warn] Parsed results cover 33/87 queued papers; 54 will remain unseen for future retries.
+2026-04-08 14:59:24,662 | INFO | Found 16 relevant papers out of 33 total
+2026-04-08 14:59:24,663 | INFO | Returning top 16 papers
+2026-04-08 14:59:24,663 | INFO |   1. [9/10] 2512.11197v1
+2026-04-08 14:59:24,663 | INFO |   2. [8/10] 2601.05274v1
+2026-04-08 14:59:24,663 | INFO |   3. [8/10] 2509.05426v1
+2026-04-08 14:59:24,663 | INFO |   4. [8/10] 2409.12896v1
+2026-04-08 14:59:24,663 | INFO |   5. [8/10] 2510.27204v1
+2026-04-08 14:59:24,663 | INFO |   6. [8/10] 2311.07384v3
+2026-04-08 14:59:24,663 | INFO |   7. [8/10] 2312.03139v1
+2026-04-08 14:59:24,663 | INFO |   8. [8/10] 2312.14549v3
+2026-04-08 14:59:24,663 | INFO |   9. [8/10] 2310.12056v1
+2026-04-08 14:59:24,663 | INFO |   10. [7/10] 2404.07248v1
+2026-04-08 14:59:24,663 | INFO |   11. [7/10] 2402.14983v1
+2026-04-08 14:59:24,663 | INFO |   12. [7/10] 2407.18377v1
+2026-04-08 14:59:24,663 | INFO |   13. [7/10] 2401.07724v1
+2026-04-08 14:59:24,663 | INFO |   14. [7/10] 2312.14324v2
+2026-04-08 14:59:24,663 | INFO |   15. [7/10] 2502.11788v2
+2026-04-08 14:59:24,663 | INFO |   16. [7/10] 2307.07771v3
+2026-04-08 14:59:24,663 | INFO | Structured review mode is 'separate': skipping inline pass. Run `python run_structured_review.py` after this run to enrich top papers.
+2026-04-08 14:59:24,663 | INFO | Results markdown written to runs/results/digest_20260408_145831.md
+2026-04-08 14:59:24,663 | INFO | Slack delivery disabled by config
+2026-04-08 14:59:24,663 | INFO | Updated seen_papers tracking for 33 papers with parsed evaluations
+2026-04-08 14:59:24,664 | INFO | Run complete. Results file: runs/results/digest_20260408_145831.md

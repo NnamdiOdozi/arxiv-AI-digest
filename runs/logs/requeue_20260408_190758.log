@@ -1,0 +1,67 @@
+2026-04-08 19:07:58,177 | INFO | Found 63 papers in parse_failures.json
+2026-04-08 19:07:58,199 | INFO | Building batch requests for 63 papers
+2026-04-08 19:07:58,199 | INFO | [dw_queue] request=1/63 paper_id=2011.07828v1 title=Ruin probabilities with investments: smoothness, IDE and ODE, asymptotic behavior
+2026-04-08 19:07:58,199 | INFO | [dw_queue] request=2/63 paper_id=2404.07248v1 title=Parametric estimation of conditional Archimedean copula generators for censored data
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=3/63 paper_id=2303.01129v5 title=GEMAct: a Python package for non-life (re)insurance modeling
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=4/63 paper_id=2311.10917v1 title=Modeling trading games in a stochastic non-life insurance market
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=5/63 paper_id=1909.00339v1 title=Estimation of the detected background by the future gamma-ray transient mission CAMELOT
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=6/63 paper_id=2409.07795v2 title=Robust and efficient estimation in the presence of a randomly censored covariate
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=7/63 paper_id=2408.00003v1 title=Bonus-malus Systems vs Delays in Claims Reporting and Settlement: Analysis of Ruin Probabilities
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=8/63 paper_id=2311.11900v2 title=Measuring and Mitigating Biases in Motor Insurance Pricing
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=9/63 paper_id=2106.10770v3 title=A Neural Frequency-Severity Model and Its Application to Insurance Claims
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=10/63 paper_id=2603.01821v1 title=Asymptotics of Ruin Probabilities in a Subordinated Cramér-Lundberg Model
+2026-04-08 19:07:58,200 | INFO | [dw_queue] request=11/63 paper_id=2604.05143v1 title=Existence of a classical solution to the integro-differential equation arising in the Cramér--Lundberg non-life insurance model with proportional investment
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=12/63 paper_id=2011.11959v2 title=Provably-Robust Runtime Monitoring of Neuron Activation Patterns
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=13/63 paper_id=1805.08593v3 title=Confounding-Robust Policy Improvement
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=14/63 paper_id=2307.05366v1 title=From academic to media capital: To what extent does the scientific reputation of universities translate into Wikipedia attention?
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=15/63 paper_id=2410.04369v1 title=Deviance Voronoi Residuals for Space-Time Point Process Models: An Application to Earthquake Insurance Risk
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=16/63 paper_id=2407.15177v1 title=Measurements of the Safety Function Response Time on a Private 5G and IO-Link Wireless Testbed
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=17/63 paper_id=1804.06083v2 title=Asymmetric fitting function for condensed-phase Raman spectroscopy
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=18/63 paper_id=2505.17360v1 title=The Quasi-Polynomial Low-Degree Conjecture is False
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=19/63 paper_id=1806.01928v3 title=A unified study of nonparametric inference for monotone functions
+2026-04-08 19:07:58,201 | INFO | [dw_queue] request=20/63 paper_id=1810.07211v4 title=A Subsampling Line-Search Method with Second-Order Results
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=21/63 paper_id=1912.02423v2 title=Generative Synthesis of Insurance Datasets
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=22/63 paper_id=2212.07802v1 title=Chaotic Variational Auto Encoder based One Class Classifier for Insurance Fraud Detection
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=23/63 paper_id=1708.00059v1 title=Asymptotically optimal private estimation under mean square loss
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=24/63 paper_id=2404.10275v1 title=OptiGrad: A Fair and more Efficient Price Elasticity Optimization via a Gradient Based Learning
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=25/63 paper_id=2406.10733v1 title=A Laplace transform-based test for the equality of positive semidefinite matrix distributions
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=26/63 paper_id=2303.01923v3 title=Bayesian CART models for insurance claims frequency
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=27/63 paper_id=2411.12784v1 title=Cancer incidence estimation from mortality data: a validation study within a population-based cancer registry
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=28/63 paper_id=2405.06261v4 title=On Improving the Composition Privacy Loss in Differential Privacy for Fixed Estimation Error
+2026-04-08 19:07:58,202 | INFO | [dw_queue] request=29/63 paper_id=2405.09797v3 title=Extrapolating Single-Treatment Effects Out of Factorial Experiments
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=30/63 paper_id=2602.20412v1 title=SimLBR: Learning to Detect Fake Images by Learning to Detect Real Images
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=31/63 paper_id=1908.11529v2 title=On a weighted linear matroid intersection algorithm by deg-det computation
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=32/63 paper_id=1907.10271v1 title=Multilevel Monte Carlo Simulations of Composite Structures with Uncertain Manufacturing Defects
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=33/63 paper_id=2105.02344v2 title=Policy Learning with Adaptively Collected Data
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=34/63 paper_id=2107.01176v2 title=Extremum Seeking Control with an Adaptive Gain Based On Gradient Estimation Error
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=35/63 paper_id=2106.02446v1 title=Modeling premiums of non-life insurance companies in India
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=36/63 paper_id=2105.14682v1 title=Zero-shot Fact Verification by Claim Generation
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=37/63 paper_id=2310.11471v2 title=Modeling lower-truncated and right-censored insurance claims with an extension of the MBBEFD class
+2026-04-08 19:07:58,203 | INFO | [dw_queue] request=38/63 paper_id=2506.18136v1 title=Regression Discontinuity Designs for Functional Data and Random Objects in Geodesic Spaces
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=39/63 paper_id=2504.09974v1 title=Towards Resilient Tracking in Autonomous Vehicles: A Distributionally Robust Input and State Estimation Approach
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=40/63 paper_id=2511.14441v1 title=Skewness-Robust Causal Discovery in Location-Scale Noise Models
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=41/63 paper_id=2306.09020v1 title=Distributionally Robust Stratified Sampling for Stochastic Simulations with Multiple Uncertain Input Models
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=42/63 paper_id=2205.07334v1 title=Mack-Net model: Blending Mack's model with Recurrent Neural Networks
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=43/63 paper_id=2004.13455v1 title=DTCA: Decision Tree-based Co-Attention Networks for Explainable Claim Verification
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=44/63 paper_id=2104.11900v1 title=Matrix Normal Cluster-Weighted Models
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=45/63 paper_id=2103.05526v1 title=Using AoI Forecasts in Communicating and Robust Distributed Model-Predictive Control
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=46/63 paper_id=1611.02668v1 title=Computing the Laplace eigenvalue and level of Maass cusp forms
+2026-04-08 19:07:58,204 | INFO | [dw_queue] request=47/63 paper_id=1606.08321v1 title=Regular variation of a random length sequence of random variables and application to risk assessment
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=48/63 paper_id=2510.05723v2 title=Six loop critical exponent analysis for Lee-Yang and percolation theory
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=49/63 paper_id=2510.04556v2 title=Model Monitoring: A General Framework with an Application to Non-life Insurance Pricing
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=50/63 paper_id=2502.11788v2 title=Comparison of offset and ratio weighted regressions in tweedie models with application to mid-term cancellations
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=51/63 paper_id=2212.00101v1 title=mCube: Multinomial Micro-level reserving Model
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=52/63 paper_id=2203.07145v2 title=Bridging the gap between pricing and reserving with an occurrence and development model for non-life insurance claims
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=53/63 paper_id=2312.04108v1 title=Current poisson's ratio values of finite element models are too low to consider soft tissues nearly-incompressible: illustration on the human heel region
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=54/63 paper_id=1710.07468v2 title=Nonparametric estimation of multivariate distribution function for truncated and censored lifetime data
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=55/63 paper_id=2206.08541v5 title=Ensemble distributional forecasting for insurance loss reserving
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=56/63 paper_id=2302.09510v2 title=Smooth Backfitting for Additive Hazard Rates
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=57/63 paper_id=2406.03252v2 title=Continuous-time modeling and bootstrap for chain-ladder reserving
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=58/63 paper_id=2604.02400v1 title=Varying risk exposure in auto insurance: a weighted tweedie framework for experience rating an cancellation penalties
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=59/63 paper_id=2004.06150v1 title=Assessing the Performance of the Discrete Generalised Pareto Distribution in Modelling Non-Life Insurance Claims
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=60/63 paper_id=2007.07068v1 title=Modeling and measuring incurred claims risk liabilities for a multi-line property and casualty insurer
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=61/63 paper_id=2512.20305v2 title=A Structured Nonparametric Framework for Nonlinear Accelerated Failure Time Models (KAN-AFT)
+2026-04-08 19:07:58,205 | INFO | [dw_queue] request=62/63 paper_id=1810.08466v2 title=ALM for insurers with multiple underwriting lines and portfolio constraints: a Lagrangian duality approach
+2026-04-08 19:07:58,206 | INFO | [dw_queue] request=63/63 paper_id=2008.05693v4 title=SynthETIC: an individual insurance claim simulator with feature control
+2026-04-08 19:07:58,207 | INFO | Batch requests written to runs/batch_requests/batch_requests_20260408_190758_requeue_failures.jsonl
+2026-04-08 19:07:58,992 | INFO | HTTP Request: POST https://api.doubleword.ai/v1/files "HTTP/1.1 401 Unauthorized"

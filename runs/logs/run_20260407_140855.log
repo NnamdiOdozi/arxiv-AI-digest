@@ -1,0 +1,7 @@
+2026-04-07 14:08:55,635 | INFO | Run log file: runs/logs/run_20260407_140855.log
+2026-04-07 14:08:55,636 | INFO | Starting pipeline run
+2026-04-07 14:08:55,636 | INFO | Lookback config: {'years': 0, 'months': 0, 'days': 0}
+2026-04-07 14:08:55,636 | INFO | Search max_results: 10
+2026-04-07 14:08:55,636 | INFO | Selection top_n: 3
+2026-04-07 14:08:55,636 | INFO | Inference model: Qwen/Qwen3-VL-30B-A3B-Instruct-FP8
+2026-04-07 14:08:55,636 | INFO | Fetching papers from arXiv

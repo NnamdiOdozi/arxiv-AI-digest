@@ -1,0 +1,82 @@
+2026-04-07 14:15:05,933 | INFO | Run log file: runs/logs/run_20260407_141505.log
+2026-04-07 14:15:05,933 | INFO | Starting pipeline run
+2026-04-07 14:15:05,933 | INFO | Lookback config: {'years': 3, 'months': 0, 'days': 0}
+2026-04-07 14:15:05,933 | INFO | Search max_results: 10
+2026-04-07 14:15:05,933 | INFO | Selection top_n: 3
+2026-04-07 14:15:05,934 | INFO | Inference model: Qwen/Qwen3-VL-30B-A3B-Instruct-FP8
+2026-04-07 14:15:05,934 | INFO | arXiv tuning: {'arxiv_page_size': 0, 'arxiv_delay_seconds': 4.0, 'arxiv_num_retries': 6, 'arxiv_max_attempts': 4, 'arxiv_backoff_seconds': 20.0}
+2026-04-07 14:15:05,934 | INFO | Fetching papers from arXiv
+2026-04-07 14:15:05,934 | INFO | arXiv fetch attempt 1/4 (page_size=10, delay_seconds=4.0, num_retries=6)
+2026-04-07 14:20:08,796 | INFO | arXiv HTTP 429 on attempt 1/4; backing off for 20.0 seconds before retry
+2026-04-07 14:20:28,799 | INFO | arXiv fetch attempt 2/4 (page_size=10, delay_seconds=4.0, num_retries=6)
+2026-04-07 14:20:46,731 | INFO | arXiv candidates returned: 10
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 1/10 id=2604.04934v1 in_window=True published=2026-04-06 17:59:59+00:00 title=Vanast: Virtual Try-On with Human Image Animation via Synthetic Triplet Supervision
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 2/10 id=2604.04911v1 in_window=True published=2026-04-06 17:54:42+00:00 title=SpatialEdit: Benchmarking Fine-Grained Image Spatial Editing
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 3/10 id=2604.04903v1 in_window=True published=2026-04-06 17:50:17+00:00 title=Maximally localized modes of a multimode fiber
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 4/10 id=2604.04874v1 in_window=True published=2026-04-06 17:24:18+00:00 title=Free-Range Gaussians: Non-Grid-Aligned Generative 3D Gaussian Reconstruction
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 5/10 id=2604.04859v1 in_window=True published=2026-04-06 17:04:30+00:00 title=Unified Vector Floorplan Generation via Markup Representation
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 6/10 id=2604.04857v1 in_window=True published=2026-04-06 17:02:06+00:00 title=The Blind Spot of Adaptation: Quantifying and Mitigating Forgetting in Fine-tuned Driving Models
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 7/10 id=2604.04839v1 in_window=True published=2026-04-06 16:42:34+00:00 title=MERIT: Multilingual Expert-Reward Informed Tuning for Chinese-Centric Low-Resource Machine Translation
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 8/10 id=2604.04829v1 in_window=True published=2026-04-06 16:30:24+00:00 title=A Robust SINDy Autoencoder for Noisy Dynamical System Identification
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 9/10 id=2604.04817v1 in_window=True published=2026-04-06 16:21:26+00:00 title=Planar AdS multi-NUT spacetimes and Kaluza-Klein multi-monopoles
+2026-04-07 14:20:46,732 | INFO | [arxiv_raw] 10/10 id=2604.04815v1 in_window=True published=2026-04-06 16:20:47+00:00 title=LiveFact: A Dynamic, Time-Aware Benchmark for LLM-Driven Fake News Detection
+2026-04-07 14:20:46,732 | INFO | After cutoff filter: 10
+2026-04-07 14:20:46,732 | INFO | Dropped as already seen: 0
+2026-04-07 14:20:46,732 | INFO | Papers to score: 10
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=1/10 paper_id=2604.04934v1 title=Vanast: Virtual Try-On with Human Image Animation via Synthetic Triplet Supervision
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=2/10 paper_id=2604.04911v1 title=SpatialEdit: Benchmarking Fine-Grained Image Spatial Editing
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=3/10 paper_id=2604.04903v1 title=Maximally localized modes of a multimode fiber
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=4/10 paper_id=2604.04874v1 title=Free-Range Gaussians: Non-Grid-Aligned Generative 3D Gaussian Reconstruction
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=5/10 paper_id=2604.04859v1 title=Unified Vector Floorplan Generation via Markup Representation
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=6/10 paper_id=2604.04857v1 title=The Blind Spot of Adaptation: Quantifying and Mitigating Forgetting in Fine-tuned Driving Models
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=7/10 paper_id=2604.04839v1 title=MERIT: Multilingual Expert-Reward Informed Tuning for Chinese-Centric Low-Resource Machine Translation
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=8/10 paper_id=2604.04829v1 title=A Robust SINDy Autoencoder for Noisy Dynamical System Identification
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=9/10 paper_id=2604.04817v1 title=Planar AdS multi-NUT spacetimes and Kaluza-Klein multi-monopoles
+2026-04-07 14:20:46,732 | INFO | [dw_queue] request=10/10 paper_id=2604.04815v1 title=LiveFact: A Dynamic, Time-Aware Benchmark for LLM-Driven Fake News Detection
+2026-04-07 14:20:46,733 | INFO | Batch request file created: batch_requests_20260407_141505.jsonl
+2026-04-07 14:20:47,062 | INFO | Uploaded batch input file: aef78ad4-02d4-4636-abe6-bdb1f5cd7cbc
+2026-04-07 14:20:47,570 | INFO | Batch submitted: 586a3a48-575d-4de2-91d6-02c297161740
+2026-04-07 14:20:47,570 | INFO | This pipeline uses Doubleword/OpenAI Batch API (asynchronous batch inference)
+2026-04-07 14:20:47,570 | INFO | Waiting for batch to complete...
+2026-04-07 14:20:47,700 | INFO | Status: validating
+2026-04-07 14:20:47,700 | INFO | Completed: 0/10
+2026-04-07 14:21:17,817 | INFO | Status: in_progress
+2026-04-07 14:21:17,817 | INFO | Completed: 0/10
+2026-04-07 14:21:48,047 | INFO | Status: in_progress
+2026-04-07 14:21:48,047 | INFO | Completed: 0/10
+2026-04-07 14:22:18,210 | INFO | Status: in_progress
+2026-04-07 14:22:18,210 | INFO | Completed: 0/10
+2026-04-07 14:22:48,330 | INFO | Status: in_progress
+2026-04-07 14:22:48,330 | INFO | Completed: 0/10
+2026-04-07 14:23:18,457 | INFO | Status: in_progress
+2026-04-07 14:23:18,457 | INFO | Completed: 0/10
+2026-04-07 14:23:48,545 | INFO | Status: completed
+2026-04-07 14:23:48,545 | INFO | Completed: 10/10
+2026-04-07 14:23:48,546 | INFO | Batch completed!
+2026-04-07 14:23:48,841 | INFO | Parsed 2604.04874v1: score=0
+2026-04-07 14:23:48,841 | INFO | Parsed 2604.04903v1: score=0
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04934v1: score=0
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04911v1: score=0
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04839v1: score=2
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04829v1: score=4
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04817v1: score=0
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04857v1: score=2
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04815v1: score=2
+2026-04-07 14:23:48,842 | INFO | Parsed 2604.04859v1: score=2
+2026-04-07 14:23:48,842 | INFO | Parsed evaluations: 10
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04829v1 score=4 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04839v1 score=2 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04857v1 score=2 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04815v1 score=2 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04859v1 score=2 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04874v1 score=0 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04903v1 score=0 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04934v1 score=0 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04911v1 score=0 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | [score] id=2604.04817v1 score=0 relevant=False needs_summary=True
+2026-04-07 14:23:48,842 | INFO | Found 0 relevant papers out of 10 total
+2026-04-07 14:23:48,842 | INFO | Returning top 0 papers
+2026-04-07 14:23:48,843 | INFO | Results markdown written to runs/results/digest_20260407_141505.md
+2026-04-07 14:23:48,843 | INFO | Slack delivery disabled by config
+2026-04-07 14:23:48,844 | INFO | Updated seen_papers tracking
+2026-04-07 14:23:48,844 | INFO | Run complete. Results file: runs/results/digest_20260407_141505.md

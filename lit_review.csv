@@ -1,0 +1,119 @@
+		80
+		
+Full title	Authors	Year of
+		publication
+		
+		
+		
+Semiparametric model for prediction of individual claim loss reserving	Zhao, Zhou, Wang	2009
+Applying copula models to individual claim loss reserving methods	Zhao, Zhou	2010
+Individual loss reserving with the multivariate skew normal framework	Pigeon, Antoni, Denuit	2013
+Statistical case estimation	Taylor, Campbell	2002
+Modelling mortgage insurance as a multi-state process	Taylor, Mulquiney	2007
+Individual claim reserving conditioned by case estimates	Taylor, McGuire, Sullivan	2008
+Bootstrapping individual claim histories	Rosenlund	2012
+Continuous Chain Ladder: Reformulating and generalizing a classical insurance problem	Martinez-Miranda, Nielsen, Sperlich, Verrall	2013
+An individual claims reserving model	Larsen	2007
+Predicting IBNYR events and delays I: continuous time	Jewell	1989
+A Markov model for loss reserving	Hesselager	1994
+Claims reserving in continuous time; a nonparametricBayesian approach	Haastrup, Arjas	1996
+A structural model for the analysis of loss reserves	Hachemeister	1978
+A stochastic model for loss reserving	Hachemeister	1980
+Stochastic projection for large individual losses	Drieskens, Henry, Walhin, Wielandts	2012
+Non parametric individual claim reserving in insurance	Baudry, Roberts	2017
+Non parametric individual claim reserving in insurance	Baudry, Roberts	2017
+The claims reserving problem in non-life insurance: some_structural ideas	Arjas	1989
+Loss Reserving Models: Granular and Machine Learning Forms	Taylor 	2019
+"Claim Watching and Individual Claims Reserving Using Classification and Regression Trees
+"	De Felice, Moriconi	2019
+Individual Loss Reserving Using a Gradient Boosting-Based Approach	Francis Duval, Mathieu Pigeon	2019
+Machine learning in individual claims reserving	Wuethrich	2018
+"Macro vs. Micro Methods in Non-Life Claims Reserving (an Econometric Perspective)
+"	Charpentier, Pigeon	2017
+Cash flow generalisations of non-lifei nsurance expert systems estimating outstanding claims	Hiabu,Margraf,Martínez-Miranda,Nielsen	2016
+Prediction of outstanding claims in non-life insurance	Norberg	1993
+Prediction of outstanding liabilities II: model variations and extensions	Norberg	1999
+Individual claim reserving conditioned by case estimates	Taylor, McGuire, Sullivan	2008
+Micro-level stochastic loss reserving for general insurance	Antonio, Plat	2014
+Stochastic Loss Reserving in Discrete Time: Individual vs. Aggregate Data Models	Huang, Qiu, Wu	2015
+"Predictive analytics of insurance claims
+using multivariate decision trees"	"Zhiyu Quan
+Emiliano Valdez"	2018
+An Individual Loss Reserving Model with Independent Reporting and Settlement	Huang, Qiu, Wu, Zhou	2015
+Asymptotic behaviors of stochastic reserving: Aggregate versus individual claims	Huang, Wu, Zhou	2016
+On the relationship between classical chain ladder and granular reserving	Hiabu	2016
+"Claim Risk Scoring using Survival Analysis
+ Framework and Machine Learning with Random Forest"	Yuriy, Jina, Terrance	2019
+"Allstate Insurance Claims
+ Severity: A Machine Learning Approach"	Rajeeva, Jeff, Hongyi	2018
+"Granular Reserving 
+Dialogistic in Machine Learning"	Asif John	2018
+Predicting High Cost Insurance Members through Boosted Trees and Oversampling: An application using the HCCI database 	Brain Hartman, Rebecca Owen, Zoe Gibbs	2019
+ENSEMBLE MODELING & PREDICTION INTERPRETABILITY FOR INSURANCE FRAUD CLAIMS CLASSIFICATION		2019
+Claims Reserving using Gradient Boosting and Generalized Linear Models	Marcus Ahlgren	2018
+Non life pricing: empirical comparison of classical GLM with tree based Gradient Boosted Models	Leonardo Petrini	2017
+LightGBM: A Highly Efﬁcient Gradient Boosting Decision Tree	Guolin Ke1, Qi Meng2, Thomas Finley3, Taifeng Wang1, Wei Chen1, Weidong Ma1, Qiwei Ye1, Tie-Yan Liu1	2017
+A Machine Learning Framework For Loss Reserving	Drew Golfin, Kelvin Kuo	2016
+Using Boosted Regression Trees and Remotely Sensed Data to Drive Decision-Making	Brigitte Colin, Samuel Clifford, Paul Wu, Samuel Rathmanner, Kerrie Mengersen	2017
+Model-based Boosting in R - A Hands-on Tutorial Using the R Package mboost	Benjamin Hofner, Andreas Mayr,  Matthias Schmid, Nikolay Robinzonov	2014
+Boosting Actuarial Regression Models in R	Carryl Oberson	2015
+Loss Reserving with GLMs: A Case Study	Greg Taylor and Gr~inne McGuire	2004
+Neural Networks Applied to Chain-Ladder Reserving	Mario V. W¨uthrich	2018
+AI in Actuarial Science - Draft	Ronald Richman	2018
+Using machine learning to model claims experience and reporting delays for pricing and reserving	L Rossouw and R Richman	2019
+Penalising Unexplainability in Neural Networks for Predicting Payments per Claim Incurred	Jacky H. L. Poon	2019
+Neural Network Embedding of the Over-Dispersed Poisson Reserving Model	Andrea Gabrielli, Ronald Richman, Mario V. W¨uthrich	2018
+A Neural Network Boosted Double Over-Dispersed Poisson Claims Reserving Model	Andrea Gabrielli 	2019
+DeepTriangle: A Deep Learning Approach to Loss Reserving	Kevin Kuo	2019
+Individual Claims History Simulation Machine	Andrea Gabrielli, Mario V. Wuthrich	2018
+Data Analytics for Non-Life Insurance Pricing	Wuthrich/Buser	2018
+Self-assembling insurance claim models using regularized regression and machine learning	Grainne McGuire, Taylor Fry, Greg Taylor, Hugh Miller	2018
+From the Chain Ladder to Individual Claims Reserving using ML techniques	Alessandro Carrato, Michele Visintin	2019
+Individual Claims Forecasting with Bayesian Mixture Density Networks	Kevin Kuo	2020
+Regression models for the joint development of individual payments and claim incurred	M. Wuthrich,      Lukasz Delong	2020
+Estimation of Individual Claim Liabilities A comparison of Traditional and Machine Learning Methodologies	Marco De Virgilis Pierluigi Cerqueti	2018
+Explainable Neural Networks based on Additive Index Models	Vaughan, Sudjianto,Brahimi, Chen, Nair	2018
+Model explainability	Hansel	2018
+Individual Claim Development With Machine Learning	Bor Harej (champion), Roman Gächter, Salma Jamal et. al	2017
+Making machine learning techniques interpretable in the context of non-life pricing	Xavier Maréchal , Samuel Mahy 	2020
+ASTIN 2018 WP - ML and Traditional Methods Synergy in Non-Life Reserving	Salma Jamal (Head of the project) - Astin 2018 Working Party	2018
+Machine Learning in Individual Claims Reserving (Swiss Finance Institute Research Paper Series N°16-67)	Mario V. WÜTHRICH	2016
+Insurance Risk Pricing with GLM, GAM and XGBoost (Link to video and code is in the file identifier)	Matthew Evans, Callum Hughe2	2019
+Machine Learning with High-Cardinality Categorical Features in Actuarial Applications	Benjamin Avanzi, Greg Taylor, Melantha Wang, Bernard Wong	2023
+Auto pilot: automated machine learning and loss development	Maximilian Hudlberger and Darius Sabas	2023
+Advancing Loss Reserving: A Hybrid Neural Network Approach for Individual Claim Development Prediction	Schwab, Schneider	2024
+Probabilistic Forecasting with Neural Networks Applied to Loss Reserving	Muhamed Taher Al-Mudafer	2020
+The Actuary and IBNR Techniques: A Machine Learning Approach	R. Richman, C Balona	2020
+An Individual Claims Reserving Model for Reported Claims	A. Gabriellie	2020
+Individual Claim Development Models and Detailed Actuarial Reserves in property-Casualty Insurance	C. G. gross	2021
+Machine learning in P&C Insurance: A review for pricing and reserving	Christopher Blier-Wong, Helene Cossette, Luc Lamontagne and Etienne Marceau	2020
+Estimation of Individual Claim Liabilities	Linda Brobeck, Marco De Virgilis	2020
+A hierarchical reserving model for reported non-life insurance claims	Jonas Crevecoeur, Jens Robben, and Katrien Antonio	2021
+Micro-level reserving for general insurance claims using a long short-term memory network	Ihsan Chaoubi1, Camille Besse2, Helene Cossette1, and Marie-Pier Cote	2023
+The Credibility Transformer	Richman, Scognamiglio, Wuthrich	2024
+Individual Claims Modelling with Recurrent Neural Networks in Insurance Loss Reserving	Julia Li	2021
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
