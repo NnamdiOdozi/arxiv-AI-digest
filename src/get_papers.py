@@ -16,33 +16,26 @@ DEFAULT_SEEN_PAPERS_FILE = (
 SEEN_PAPERS_FILE = os.getenv("SEEN_PAPERS_FILE", DEFAULT_SEEN_PAPERS_FILE)
 
 def load_seen_papers():
-    """Load papers we've already processed"""
+    """Load papers we've already processed (newline-delimited format)."""
     if os.path.exists(SEEN_PAPERS_FILE):
-        try:
-            with open(SEEN_PAPERS_FILE, 'r') as f:
-                content = f.read().strip()
-                if not content:
-                    return set()
-                return set(json.loads(content))
-        except json.JSONDecodeError:
-            print("Warning: seen_papers.json is corrupted, starting fresh")
-            return set()
+        with open(SEEN_PAPERS_FILE, 'r') as f:
+            return {line.strip() for line in f if line.strip()}
     return set()
 
 def save_seen_papers(paper_ids):
-    """Save papers we've processed"""
-    seen = load_seen_papers()
-    seen.update(paper_ids)
-    
-    # Make sure directory exists (only if there's actually a directory in the path)
+    """Append newly seen paper IDs to the seen_papers file (one ID per line)."""
     dirname = os.path.dirname(SEEN_PAPERS_FILE)
-    if dirname:  # Only create directory if path includes one
+    if dirname:
         os.makedirs(dirname, exist_ok=True)
-    
-    with open(SEEN_PAPERS_FILE, 'w') as f:
-        json.dump(list(seen), f, indent=2)
-    
-    print(f"✓ Tracked {len(seen)} total papers")
+
+    already_seen = load_seen_papers()
+    new_ids = [pid for pid in paper_ids if pid and pid not in already_seen]
+    if new_ids:
+        with open(SEEN_PAPERS_FILE, 'a') as f:
+            for pid in new_ids:
+                f.write(pid + '\n')
+
+    print(f"✓ Tracked {len(already_seen) + len(new_ids)} total papers ({len(new_ids)} new)")
 
 def filter_unseen_papers(papers):
     """Remove papers we've already sent"""

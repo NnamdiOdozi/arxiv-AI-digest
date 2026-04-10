@@ -1,5 +1,7 @@
 # arXiv Daily Digest
 
+> **Note:** This repository was cloned from Doubleword's original GitHub repo and has since been substantially amended. Changes include: extended lookback windows (days through to years), much larger and more configurable searches, significantly more detailed logging, inline requeueing of papers that fail to parse, evaluation results written to CSV/XLSX, and a second-pass structured review stage. The README below reflects the original upstream documentation and may not accurately describe the current codebase. See `LOCAL_CUSTOMIZATIONS.md` and `architecture.md` for the current state.
+
 **Never miss relevant research papers again.** This tool automatically fetches new papers from arXiv, evaluates them against your team's interests in batch using a LLM provided by Doubleword, and delivers a curated digest to Slack every day.
 
 ## What It Does

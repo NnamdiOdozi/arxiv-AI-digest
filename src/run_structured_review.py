@@ -19,7 +19,13 @@ from review import load_review_questions, enrich_top_papers_with_structured_revi
 if os.path.exists(".env"):
     load_dotenv()
 
-_client = OpenAI(base_url=os.getenv("DW_BASE_URL"), api_key=os.getenv("DW_API_KEY"))
+_api_key = os.getenv("DW_API_KEY")
+_base_url = os.getenv("DW_BASE_URL")
+if not _api_key:
+    raise EnvironmentError("DW_API_KEY is not set. Check your .env file.")
+if not _base_url:
+    raise EnvironmentError("DW_BASE_URL is not set. Check your .env file.")
+_client = OpenAI(base_url=_base_url, api_key=_api_key)
 
 
 def _log(message):
@@ -116,7 +122,7 @@ def _load_paper_pool_from_batch_requests(run_timestamp, batch_requests_dir):
                 "id": paper_id,
                 "title": title or paper_id,
                 "abstract": abstract or "",
-                "url": f"http://arxiv.org/abs/{paper_id}",
+                "url": f"https://arxiv.org/abs/{paper_id}",
                 "authors": [],
                 "published": None,
             }
@@ -133,7 +139,7 @@ def _enrich_papers_with_arxiv_metadata(papers_by_id, paper_ids):
                 "id": paper_id,
                 "title": paper_id,
                 "abstract": "",
-                "url": f"http://arxiv.org/abs/{paper_id}",
+                "url": f"https://arxiv.org/abs/{paper_id}",
                 "authors": [],
                 "published": None,
             },
@@ -215,7 +221,7 @@ def _write_detailed_markdown(results, papers_by_id, source_digest, output_path):
         paper_id = result.get("paper_id")
         paper = papers_by_id.get(paper_id, {})
         title = paper.get("title", paper_id)
-        url = paper.get("url", f"http://arxiv.org/abs/{paper_id}")
+        url = paper.get("url", f"https://arxiv.org/abs/{paper_id}")
         authors = paper.get("authors") or []
         published = paper.get("published") or "unknown"
         lines.extend(

@@ -63,8 +63,8 @@ def build_paper_evaluation_prompt(paper):
         Respond ONLY with valid JSON in this format:
         {{
           "relevance_score": 0,
-          "summary": null,
-          "key_insight": "string"
+          "summary": "1-2 sentence summary of the paper",
+          "key_insight": "one sentence stating the main takeaway"
         }}
         """
     )

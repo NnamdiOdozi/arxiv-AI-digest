@@ -14,4 +14,5 @@ dependencies = [
     "pandas>=3.0.2",
     "openpyxl>=3.1.5",
     "pypdf>=6.9.2",
+    "pypandoc>=1.13",
 ]

@@ -203,7 +203,7 @@ def parse_batch_request_file(batch_request_path):
                 "id": paper_id,
                 "title": title or paper_id,
                 "abstract": abstract,
-                "url": f"http://arxiv.org/abs/{paper_id}",
+                "url": f"https://arxiv.org/abs/{paper_id}",
                 "published": None,
             }
     return papers
@@ -241,7 +241,7 @@ def parse_log_context(log_path):
         context["papers_by_id"][paper_id] = {
             "id": paper_id,
             "title": title or paper_id,
-            "url": f"http://arxiv.org/abs/{paper_id}",
+            "url": f"https://arxiv.org/abs/{paper_id}",
             "published": published,
             "abstract": "",
         }
@@ -278,7 +278,7 @@ def build_paper_pool_from_results(results, papers_by_id):
                 "id": paper_id,
                 "title": paper_id,
                 "abstract": "",
-                "url": f"http://arxiv.org/abs/{paper_id}",
+                "url": f"https://arxiv.org/abs/{paper_id}",
                 "published": None,
             },
         )

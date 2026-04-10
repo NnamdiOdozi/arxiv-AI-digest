@@ -44,6 +44,11 @@ DW_API_KEY = os.getenv("DW_API_KEY")
 DW_BASE_URL = os.getenv("DW_BASE_URL")
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
 
+if not DW_API_KEY:
+    raise EnvironmentError("DW_API_KEY is not set. Check your .env file.")
+if not DW_BASE_URL:
+    raise EnvironmentError("DW_BASE_URL is not set. Check your .env file.")
+
 client = OpenAI(base_url=DW_BASE_URL, api_key=DW_API_KEY)
 
 
@@ -352,6 +357,7 @@ def daily_run(
 
     requeue_max_rounds = inference_config.get("requeue_max_rounds", 0)
     papers_by_id = {p["id"]: p for p in papers}
+    last_batch_id = batch.id
     for requeue_round in range(requeue_max_rounds):
         if not failed_paper_ids:
             break
@@ -398,6 +404,7 @@ def daily_run(
             run_timestamp=run_timestamp,
         )
         results = results + rq_results
+        last_batch_id = rq_batch.id
         log("[requeue] Recovered %s additional results" % len(rq_results))
 
     log(f"Parsed evaluations: {len(results)}")
@@ -426,7 +433,7 @@ def daily_run(
         _persist_parse_failures(
             failed_paper_ids=failed_paper_ids,
             papers_by_id=papers_by_id,
-            batch_id=batch.id,
+            batch_id=last_batch_id,
             run_timestamp=run_timestamp,
             failures_file=str(Path(PROJECT_ROOT) / "pipeline_data" / "parse_failures.json"),
             log_fn=log,

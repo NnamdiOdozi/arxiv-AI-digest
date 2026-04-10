@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 
 import pandas as pd
+import pypandoc
 
 from config_loader import REVIEW_DIGEST_FIELDS
 
@@ -232,6 +233,8 @@ def write_results_markdown(
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
+
+    pypandoc.convert_file(str(output_path), "docx", outputfile=str(output_path.with_suffix(".docx")))
 
     return str(output_path)
 
