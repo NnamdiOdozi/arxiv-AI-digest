@@ -22,8 +22,8 @@ client = OpenAI(base_url=os.getenv("DW_BASE_URL"), api_key=os.getenv("DW_API_KEY
 MODEL = "Qwen/Qwen3-VL-235B-A22B-Instruct-FP8"
 
 SEARCH_JSON = "runs/search/arxiv_search_20260408_162305.json"
-CSV_PATH = "runs/results/parsed/combined_batch_162305_205957_parsed_success.csv"
-XLSX_PATH = "runs/results/parsed/combined_batch_162305_205957_parsed_success.xlsx"
+CSV_PATH = "runs/results/parsed/evaluation_results_20260408.csv"
+XLSX_PATH = "runs/results/parsed/evaluation_results_20260408.xlsx"
 
 # --- 1. Load papers ---
 data = json.loads(Path(SEARCH_JSON).read_text())
@@ -67,6 +67,6 @@ for idx, row in df.iterrows():
         df.at[idx, "key_insight"] = r.get("key_insight", "")
 
 df.drop(columns=["needs_summary"], errors="ignore", inplace=True)
-df.to_csv(CSV_PATH, index=False)
+df.to_csv(CSV_PATH, index=False, encoding='utf-8-sig')
 df.to_excel(XLSX_PATH, index=False)
 print(f"Patched {len(results_by_id)} rows in CSV and XLSX")
