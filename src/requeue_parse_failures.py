@@ -22,6 +22,7 @@ from config_loader import PROJECT_ROOT, load_runtime_config
 from evaluation import create_batch_evaluation
 from create_batch_evaluation import wait_for_batch
 from network import call_with_network_retry
+from output import append_evaluation_results
 
 FAILURES_FILE = Path(PROJECT_ROOT) / "pipeline_data" / "parse_failures.json"
 
@@ -169,6 +170,14 @@ def main():
             stamp=stamp,
         )
         log.info("Supplementary digest written to %s", digest_path)
+
+        written = append_evaluation_results(
+            results=results,
+            papers_by_id=papers,
+            output_dir=batch_debug_dir,
+        )
+        for csv_path, xlsx_path, row_count in written:
+            log.info("Appended %s recovered rows to %s", row_count, csv_path)
 
     # Remove successfully parsed papers from the failures file.
     updated_failures = {pid: entry for pid, entry in failures.items() if pid in still_failed}

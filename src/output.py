@@ -2,6 +2,8 @@ import json
 import logging
 from pathlib import Path
 
+import pandas as pd
+
 from config_loader import REVIEW_DIGEST_FIELDS
 
 
@@ -232,3 +234,73 @@ def write_results_markdown(
         f.write("\n".join(lines))
 
     return str(output_path)
+
+
+def _build_eval_row(result, paper, run_timestamp):
+    authors = paper.get("authors") or []
+    lead_author = authors[0] if authors else ""
+    lead_author_surname = lead_author.split()[-1] if lead_author else ""
+    author_surnames = ", ".join(a.split()[-1] for a in authors)
+    authors_full = ", ".join(authors)
+    published = paper.get("published")
+    if hasattr(published, "isoformat"):
+        published = published.isoformat()
+    return {
+        "run_timestamp": run_timestamp,
+        "paper_id": result.get("paper_id"),
+        "title": paper.get("title", ""),
+        "paper_url": paper.get("url", ""),
+        "published": published,
+        "lead_author": lead_author,
+        "lead_author_surname": lead_author_surname,
+        "author_surnames": author_surnames,
+        "authors_full": authors_full,
+        "relevance_score": result.get("relevance_score"),
+        "is_relevant": result.get("is_relevant"),
+        "summary": result.get("summary", ""),
+        "key_insight": result.get("key_insight", ""),
+    }
+
+
+def write_evaluation_results(results, papers, run_timestamp, output_dir):
+    """Write all scored papers to evaluation_results_TIMESTAMP.csv/.xlsx."""
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    csv_path = Path(output_dir) / f"evaluation_results_{run_timestamp}.csv"
+    xlsx_path = Path(output_dir) / f"evaluation_results_{run_timestamp}.xlsx"
+    papers_by_id = {p["id"]: p for p in papers}
+    rows = [_build_eval_row(r, papers_by_id.get(r.get("paper_id"), {}), run_timestamp) for r in results]
+    df = pd.DataFrame(rows)
+    df.to_csv(str(csv_path), index=False, encoding="utf-8-sig")
+    df.to_excel(str(xlsx_path), index=False)
+    return str(csv_path), str(xlsx_path)
+
+
+def append_evaluation_results(results, papers_by_id, output_dir):
+    """Append recovered results from offline requeue to the matching evaluation CSV/XLSX.
+
+    Each entry in papers_by_id is expected to carry a ``run_timestamp`` field
+    (stored when the failure was originally persisted) so we know which file to append to.
+    Returns a list of (csv_path, xlsx_path, row_count) tuples — one per original run_timestamp.
+    """
+    groups = {}
+    for result in results:
+        pid = result.get("paper_id")
+        paper = papers_by_id.get(pid, {})
+        ts = paper.get("run_timestamp", "unknown")
+        groups.setdefault(ts, []).append((result, paper))
+
+    written = []
+    for ts, pairs in groups.items():
+        csv_path = Path(output_dir) / f"evaluation_results_{ts}.csv"
+        xlsx_path = Path(output_dir) / f"evaluation_results_{ts}.xlsx"
+        new_rows = [_build_eval_row(r, p, ts) for r, p in pairs]
+        new_df = pd.DataFrame(new_rows)
+        if csv_path.exists():
+            existing = pd.read_csv(str(csv_path), encoding="utf-8-sig")
+            combined = pd.concat([existing, new_df], ignore_index=True)
+        else:
+            combined = new_df
+        combined.to_csv(str(csv_path), index=False, encoding="utf-8-sig")
+        combined.to_excel(str(xlsx_path), index=False)
+        written.append((str(csv_path), str(xlsx_path), len(new_rows)))
+    return written

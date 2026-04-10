@@ -6,3 +6,5 @@ python-dateutil==2.9.0.post0
 tomli==2.2.1
 pypdf>=4.0.0
 ftfy>=6.0.0
+pandas>=2.0.0
+openpyxl>=3.0.0

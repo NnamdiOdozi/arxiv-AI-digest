@@ -14,24 +14,28 @@ flowchart TD
     B -->|arXiv API| C{Filters}
     C -->|lookback window + domain term match| D[Paper pool]
     C -->|already seen| X1["Dropped<br/>seen_papers.json"]
-
-    D --> E["2. Build Batch<br/>src/evaluation.py<br/>src/create_batch_evaluation.py"]
-    E -->|JSONL batch file| F["Doubleword / OpenAI Batch API"]
-    F -->|async poll| G["Score + Summary per paper"]
-
-    G --> P["evaluation_results_TIMESTAMP.csv/.xlsx<br/>runs/results/parsed/"]
-
-    G --> H["3. Select Top N<br/>src/send_to_slack.py"]
-    H -->|is_relevant=true, sorted by score| I[Top N papers]
-
-    I --> J["4a. Slack Digest<br/>src/send_to_slack.py"]
-    I --> K["4b. Markdown Report<br/>src/output.py"]
-    G --> K
-
-    K --> L["runs/results/digest_TIMESTAMP.md"]
     D --> M["runs/search/arxiv_snapshot_TIMESTAMP.json"]
 
-    I -.->|optional second pass| N["5. Structured Review<br/>src/run_structured_review.py"]
+    D --> E["2. Score Papers<br/>src/evaluation.py<br/>src/create_batch_evaluation.py"]
+    E -->|JSONL batch file| F["Doubleword / OpenAI Batch API"]
+    F -->|async poll| G{Parse results}
+    G -->|parsed ok| R1[Scored papers]
+    G -->|parse failed| R2[Failed papers]
+
+    R2 -->|resubmit| F
+    R2 -->|max rounds reached| R3["pipeline_data/parse_failures.json"]
+
+    R1 --> P["3. Write Evaluation Results<br/>src/output.py"]
+    P --> Q["runs/results/parsed/<br/>evaluation_results_TIMESTAMP.csv/.xlsx"]
+
+    R1 --> H["4. Select Top N<br/>src/send_to_slack.py"]
+    H -->|is_relevant=true, sorted by score| I[Top N papers]
+
+    I --> J["5a. Slack Digest<br/>src/send_to_slack.py"]
+    I --> K["5b. Markdown Report<br/>src/output.py"]
+    K --> L["runs/results/digest_TIMESTAMP.md"]
+
+    I -.->|optional second pass| N["6. Structured Review<br/>src/run_structured_review.py"]
     N --> O["runs/results/detailed_review_TIMESTAMP.md"]
 ```
 

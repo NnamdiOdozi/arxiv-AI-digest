@@ -27,6 +27,7 @@ from review import load_review_questions, enrich_top_papers_with_structured_revi
 from output import (
     write_arxiv_snapshot_json,
     write_results_markdown,
+    write_evaluation_results,
     setup_run_logger,
 )
 from create_batch_evaluation import wait_for_batch
@@ -439,6 +440,9 @@ def daily_run(
             "[warn] Parsed results cover %s/%s queued papers; %s had parse failures and will NOT be marked seen (eligible for retry)."
             % (len(parsed_result_ids), len(queued_paper_ids), missing_result_count)
         )
+
+    eval_csv, eval_xlsx = write_evaluation_results(results, papers, run_timestamp, batch_debug_dir)
+    log(f"Evaluation results written to {eval_csv}")
 
     # 5) Select final papers
     top_papers = get_top_papers(results, top_n=top_n, log_fn=log)
