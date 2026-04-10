@@ -1,0 +1,10 @@
+{
+  "prompt_hash": "8c0a16d3",
+  "timestamp": "20260409_114659",
+  "model": "Qwen/Qwen3-VL-235B-A22B-Instruct-FP8",
+  "files": {
+    "summary-matching_task": {
+      "safe_filename": "matching_task"
+    }
+  }
+}

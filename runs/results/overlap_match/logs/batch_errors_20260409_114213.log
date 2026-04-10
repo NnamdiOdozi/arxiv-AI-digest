@@ -1,0 +1,8 @@
+Batch Creation Error Log
+Generated: 2026-04-09 11:42:13
+Total files failed: 1
+============================================================
+
+File: /home/nodozi/projects/mlir_wp/arxiv-daily-digest/runs/results/overlap_match/matching_task.txt
+Reason: FileNotFoundError: [Errno 2] No such file or directory: '/home/nodozi/projects/mlir_wp/arxiv-daily-digest/runs/results/overlap_match/matching_task.txt'
+------------------------------------------------------------

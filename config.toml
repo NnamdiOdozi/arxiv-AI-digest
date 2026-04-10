@@ -51,12 +51,14 @@ domain_terms = [
   "claim loss",
   "claims loss",
   "claim reserving",
-  "our claim liabilities",
   "claim liabilities",
   "claims liabilities",
   "claim experience",
   "claims experience",
   "case estimates",
+  "case reserving",
+  "claims analytics",
+  "claims forecasting",
   "loss reserving",
   "IBNR",
   "claim development",
@@ -75,10 +77,7 @@ domain_terms = [
 ]
 method_terms = [
   "machine learning",
-  "ml",
   "artificial intelligence",
-  "ai",
-  "gen ai",
   "generative artificial intelligence",
   "simulation",
   "forecast",
@@ -93,6 +92,11 @@ method_terms = [
   "network",
   "transformer",
   "recurrent neural network",
+  "rnn",
+  "lstm",
+  "gru",
+  "arima",
+  "time series",
   "mixture density network",
 ]
 # Explicit prefilter list (safer than broad domain terms for false-positive control).

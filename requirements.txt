@@ -1,6 +1,7 @@
-openai==1.58.1
+openai>=2.14.0
 arxiv==2.1.0
-requests==2.31.0
+requests>=2.32.0,<3.0.0
 python-dotenv==1.0.0
 python-dateutil==2.9.0.post0
 tomli==2.2.1
+pypdf>=4.0.0

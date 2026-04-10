@@ -1,9 +1,71 @@
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from textwrap import dedent
 
 from create_batch_evaluation import parse_evaluation_result
 from network import call_with_network_retry
+
+REVIEW_SCHEMA = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "paper_structured_review",
+        "strict": True,
+        "schema": {
+            "type": "object",
+            "properties": {
+                "modelling_technique_values":        {"type": ["string", "null"]},
+                "modelling_technique_explanation":   {"type": ["string", "null"]},
+                "input_data_granularity_value":      {"type": ["string", "null"]},
+                "input_data_granularity_explanation":{"type": ["string", "null"]},
+                "model_data_granularity_value":      {"type": ["string", "null"]},
+                "model_data_granularity_explanation":{"type": ["string", "null"]},
+                "time_period_values":                {"type": ["string", "null"]},
+                "time_period_explanation":           {"type": ["string", "null"]},
+                "time_period_length_values":         {"type": ["string", "null"]},
+                "time_period_length_explanation":    {"type": ["string", "null"]},
+                "target_variable_values":            {"type": ["string", "null"]},
+                "target_variable_explanation":       {"type": ["string", "null"]},
+                "data_source_values":                {"type": ["string", "null"]},
+                "data_source_explanation":           {"type": ["string", "null"]},
+                "data_published_value":              {"type": ["string", "null"]},
+                "data_published_explanation":        {"type": ["string", "null"]},
+                "business_line_values":              {"type": ["string", "null"]},
+                "business_line_explanation":         {"type": ["string", "null"]},
+                "input_data_measures_values":        {"type": ["string", "null"]},
+                "input_data_measures_explanation":   {"type": ["string", "null"]},
+                "model_validation_value":            {"type": ["string", "null"]},
+                "model_validation_explanation":      {"type": ["string", "null"]},
+                "prediction_error_value":            {"type": ["string", "null"]},
+                "prediction_error_explanation":      {"type": ["string", "null"]},
+                "supremacy_value":                   {"type": ["string", "null"]},
+                "supremacy_explanation":             {"type": ["string", "null"]},
+                "code_available_value":              {"type": ["string", "null"]},
+                "code_available_value_explanation":  {"type": ["string", "null"]},
+                "keywords_value":                    {"type": ["string", "null"]},
+                "keywords_explanation":              {"type": ["string", "null"]},
+            },
+            "required": [
+                "modelling_technique_values", "modelling_technique_explanation",
+                "input_data_granularity_value", "input_data_granularity_explanation",
+                "model_data_granularity_value", "model_data_granularity_explanation",
+                "time_period_values", "time_period_explanation",
+                "time_period_length_values", "time_period_length_explanation",
+                "target_variable_values", "target_variable_explanation",
+                "data_source_values", "data_source_explanation",
+                "data_published_value", "data_published_explanation",
+                "business_line_values", "business_line_explanation",
+                "input_data_measures_values", "input_data_measures_explanation",
+                "model_validation_value", "model_validation_explanation",
+                "prediction_error_value", "prediction_error_explanation",
+                "supremacy_value", "supremacy_explanation",
+                "code_available_value", "code_available_value_explanation",
+                "keywords_value", "keywords_explanation",
+            ],
+            "additionalProperties": False,
+        },
+    },
+}
 
 
 def _compact_review_question_text(text):
@@ -89,7 +151,7 @@ def _ordered_unique(items):
 
 
 def build_structured_review_prompt(paper, question_specs):
-    """Prompt for richer paper profiling from title+abstract only."""
+    """Prompt for richer paper profiling from full text or abstract."""
     requested_keys = _ordered_unique(
         key for spec in question_specs for key in spec["keys"]
     )
@@ -98,19 +160,28 @@ def build_structured_review_prompt(paper, question_specs):
         f"{idx}. {spec['question']} (keys: {', '.join(spec['keys'])})"
         for idx, spec in enumerate(question_specs, 1)
     )
+    full_text = paper.get("full_text")
+    if full_text:
+        text_label = "PAPER TEXT"
+        text_body = full_text
+        source_note = "Use ONLY the paper text below."
+    else:
+        text_label = "ABSTRACT"
+        text_body = paper["abstract"]
+        source_note = "Use ONLY the title and abstract below."
     return dedent(
         f"""\
         You are extracting a structured actuarial paper profile for an insurance reserving research digest.
 
-        Use ONLY the title and abstract below.
+        {source_note}
         If a field cannot be inferred confidently, return null.
         Keep any *_explanation fields to one concise sentence.
 
         TITLE:
         {paper["title"]}
 
-        ABSTRACT:
-        {paper["abstract"]}
+        {text_label}:
+        {text_body}
 
         QUESTIONS TO ANSWER:
         {numbered_questions}
@@ -136,11 +207,12 @@ def enrich_top_papers_with_structured_review(
     if not top_results or not question_specs:
         return
 
-    for idx, result in enumerate(top_results, 1):
+    def _review_one(idx_result):
+        idx, result = idx_result
         paper_id = result.get("paper_id")
         paper = papers_by_id.get(paper_id)
         if not paper:
-            continue
+            return
         prompt = build_structured_review_prompt(paper, question_specs)
         log(
             "[dw_structured_review] request=%s/%s paper_id=%s title=%s"
@@ -150,15 +222,10 @@ def enrich_top_papers_with_structured_review(
         def _request():
             return client.chat.completions.create(
                 model=model_name,
+                response_format=REVIEW_SCHEMA,
                 messages=[
-                    {
-                        "role": "system",
-                        "content": "Return only valid JSON. Do not wrap JSON in markdown.",
-                    },
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    },
+                    {"role": "system", "content": "Return only valid JSON. Do not wrap JSON in markdown."},
+                    {"role": "user", "content": prompt},
                 ],
             )
 
@@ -175,3 +242,8 @@ def enrich_top_papers_with_structured_review(
             log(f"[dw_structured_review_ok] paper_id={paper_id} keys={len(parsed)}")
         else:
             log(f"[dw_structured_review_parse_failed] paper_id={paper_id}")
+
+    with ThreadPoolExecutor(max_workers=10) as pool:
+        futures = [pool.submit(_review_one, (idx, result)) for idx, result in enumerate(top_results, 1)]
+        for future in as_completed(futures):
+            future.result()

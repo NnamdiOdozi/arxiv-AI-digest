@@ -1,0 +1,1193 @@
+=== LIST A: Literature Review Papers (80 entries) ===
+
+A01. Title: Semiparametric model for prediction of individual claim loss reserving
+     Authors: Zhao, Zhou, Wang  Year: 2009
+
+A02. Title: Applying copula models to individual claim loss reserving methods
+     Authors: Zhao, Zhou  Year: 2010
+
+A03. Title: Individual loss reserving with the multivariate skew normal framework
+     Authors: Pigeon, Antoni, Denuit  Year: 2013
+
+A04. Title: Statistical case estimation
+     Authors: Taylor, Campbell  Year: 2002
+
+A05. Title: Modelling mortgage insurance as a multi-state process
+     Authors: Taylor, Mulquiney  Year: 2007
+
+A06. Title: Individual claim reserving conditioned by case estimates
+     Authors: Taylor, McGuire, Sullivan  Year: 2008
+
+A07. Title: Bootstrapping individual claim histories
+     Authors: Rosenlund  Year: 2012
+
+A08. Title: Continuous Chain Ladder: Reformulating and generalizing a classical insurance problem
+     Authors: Martinez-Miranda, Nielsen, Sperlich, Verrall  Year: 2013
+
+A09. Title: An individual claims reserving model
+     Authors: Larsen  Year: 2007
+
+A10. Title: Predicting IBNYR events and delays I: continuous time
+     Authors: Jewell  Year: 1989
+
+A11. Title: A Markov model for loss reserving
+     Authors: Hesselager  Year: 1994
+
+A12. Title: Claims reserving in continuous time; a nonparametricBayesian approach
+     Authors: Haastrup, Arjas  Year: 1996
+
+A13. Title: A structural model for the analysis of loss reserves
+     Authors: Hachemeister  Year: 1978
+
+A14. Title: A stochastic model for loss reserving
+     Authors: Hachemeister  Year: 1980
+
+A15. Title: Stochastic projection for large individual losses
+     Authors: Drieskens, Henry, Walhin, Wielandts  Year: 2012
+
+A16. Title: Non parametric individual claim reserving in insurance
+     Authors: Baudry, Roberts  Year: 2017
+
+A17. Title: Non parametric individual claim reserving in insurance
+     Authors: Baudry, Roberts  Year: 2017
+
+A18. Title: The claims reserving problem in non-life insurance: some_structural ideas
+     Authors: Arjas  Year: 1989
+
+A19. Title: Loss Reserving Models: Granular and Machine Learning Forms
+     Authors: Taylor  Year: 2019
+
+A20. Title: Claim Watching and Individual Claims Reserving Using Classification and Regression Trees
+     Authors: De Felice, Moriconi  Year: 2019
+
+A21. Title: Individual Loss Reserving Using a Gradient Boosting-Based Approach
+     Authors: Francis Duval, Mathieu Pigeon  Year: 2019
+
+A22. Title: Machine learning in individual claims reserving
+     Authors: Wuethrich  Year: 2018
+
+A23. Title: Macro vs. Micro Methods in Non-Life Claims Reserving (an Econometric Perspective)
+     Authors: Charpentier, Pigeon  Year: 2017
+
+A24. Title: Cash flow generalisations of non-lifei nsurance expert systems estimating outstanding claims
+     Authors: Hiabu,Margraf,Martínez-Miranda,Nielsen  Year: 2016
+
+A25. Title: Prediction of outstanding claims in non-life insurance
+     Authors: Norberg  Year: 1993
+
+A26. Title: Prediction of outstanding liabilities II: model variations and extensions
+     Authors: Norberg  Year: 1999
+
+A27. Title: Individual claim reserving conditioned by case estimates
+     Authors: Taylor, McGuire, Sullivan  Year: 2008
+
+A28. Title: Micro-level stochastic loss reserving for general insurance
+     Authors: Antonio, Plat  Year: 2014
+
+A29. Title: Stochastic Loss Reserving in Discrete Time: Individual vs. Aggregate Data Models
+     Authors: Huang, Qiu, Wu  Year: 2015
+
+A30. Title: Predictive analytics of insurance claims
+using multivariate decision trees
+     Authors: Zhiyu Quan
+Emiliano Valdez  Year: 2018
+
+A31. Title: An Individual Loss Reserving Model with Independent Reporting and Settlement
+     Authors: Huang, Qiu, Wu, Zhou  Year: 2015
+
+A32. Title: Asymptotic behaviors of stochastic reserving: Aggregate versus individual claims
+     Authors: Huang, Wu, Zhou  Year: 2016
+
+A33. Title: On the relationship between classical chain ladder and granular reserving
+     Authors: Hiabu  Year: 2016
+
+A34. Title: Claim Risk Scoring using Survival Analysis
+ Framework and Machine Learning with Random Forest
+     Authors: Yuriy, Jina, Terrance  Year: 2019
+
+A35. Title: Allstate Insurance Claims
+ Severity: A Machine Learning Approach
+     Authors: Rajeeva, Jeff, Hongyi  Year: 2018
+
+A36. Title: Granular Reserving 
+Dialogistic in Machine Learning
+     Authors: Asif John  Year: 2018
+
+A37. Title: Predicting High Cost Insurance Members through Boosted Trees and Oversampling: An application using the HCCI database
+     Authors: Brain Hartman, Rebecca Owen, Zoe Gibbs  Year: 2019
+
+A38. Title: ENSEMBLE MODELING & PREDICTION INTERPRETABILITY FOR INSURANCE FRAUD CLAIMS CLASSIFICATION
+     Authors:   Year: 2019
+
+A39. Title: Claims Reserving using Gradient Boosting and Generalized Linear Models
+     Authors: Marcus Ahlgren  Year: 2018
+
+A40. Title: Non life pricing: empirical comparison of classical GLM with tree based Gradient Boosted Models
+     Authors: Leonardo Petrini  Year: 2017
+
+A41. Title: LightGBM: A Highly Efﬁcient Gradient Boosting Decision Tree
+     Authors: Guolin Ke1, Qi Meng2, Thomas Finley3, Taifeng Wang1, Wei Chen1, Weidong Ma1, Qiwei Ye1, Tie-Yan Liu1  Year: 2017
+
+A42. Title: A Machine Learning Framework For Loss Reserving
+     Authors: Drew Golfin, Kelvin Kuo  Year: 2016
+
+A43. Title: Using Boosted Regression Trees and Remotely Sensed Data to Drive Decision-Making
+     Authors: Brigitte Colin, Samuel Clifford, Paul Wu, Samuel Rathmanner, Kerrie Mengersen  Year: 2017
+
+A44. Title: Model-based Boosting in R - A Hands-on Tutorial Using the R Package mboost
+     Authors: Benjamin Hofner, Andreas Mayr,  Matthias Schmid, Nikolay Robinzonov  Year: 2014
+
+A45. Title: Boosting Actuarial Regression Models in R
+     Authors: Carryl Oberson  Year: 2015
+
+A46. Title: Loss Reserving with GLMs: A Case Study
+     Authors: Greg Taylor and Gr~inne McGuire  Year: 2004
+
+A47. Title: Neural Networks Applied to Chain-Ladder Reserving
+     Authors: Mario V. W¨uthrich  Year: 2018
+
+A48. Title: AI in Actuarial Science - Draft
+     Authors: Ronald Richman  Year: 2018
+
+A49. Title: Using machine learning to model claims experience and reporting delays for pricing and reserving
+     Authors: L Rossouw and R Richman  Year: 2019
+
+A50. Title: Penalising Unexplainability in Neural Networks for Predicting Payments per Claim Incurred
+     Authors: Jacky H. L. Poon  Year: 2019
+
+A51. Title: Neural Network Embedding of the Over-Dispersed Poisson Reserving Model
+     Authors: Andrea Gabrielli, Ronald Richman, Mario V. W¨uthrich  Year: 2018
+
+A52. Title: A Neural Network Boosted Double Over-Dispersed Poisson Claims Reserving Model
+     Authors: Andrea Gabrielli  Year: 2019
+
+A53. Title: DeepTriangle: A Deep Learning Approach to Loss Reserving
+     Authors: Kevin Kuo  Year: 2019
+
+A54. Title: Individual Claims History Simulation Machine
+     Authors: Andrea Gabrielli, Mario V. Wuthrich  Year: 2018
+
+A55. Title: Data Analytics for Non-Life Insurance Pricing
+     Authors: Wuthrich/Buser  Year: 2018
+
+A56. Title: Self-assembling insurance claim models using regularized regression and machine learning
+     Authors: Grainne McGuire, Taylor Fry, Greg Taylor, Hugh Miller  Year: 2018
+
+A57. Title: From the Chain Ladder to Individual Claims Reserving using ML techniques
+     Authors: Alessandro Carrato, Michele Visintin  Year: 2019
+
+A58. Title: Individual Claims Forecasting with Bayesian Mixture Density Networks
+     Authors: Kevin Kuo  Year: 2020
+
+A59. Title: Regression models for the joint development of individual payments and claim incurred
+     Authors: M. Wuthrich,      Lukasz Delong  Year: 2020
+
+A60. Title: Estimation of Individual Claim Liabilities A comparison of Traditional and Machine Learning Methodologies
+     Authors: Marco De Virgilis Pierluigi Cerqueti  Year: 2018
+
+A61. Title: Explainable Neural Networks based on Additive Index Models
+     Authors: Vaughan, Sudjianto,Brahimi, Chen, Nair  Year: 2018
+
+A62. Title: Model explainability
+     Authors: Hansel  Year: 2018
+
+A63. Title: Individual Claim Development With Machine Learning
+     Authors: Bor Harej (champion), Roman Gächter, Salma Jamal et. al  Year: 2017
+
+A64. Title: Making machine learning techniques interpretable in the context of non-life pricing
+     Authors: Xavier Maréchal , Samuel Mahy  Year: 2020
+
+A65. Title: ASTIN 2018 WP - ML and Traditional Methods Synergy in Non-Life Reserving
+     Authors: Salma Jamal (Head of the project) - Astin 2018 Working Party  Year: 2018
+
+A66. Title: Machine Learning in Individual Claims Reserving (Swiss Finance Institute Research Paper Series N°16-67)
+     Authors: Mario V. WÜTHRICH  Year: 2016
+
+A67. Title: Insurance Risk Pricing with GLM, GAM and XGBoost (Link to video and code is in the file identifier)
+     Authors: Matthew Evans, Callum Hughe2  Year: 2019
+
+A68. Title: Machine Learning with High-Cardinality Categorical Features in Actuarial Applications
+     Authors: Benjamin Avanzi, Greg Taylor, Melantha Wang, Bernard Wong  Year: 2023
+
+A69. Title: Auto pilot: automated machine learning and loss development
+     Authors: Maximilian Hudlberger and Darius Sabas  Year: 2023
+
+A70. Title: Advancing Loss Reserving: A Hybrid Neural Network Approach for Individual Claim Development Prediction
+     Authors: Schwab, Schneider  Year: 2024
+
+A71. Title: Probabilistic Forecasting with Neural Networks Applied to Loss Reserving
+     Authors: Muhamed Taher Al-Mudafer  Year: 2020
+
+A72. Title: The Actuary and IBNR Techniques: A Machine Learning Approach
+     Authors: R. Richman, C Balona  Year: 2020
+
+A73. Title: An Individual Claims Reserving Model for Reported Claims
+     Authors: A. Gabriellie  Year: 2020
+
+A74. Title: Individual Claim Development Models and Detailed Actuarial Reserves in property-Casualty Insurance
+     Authors: C. G. gross  Year: 2021
+
+A75. Title: Machine learning in P&C Insurance: A review for pricing and reserving
+     Authors: Christopher Blier-Wong, Helene Cossette, Luc Lamontagne and Etienne Marceau  Year: 2020
+
+A76. Title: Estimation of Individual Claim Liabilities
+     Authors: Linda Brobeck, Marco De Virgilis  Year: 2020
+
+A77. Title: A hierarchical reserving model for reported non-life insurance claims
+     Authors: Jonas Crevecoeur, Jens Robben, and Katrien Antonio  Year: 2021
+
+A78. Title: Micro-level reserving for general insurance claims using a long short-term memory network
+     Authors: Ihsan Chaoubi1, Camille Besse2, Helene Cossette1, and Marie-Pier Cote  Year: 2023
+
+A79. Title: The Credibility Transformer
+     Authors: Richman, Scognamiglio, Wuthrich  Year: 2024
+
+A80. Title: Individual Claims Modelling with Recurrent Neural Networks in Insurance Loss Reserving
+     Authors: Julia Li  Year: 2021
+
+
+=== LIST B: arXiv Papers (236 entries; papers scored >=7 by LLM are marked [RELEVANT]) ===
+
+B001. ID: 2604.05143v1
+      Title: Existence of a classical solution to the integro-differential equation arising in the Cramér--Lundberg non-life insurance model with proportional investment
+      Authors: Platon Promyslov  Published: 2026-04-06
+
+B002. ID: 2604.02400v1
+      Title: Varying risk exposure in auto insurance: a weighted tweedie framework for experience rating an cancellation penalties
+      Authors: Jean-Philippe Boucher; Raïssa Coulibaly; Julien Trufin  Published: 2026-04-02
+
+B003. ID: 2603.20333v1
+      Title: Bounded Coupled AI Learning Dynamics in Tri-Hierarchical Drone Swarms
+      Authors: Oleksii Bychkov  Published: 2026-03-20
+
+B004. ID: 2603.14543v1
+      Title: Gradient Boosting for Spatial Panel Models with Random and Fixed Effects
+      Authors: Michael Balzer; Adhen Benlahlou  Published: 2026-03-15
+
+B005. ID: 2603.13803v1
+      Title: ALTIS: Automated Loss Triage and Impact Scoring from Sentinel-1 SAR for Property-Level Flood Damage Assessment
+      Authors: Amogh Vinaykumar; Prem Kamasani  Published: 2026-03-14
+
+B006. ID: 2603.13103v1
+      Title: A Feasibility-Enhanced Control Barrier Function Method for Multi-UAV Collision Avoidance
+      Authors: Qishen Zhong; Junlong Wu; Jian Yang et al.  Published: 2026-03-13
+
+B007. ID: 2603.11258v1  [RELEVANT score=8]
+      Title: Continuous-time modeling and bootstrap for Schnieper's reserving
+      Authors: Nicolas Baradel  Published: 2026-03-11
+
+B008. ID: 2603.01821v1
+      Title: Asymptotics of Ruin Probabilities in a Subordinated Cramér-Lundberg Model
+      Authors: Jonathan Klinge; Maren Diane Schmeck  Published: 2026-03-02
+
+B009. ID: 2602.20412v1
+      Title: SimLBR: Learning to Detect Fake Images by Learning to Detect Real Images
+      Authors: Aayush Dhakal; Subash Khanal; Srikumar Sastry et al.  Published: 2026-02-23
+
+B010. ID: 2602.20404v1
+      Title: $κ$-Explorer: A Unified Framework for Active Model Estimation in MDPs
+      Authors: Xihe Gu; Urbashi Mitra; Tara Javidi  Published: 2026-02-23
+
+B011. ID: 2602.15481v1
+      Title: LLM-as-Judge on a Budget
+      Authors: Aadirupa Saha; Aniket Wagde; Branislav Kveton  Published: 2026-02-17
+
+B012. ID: 2602.15385v2  [RELEVANT score=9]
+      Title: From Chain-Ladder to Individual Claims Reserving
+      Authors: Ronald Richman; Mario V. Wüthrich  Published: 2026-02-17
+
+B013. ID: 2602.06486v1
+      Title: JADE: Expert-Grounded Dynamic Evaluation for Open-Ended Professional Tasks
+      Authors: Lanbo Lin; Jiayao Liu; Tianyuan Yang et al.  Published: 2026-02-06
+
+B014. ID: 2602.05586v1
+      Title: Observer-based Control of Multi-agent Systems under STL Specifications
+      Authors: Tommaso Zaccherini; Siyuan Liu; Dimos V. Dimarogonas  Published: 2026-02-05
+
+B015. ID: 2601.17621v2
+      Title: Non-parametric finite-sample credible intervals with one-dimensional priors: a middle ground between Bayesian and frequentist intervals
+      Authors: Tim Ritmeester  Published: 2026-01-24
+
+B016. ID: 2601.07637v1  [RELEVANT score=9]
+      Title: Reinforcement Learning for Micro-Level Claims Reserving
+      Authors: Benjamin Avanzi; Ronald Richman; Bernard Wong et al.  Published: 2026-01-12
+
+B017. ID: 2601.05964v1  [RELEVANT score=8]
+      Title: Negative binomial models for development triangles of counts
+      Authors: Luis E. Nieto-Barajas; Rodrigo S. Targino  Published: 2026-01-09
+
+B018. ID: 2601.05859v1
+      Title: Neural Methods for Multiple Systems Estimation Models
+      Authors: Joseph Marsh; Nathan A. Judd; Lax Chan et al.  Published: 2026-01-09
+
+B019. ID: 2601.05274v1  [RELEVANT score=9]
+      Title: On the use of case estimate and transactional payment data in neural networks for individual loss reserving
+      Authors: Benjamin Avanzi; Matthew Lambrianidis; Greg Taylor et al.  Published: 2025-12-28
+
+B020. ID: 2512.20305v2  [RELEVANT score=7]
+      Title: A Structured Nonparametric Framework for Nonlinear Accelerated Failure Time Models (KAN-AFT)
+      Authors: Mebin Jose; Jisha Francis; Sudheesh Kumar Kattumannil  Published: 2025-12-23
+
+B021. ID: 2512.18558v1
+      Title: Distributionally Robust Multi-Agent Reinforcement Learning for Intelligent Traffic Control
+      Authors: Shuwei Pei; Joran Borger; Arda Kosay et al.  Published: 2025-12-21
+
+B022. ID: 2512.11197v1  [RELEVANT score=9]
+      Title: A Unified Micro-Model for Loss Reserves, IBNR and Unearned Premium Risk with Dependence, Inflation, and Discounting
+      Authors: Emmanuel Hamel; Anas Abdallah; Ghislain Léveillé  Published: 2025-12-12
+
+B023. ID: 2511.14441v1
+      Title: Skewness-Robust Causal Discovery in Location-Scale Noise Models
+      Authors: Daniel Klippert; Alexander Marx  Published: 2025-11-18
+
+B024. ID: 2511.01420v1
+      Title: Gradient Clock Synchronization with Practically Constant Local Skew
+      Authors: Christoph Lenzen  Published: 2025-11-03
+
+B025. ID: 2510.27519v1
+      Title: Mastering an Accurate and Generalizable Simulation-Based Method to Obtain Bias-corrected Point Estimates and Sampling Variance for Any Effect Sizes
+      Authors: Shinichi Nakagawa; Ayumi Mizuno; Coralie Williams et al.  Published: 2025-10-31
+
+B026. ID: 2510.27204v1  [RELEVANT score=8]
+      Title: Functional Analysis of Loss-development Patterns in P&C Insurance
+      Authors: Arthur Charpentier; Qiheng Guo; Mike Ludkovski  Published: 2025-10-31
+
+B027. ID: 2510.05723v2
+      Title: Six loop critical exponent analysis for Lee-Yang and percolation theory
+      Authors: J. A. Gracey  Published: 2025-10-07
+
+B028. ID: 2510.04556v2
+      Title: Model Monitoring: A General Framework with an Application to Non-life Insurance Pricing
+      Authors: Alexej Brauer; Paul Menzel; Mario V. Wüthrich  Published: 2025-10-06
+
+B029. ID: 2509.24158v1
+      Title: Blockwise Missingness meets AI: A Tractable Solution for Semiparametric Inference
+      Authors: Qi Xu; Lorenzo Testa; Jing Lei et al.  Published: 2025-09-29
+
+B030. ID: 2509.20803v1  [RELEVANT score=7]
+      Title: Statistical Learning of Trade Credit Insurance Network Data with Applications to Ratemaking and Reserving
+      Authors: Woongchae Yoo; Spark C. Tseung; Tsz Chai Fung  Published: 2025-09-25
+
+B031. ID: 2509.08956v1
+      Title: Multi-Agent Inverse Reinforcement Learning for Identifying Pareto-Efficient Coordination -- A Distributionally Robust Approach
+      Authors: Luke Snow; Vikram Krishnamurthy  Published: 2025-09-10
+
+B032. ID: 2509.08479v2
+      Title: From Kardar-Parisi-Zhang scaling to soliton proliferation in Josephson junction arrays
+      Authors: Mikheil Tsitsishvili; Reinhold Egger; Karsten Flensberg et al.  Published: 2025-09-10
+
+B033. ID: 2509.08467v1
+      Title: An Interpretable Deep Learning Model for General Insurance Pricing
+      Authors: Patrick J. Laub; Tu Pho; Bernard Wong  Published: 2025-09-10
+
+B034. ID: 2509.05426v1  [RELEVANT score=8]
+      Title: Sparse Seemingly Unrelated Regression (SSUR) Copula Mixed Models for Multivariate Loss Reserving
+      Authors: Pengfei Cai; Anas Abdallah; Pratheepa Jeganathan  Published: 2025-09-05
+
+B035. ID: 2508.16444v3
+      Title: Dynamic Financial Analysis (DFA) of General Insurers under Climate Change
+      Authors: Benjamin Avanzi; Yanfeng Li; Greg Taylor et al.  Published: 2025-08-22
+
+B036. ID: 2506.22513v1
+      Title: Automated Defect Identification and Categorization in NDE 4.0 with the Application of Artificial Intelligence
+      Authors: Aditya Sharma  Published: 2025-06-26
+
+B037. ID: 2506.18136v1
+      Title: Regression Discontinuity Designs for Functional Data and Random Objects in Geodesic Spaces
+      Authors: Daisuke Kurisu; Yidong Zhou; Taisuke Otsu et al.  Published: 2025-06-22
+
+B038. ID: 2506.15855v2
+      Title: Bayesian Non-Negative Matrix Factorization with Correlated Mutation Type Probabilities for Mutational Signatures
+      Authors: Iris Lang; Jenna Landy; Giovanni Parmigiani  Published: 2025-06-18
+
+B039. ID: 2506.07622v1
+      Title: Set-valued regression and cautious suboptimization: From noisy data to optimality
+      Authors: Jaap Eising; Jorge Cortes  Published: 2025-06-09
+
+B040. ID: 2506.00695v2
+      Title: Multi-Controlled Quantum Gates in Linear Nearest Neighbor
+      Authors: Ben Zindorf; Sougato Bose  Published: 2025-05-31
+
+B041. ID: 2505.17360v1
+      Title: The Quasi-Polynomial Low-Degree Conjecture is False
+      Authors: Rares-Darius Buhai; Jun-Ting Hsieh; Aayush Jain et al.  Published: 2025-05-23
+
+B042. ID: 2505.16486v1
+      Title: Asset liability management under sequential stochastic dominance constraints
+      Authors: Giorgio Consigli; Darinka Dentcheva; Francesca Maggioni et al.  Published: 2025-05-22
+
+B043. ID: 2505.08943v1
+      Title: The value of partial information
+      Authors: Philip A. Ernst; Oleksii Mostovyi  Published: 2025-05-13
+
+B044. ID: 2504.21822v2
+      Title: On the difficulty of capturing the distribution function of neutrinos in neutron star merger simulations
+      Authors: Francois Foucart  Published: 2025-04-30
+
+B045. ID: 2504.09974v1
+      Title: Towards Resilient Tracking in Autonomous Vehicles: A Distributionally Robust Input and State Estimation Approach
+      Authors: Kasra Azizi; Kumar Anurag; Wenbin Wan  Published: 2025-04-14
+
+B046. ID: 2504.09396v2  [RELEVANT score=8]
+      Title: Adaptive Insurance Reserving with CVaR-Constrained Reinforcement Learning under Macroeconomic Regimes
+      Authors: Stella C. Dong  Published: 2025-04-13
+
+B047. ID: 2504.09292v1  [RELEVANT score=8]
+      Title: Stochastic Claims Reserving Using State Space Modeling
+      Authors: Rajesh Selukar  Published: 2025-04-12
+
+B048. ID: 2504.07014v2
+      Title: Fermi surface as a quantum critical manifold: gaplessness, order parameter, and scaling in $d$-dimensions
+      Authors: Gennady Y. Chitov  Published: 2025-04-09
+
+B049. ID: 2503.21321v1  [RELEVANT score=7]
+      Title: Explainable Boosting Machine for Predicting Claim Severity and Frequency in Car Insurance
+      Authors: Markéta Krùpovà; Nabil Rachdi; Quentin Guibert  Published: 2025-03-27
+
+B050. ID: 2503.17173v2
+      Title: Robustness of deep learning classification to adversarial input on GPUs: asynchronous parallel accumulation is a source of vulnerability
+      Authors: Sanjif Shanmugavelu; Mathieu Taillefumier; Christopher Culver et al.  Published: 2025-03-21
+
+B051. ID: 2502.20785v3
+      Title: GraphCheck: Multipath Fact-Checking with Entity-Relationship Graphs
+      Authors: Hyewon Jeon; Jay-Yoon Lee  Published: 2025-02-28
+
+B052. ID: 2502.15598v1  [RELEVANT score=8]
+      Title: A Population Sampling Framework for Claim Reserving in General Insurance
+      Authors: Sebastian Calcetero Vanegas; Andrei L. Badescu; X. Sheldon Lin  Published: 2025-02-21
+
+B053. ID: 2502.14479v4
+      Title: Modelling the term-structure of default risk under IFRS 9 within a multistate regression framework
+      Authors: Arno Botha; Tanja Verster; Roland Breedt  Published: 2025-02-20
+
+B054. ID: 2502.11788v2
+      Title: Comparison of offset and ratio weighted regressions in tweedie models with application to mid-term cancellations
+      Authors: Boucher Jean-Philippe; Coulibaly Raïssa  Published: 2025-02-17
+
+B055. ID: 2501.09660v1
+      Title: Peierls bounds from random Toom contours
+      Authors: Jan M. Swart; Réka Szabó; Cristina Toninelli  Published: 2025-01-16
+
+B056. ID: 2501.01686v2
+      Title: Endpoint estimates for maximal operators associated to the wave equation
+      Authors: Chu-Hee Cho; Sanghyuk Lee; Wenjuan Li  Published: 2025-01-03
+
+B057. ID: 2412.07962v2
+      Title: Mayfly: Private Aggregate Insights from Ephemeral Streams of On-Device User Data
+      Authors: Christopher Bian; Albert Cheu; Stanislav Chiknavaryan et al.  Published: 2024-12-10
+
+B058. ID: 2411.12784v1
+      Title: Cancer incidence estimation from mortality data: a validation study within a population-based cancer registry
+      Authors: Daniel Redondo-Sánchez; Miguel Rodríguez-Barranco; Alberto Ameijide et al.  Published: 2024-11-19
+
+B059. ID: 2410.20841v2
+      Title: Quantum Computational Insurance and Actuarial Science
+      Authors: Huan-Yu Liu; Xi-Ning Zhuang; Chao Wang et al.  Published: 2024-10-28
+
+B060. ID: 2410.15705v1
+      Title: Variable screening for covariate dependent extreme value index estimation
+      Authors: Takuma Yoshida; Yuta Umezu  Published: 2024-10-21
+
+B061. ID: 2410.15079v1
+      Title: Parsimonious convolution quadrature
+      Authors: Jens M. Melenk; Jörg Nick  Published: 2024-10-19
+
+B062. ID: 2410.14985v1  [RELEVANT score=7]
+      Title: Stochastic Loss Reserving: Dependence and Estimation
+      Authors: Andrew Fleck; Edward Furman; Yang Shen  Published: 2024-10-19
+
+B063. ID: 2410.04369v1
+      Title: Deviance Voronoi Residuals for Space-Time Point Process Models: An Application to Earthquake Insurance Risk
+      Authors: Roba Bairakdar; Debbie Dupuis; Melina Mailhot  Published: 2024-10-06
+
+B064. ID: 2409.12896v1  [RELEVANT score=8]
+      Title: Marked Cox Models for IBNR Claims Count: Continuous and Discretized Approaches with Dirichlet-Driven Reporting Delays
+      Authors: Hassan Abdelrahman; Andrei Badescu; Radu Craiu et al.  Published: 2024-09-19
+
+B065. ID: 2409.07795v2
+      Title: Robust and efficient estimation in the presence of a randomly censored covariate
+      Authors: Seong-ho Lee; Brian D. Richardson; Yanyuan Ma et al.  Published: 2024-09-12
+
+B066. ID: 2408.01175v3
+      Title: Common Noise by Random Measures: Constructing Mean-Field Equilibria for Competitive Investment and Hedging
+      Authors: Dirk Becherer; Stefanie Hesse  Published: 2024-08-02
+
+B067. ID: 2407.18377v1  [RELEVANT score=8]
+      Title: Bayesian Nowcasting Data Breach IBNR Incidents
+      Authors: Maochao Xu; Hong Sun; Peng Zhao  Published: 2024-07-25
+
+B068. ID: 2407.15177v1
+      Title: Measurements of the Safety Function Response Time on a Private 5G and IO-Link Wireless Testbed
+      Authors: Henry Beuster; Kevin Tebbe; Thomas Doebbert et al.  Published: 2024-07-21
+
+B069. ID: 2408.00003v1
+      Title: Bonus-malus Systems vs Delays in Claims Reporting and Settlement: Analysis of Ruin Probabilities
+      Authors: Dhiti Osatakul; Shuanming Li; Xueyuan Wu  Published: 2024-07-17
+
+B070. ID: 2407.12564v1
+      Title: Shackling Uncertainty using Mixed Criticality in Monte-Carlo Tree Search
+      Authors: Franco Cordeiro; Samuel Tardieu; Laurent Pautet  Published: 2024-07-17
+
+B071. ID: 2406.18472v1
+      Title: Ground states of a nonlocal variational problem and Thomas-Fermi limit for the Choquard equation
+      Authors: Damiano Greco; Yanghong Huang; Zeng Liu et al.  Published: 2024-06-26
+
+B072. ID: 2406.10733v1
+      Title: A Laplace transform-based test for the equality of positive semidefinite matrix distributions
+      Authors: Žikica Lukić  Published: 2024-06-15
+
+B073. ID: 2406.03252v2  [RELEVANT score=8]
+      Title: Continuous-time modeling and bootstrap for chain-ladder reserving
+      Authors: Nicolas Baradel  Published: 2024-06-05
+
+B074. ID: 2405.09797v3
+      Title: Extrapolating Single-Treatment Effects Out of Factorial Experiments
+      Authors: Guilherme Duarte  Published: 2024-05-16
+
+B075. ID: 2405.06261v4
+      Title: On Improving the Composition Privacy Loss in Differential Privacy for Fixed Estimation Error
+      Authors: V. Arvind Rameshwar; Anshoo Tandon  Published: 2024-05-10
+
+B076. ID: 2405.02871v2
+      Title: Modeling frequency distribution above a priority in presence of IBNR
+      Authors: Nicolas Baradel  Published: 2024-05-05
+
+B077. ID: 2404.10275v1
+      Title: OptiGrad: A Fair and more Efficient Price Elasticity Optimization via a Gradient Based Learning
+      Authors: Vincent Grari; Marcin Detyniecki  Published: 2024-04-16
+
+B078. ID: 2404.07248v1
+      Title: Parametric estimation of conditional Archimedean copula generators for censored data
+      Authors: Marie Michaelides; Hélène Cossette; Mathieu Pigeon  Published: 2024-04-10
+
+B079. ID: 2402.14983v1
+      Title: Privacy-Enhancing Collaborative Information Sharing through Federated Learning -- A Case of the Insurance Industry
+      Authors: Panyi Dong; Zhiyu Quan; Brandon Edwards et al.  Published: 2024-02-22
+
+B080. ID: 2402.10421v3  [RELEVANT score=9]
+      Title: Recurrent Neural Networks for Multivariate Loss Reserving and Risk Capital Analysis
+      Authors: Pengfei Cai; Anas Abdallah; Pratheepa Jeganathan  Published: 2024-02-16
+
+B081. ID: 2401.17334v1
+      Title: Efficient estimation of parameters in marginals in semiparametric multivariate models
+      Authors: Ivan Medovikov; Valentyn Panchenko; Artem Prokhorov  Published: 2024-01-29
+
+B082. ID: 2401.16529v1
+      Title: Unleashing the Power of Preemptive Priority-based Scheduling for Real-Time GPU Tasks
+      Authors: Yidi Wang; Cong Liu; Daniel Wong et al.  Published: 2024-01-29
+
+B083. ID: 2401.07724v1
+      Title: A non-parametric estimator for Archimedean copulas under flexible censoring scenarios and an application to claims reserving
+      Authors: Marie Michaelides; Hélène Cossette; Mathieu Pigeon  Published: 2024-01-15
+
+B084. ID: 2312.14549v3  [RELEVANT score=8]
+      Title: A machine learning approach based on survival analysis for IBNR frequencies in non-life reserving
+      Authors: Munir Hiabu; Emil Hofman; Gabriele Pittarello  Published: 2023-12-22
+
+B085. ID: 2312.14324v2  [RELEVANT score=7]
+      Title: A multistate approach to disability insurance reserving with information delays
+      Authors: Oliver Lunding Sandqvist  Published: 2023-12-21
+
+B086. ID: 2312.04108v1
+      Title: Current poisson's ratio values of finite element models are too low to consider soft tissues nearly-incompressible: illustration on the human heel region
+      Authors: Nolwenn Fougeron; Alessio Trebbi; Bethany Keenan et al.  Published: 2023-12-07
+
+B087. ID: 2312.03139v1  [RELEVANT score=8]
+      Title: A Bayesian Skew-heavy-tailed modelling for loss reserving
+      Authors: William L. Leão; Viviana G. R. Lobo  Published: 2023-12-05
+
+B088. ID: 2311.11900v2
+      Title: Measuring and Mitigating Biases in Motor Insurance Pricing
+      Authors: Mulah Moriah; Franck Vermet; Arthur Charpentier  Published: 2023-11-20
+
+B089. ID: 2311.10917v1
+      Title: Modeling trading games in a stochastic non-life insurance market
+      Authors: Leonard Mushunje; David Edmund Allen  Published: 2023-11-18
+
+B090. ID: 2311.07384v3  [RELEVANT score=8]
+      Title: Individual claims reserving using the Aalen--Johansen estimator
+      Authors: Martin Bladt; Gabriele Pittarello  Published: 2023-11-13
+
+B091. ID: 2311.07597v2
+      Title: Enhancing Actuarial Non-Life Pricing Models via Transformers
+      Authors: Alexej Brauer  Published: 2023-11-10
+
+B092. ID: 2310.12056v1  [RELEVANT score=8]
+      Title: Mack's estimator motivated by large exposure asymptotics in a compound Poisson setting
+      Authors: Nils Engler; Filip Lindskog  Published: 2023-10-18
+
+B093. ID: 2310.11471v2
+      Title: Modeling lower-truncated and right-censored insurance claims with an extension of the MBBEFD class
+      Authors: Selim Gatti; Mario V. Wüthrich  Published: 2023-10-16
+
+B094. ID: 2310.04786v2  [RELEVANT score=7]
+      Title: On the evolution of data breach reporting patterns and frequency in the United States: a cross-state analysis
+      Authors: Benjamin Avanzi; Xingyun Tan; Greg Taylor et al.  Published: 2023-10-07
+
+B095. ID: 2307.07771v3
+      Title: Enhanced Gradient Boosting for Zero-Inflated Insurance Claims and Comparative Analysis of CatBoost, XGBoost, and LightGBM
+      Authors: Banghee So  Published: 2023-07-15
+
+B096. ID: 2307.05366v1
+      Title: From academic to media capital: To what extent does the scientific reputation of universities translate into Wikipedia attention?
+      Authors: Wenceslao Arroyo-Machado; Adrián A. Díaz-Faes; Enrique Herrera-Viedma et al.  Published: 2023-07-11
+
+B097. ID: 2307.10808v3  [RELEVANT score=8]
+      Title: Claim Reserving via Inverse Probability Weighting: A Micro-Level Chain-Ladder Method
+      Authors: Sebastian Calcetero-Vanegas; Andrei L. Badescu; X. Sheldon Lin  Published: 2023-07-05
+
+B098. ID: 2306.09020v1
+      Title: Distributionally Robust Stratified Sampling for Stochastic Simulations with Multiple Uncertain Input Models
+      Authors: Seung Min Baik; Eunshin Byon; Young Myoung Ko  Published: 2023-06-15
+
+B099. ID: 2306.01502v1
+      Title: Ruin probability for renewal risk models with neutral net profit condition
+      Authors: Andrius Grigutis; Arvydas Karbonskis; Jonas Šiaulys  Published: 2023-06-02
+
+B100. ID: 2305.18265v1
+      Title: Check-COVID: Fact-Checking COVID-19 News Claims with Scientific Evidence
+      Authors: Gengyu Wang; Kate Harwood; Lawrence Chillrud et al.  Published: 2023-05-29
+
+B101. ID: 2305.00518v1  [RELEVANT score=7]
+      Title: Diagnostic Tests Before Modeling Longitudinal Actuarial Data
+      Authors: Yinhuan Li; Tsz Chai Fung; Liang Peng et al.  Published: 2023-04-30
+
+B102. ID: 2303.16119v1
+      Title: Exploring the validity of the complete case analysis for regression models with a right-censored covariate
+      Authors: Marissa C. Ashner; Tanya P. Garcia  Published: 2023-03-28
+
+B103. ID: 2303.05913v1  [RELEVANT score=8]
+      Title: Bootstrap Consistency for the Mack Bootstrap
+      Authors: Julia Steinmetz; Carsten Jentsch  Published: 2023-03-10
+
+B104. ID: 2303.01923v3
+      Title: Bayesian CART models for insurance claims frequency
+      Authors: Yaojun Zhang; Lanpeng Ji; Georgios Aivaliotis et al.  Published: 2023-03-03
+
+B105. ID: 2303.01129v5
+      Title: GEMAct: a Python package for non-life (re)insurance modeling
+      Authors: Gabriele Pittarello; Edoardo Luini; Manfred Marvin Marchione  Published: 2023-03-02
+
+B106. ID: 2302.09510v2
+      Title: Smooth Backfitting for Additive Hazard Rates
+      Authors: Stephan M. Bischofberger; Munir Hiabu; Enno Mammen et al.  Published: 2023-02-19
+
+B107. ID: 2301.06781v5
+      Title: A nested divide-and-conquer method for tensor Sylvester equations with positive definite hierarchically semiseparable coefficients
+      Authors: Stefano Massei; Leonardo Robol  Published: 2023-01-17
+
+B108. ID: 2301.03858v3  [RELEVANT score=8]
+      Title: Replicating and extending chain-ladder via an age-period-cohort structure on the claim development in a run-off triangle
+      Authors: Gabriele Pittarello; Munir Hiabu; Andrés M. Villegas  Published: 2023-01-10
+
+B109. ID: 2301.03005v1
+      Title: Dynamic online prediction model and its application to automobile claim frequency data
+      Authors: Jiakun Jiang; Zhengxiao Li; Liang Yang  Published: 2023-01-08
+
+B110. ID: 2301.01966v1
+      Title: Ruin Probabilities for a Sparre Andersen Model with Investments: the Case of Annuity Payments
+      Authors: Yuri Kabanov; Platon Promyslov  Published: 2023-01-05
+
+B111. ID: 2212.10930v1
+      Title: Minimizing Worst-Case Violations of Neural Networks
+      Authors: Rahul Nellikkath; Spyros Chatzivasileiadis  Published: 2022-12-21
+
+B112. ID: 2212.07802v1
+      Title: Chaotic Variational Auto Encoder based One Class Classifier for Insurance Fraud Detection
+      Authors: K. S. N. V. K. Gangadhar; B. Akhil Kumar; Yelleti Vivek et al.  Published: 2022-12-15
+
+B113. ID: 2212.00985v1
+      Title: A comparative analysis of several multivariate zero-inflated and zero-modified models with applications in insurance
+      Authors: Pengcheng Zhang; David Pitt; Xueyuan Wu  Published: 2022-12-02
+
+B114. ID: 2212.00101v1  [RELEVANT score=9]
+      Title: mCube: Multinomial Micro-level reserving Model
+      Authors: Emmanuel Jordy Menvouta; Jolien Ponnet; Robin Van Oirbeek et al.  Published: 2022-11-30
+
+B115. ID: 2210.01099v1  [RELEVANT score=8]
+      Title: Model error and its estimation, with particular application to loss reserving
+      Authors: G Taylor; G McGuire  Published: 2022-09-30
+
+B116. ID: 2209.14129v2
+      Title: Towards Automatic Forecasting: Evaluation of Time-Series Forecasting Models for Chickenpox Cases Estimation in Hungary
+      Authors: Wadie Skaf; Arzu Tosayeva; Dániel T. Várkonyi  Published: 2022-09-28
+
+B117. ID: 2208.08430v3  [RELEVANT score=8]
+      Title: Individual Claims Reserving using Activation Patterns
+      Authors: Marie Michaelides; Mathieu Pigeon; Hélène Cossette  Published: 2022-08-17
+
+B118. ID: 2206.08541v5  [RELEVANT score=9]
+      Title: Ensemble distributional forecasting for insurance loss reserving
+      Authors: Benjamin Avanzi; Yanfeng Li; Bernard Wong et al.  Published: 2022-06-17
+
+B119. ID: 2205.07334v1  [RELEVANT score=9]
+      Title: Mack-Net model: Blending Mack's model with Recurrent Neural Networks
+      Authors: Eduardo Ramos-Pérez; Pablo J. Alonso-González; José Javier Núñez-Velázquez  Published: 2022-05-15
+
+B120. ID: 2203.12750v1  [RELEVANT score=8]
+      Title: Copula-based Modeling for IBNR Claim Loss Reserving
+      Authors: Samira Zaroudi; Mohammad Reza Faridrohani; Mohammad Hassan Behzadi et al.  Published: 2022-03-23
+
+B121. ID: 2203.07145v2  [RELEVANT score=8]
+      Title: Bridging the gap between pricing and reserving with an occurrence and development model for non-life insurance claims
+      Authors: Jonas Crevecoeur; Katrien Antonio; Stijn Desmedt et al.  Published: 2022-03-14
+
+B122. ID: 2203.00184v2  [RELEVANT score=8]
+      Title: On the impact of outliers in loss reserving
+      Authors: Benjamin Avanzi; Mark Lavender; Greg Taylor et al.  Published: 2022-03-01
+
+B123. ID: 2202.11778v1
+      Title: baker: An R package for Nested Partially-Latent Class Models
+      Authors: Irena B Chen; Qiyuan Shi; Scott L Zeger et al.  Published: 2022-02-23
+
+B124. ID: 2202.06191v12
+      Title: Exploration and Incentivizing Participation in Randomized Trials
+      Authors: Yingkai Li; Aleksandrs Slivkins  Published: 2022-02-13
+
+B125. ID: 2201.12164v3
+      Title: Full Configuration Interaction Excited-State Energies in Large Active Spaces from Subspace Iteration with Repeated Random Sparsification
+      Authors: Samuel M. Greene; Robert J. Webber; James E. T. Smith et al.  Published: 2022-01-28
+
+B126. ID: 2201.13267v1  [RELEVANT score=9]
+      Title: Micro-level Reserving for General Insurance Claims using a Long Short-Term Memory Network
+      Authors: Ihsan Chaoubi; Camille Besse; Hélène Cossette et al.  Published: 2022-01-27
+
+B127. ID: 2112.02006v1
+      Title: User-click Modelling for Predicting Purchase Intent
+      Authors: Simone Borg Bruun  Published: 2021-12-03
+
+B128. ID: 2112.00892v1
+      Title: Band Structures of Edge Magnetoplasmon Crystals
+      Authors: Ken-ichi Sasaki  Published: 2021-12-02
+
+B129. ID: 2111.05324v2
+      Title: Average-case Speedup for Product Formulas
+      Authors: Chi-Fang; Chen; Fernando G. S. L. Brandão  Published: 2021-11-09
+
+B130. ID: 2111.02125v5
+      Title: Expected Complexity of Persistence Barcode Computation via Matrix Reduction
+      Authors: Barbara Giunti; Guillaume Houry; Michael Kerber et al.  Published: 2021-11-03
+
+B131. ID: 2109.14001v1
+      Title: Analysis of Error-prone Electronic Health Records with Multi-wave Validation Sampling: Association of Maternal Weight Gain during Pregnancy with Childhood Outcomes
+      Authors: Bryan E. Shepherd; Kyunghee Han; Tong Chen et al.  Published: 2021-09-28
+
+B132. ID: 2109.08109v3
+      Title: Standard Errors for Calibrated Parameters
+      Authors: Matthew D. Cocci; Mikkel Plagborg-Møller  Published: 2021-09-16
+
+B133. ID: 2109.07473v2
+      Title: Generalized XGBoost Method
+      Authors: Yang Guang  Published: 2021-09-15
+
+B134. ID: 2109.06495v2
+      Title: Error analysis for 2D stochastic Navier--Stokes equations in bounded domains with Dirichlet data
+      Authors: Dominic Breit; Andreas Prohl  Published: 2021-09-14
+
+B135. ID: 2109.06163v2
+      Title: On the Sins of Image Synthesis Loss for Self-supervised Depth Estimation
+      Authors: Zhaoshuo Li; Nathan Drenkow; Hao Ding et al.  Published: 2021-09-13
+
+B136. ID: 2109.04058v4  [RELEVANT score=8]
+      Title: SPLICE: A Synthetic Paid Loss and Incurred Cost Experience Simulator
+      Authors: Benjamin Avanzi; Gregory Clive Taylor; Melantha Wang  Published: 2021-09-09
+
+B137. ID: 2109.01413v2
+      Title: Frequency-Severity Experience Rating based on Latent Markovian Risk Profiles
+      Authors: Robert Matthijs Verschuren  Published: 2021-09-03
+
+B138. ID: 2108.07924v1  [RELEVANT score=9]
+      Title: Stochastic loss reserving with mixture density neural networks
+      Authors: Muhammed Taher Al-Mudafer; Benjamin Avanzi; Greg Taylor et al.  Published: 2021-08-18
+
+B139. ID: 2107.01176v2
+      Title: Extremum Seeking Control with an Adaptive Gain Based On Gradient Estimation Error
+      Authors: Claus Danielson; Scott A. Bortoff; Ankush Chakrabarty  Published: 2021-07-02
+
+B140. ID: 2106.10770v3
+      Title: A Neural Frequency-Severity Model and Its Application to Insurance Claims
+      Authors: Dong-Young Lim  Published: 2021-06-20
+
+B141. ID: 2106.07815v3
+      Title: Asymptotically Optimal Locally Private Heavy Hitters via Parameterized Sketches
+      Authors: Hao Wu; Anthony Wirth  Published: 2021-06-15
+
+B142. ID: 2106.02446v1
+      Title: Modeling premiums of non-life insurance companies in India
+      Authors: Kartik Sethi; Siddhartha P. Chakrabarty  Published: 2021-06-04
+
+B143. ID: 2106.00911v2
+      Title: Optimal relativities in a modified Bonus-Malus system with long memory transition rules and frequency-severity dependence
+      Authors: Jae Youn Ahn; Eric C. K. Cheung; Rosy Oh et al.  Published: 2021-06-02
+
+B144. ID: 2105.14682v1
+      Title: Zero-shot Fact Verification by Claim Generation
+      Authors: Liangming Pan; Wenhu Chen; Wenhan Xiong et al.  Published: 2021-05-31
+
+B145. ID: 2105.08690v2
+      Title: "Worst-Case" Micro-Lensing in the Identification and Modeling of Lensed Quasars
+      Authors: Luke Weisenbach; Paul Schechter; Sahil Pontula  Published: 2021-05-18
+
+B146. ID: 2105.07668v2
+      Title: Probabilistic Robust Linear Quadratic Regulators with Gaussian Processes
+      Authors: Alexander von Rohr; Matthias Neumann-Brosig; Sebastian Trimpe  Published: 2021-05-17
+
+B147. ID: 2105.02344v2
+      Title: Policy Learning with Adaptively Collected Data
+      Authors: Ruohan Zhan; Zhimei Ren; Susan Athey et al.  Published: 2021-05-05
+
+B148. ID: 2104.12852v1
+      Title: Geographic ratemaking with spatial embeddings
+      Authors: Christopher Blier-Wong; Hélène Cossette; Luc Lamontagne et al.  Published: 2021-04-26
+
+B149. ID: 2104.11900v1
+      Title: Matrix Normal Cluster-Weighted Models
+      Authors: Salvatore D. Tomarchio; Paul D. McNicholas; Antonio Punzo  Published: 2021-04-24
+
+B150. ID: 2104.10463v1
+      Title: A geometric approximation of $δ$-interactions by Neumann Laplacians
+      Authors: Andrii Khrabustovskyi; Olaf Post  Published: 2021-04-21
+
+B151. ID: 2104.06499v4
+      Title: Existence of the first magic angle for the chiral model of bilayer graphene
+      Authors: Alexander B. Watson; Mitchell Luskin  Published: 2021-04-13
+
+B152. ID: 2104.00472v3
+      Title: Quantum versus Classical Dynamics in Spin Models: Chains, Ladders, and Square Lattices
+      Authors: Dennis Schubert; Jonas Richter; Fengping Jin et al.  Published: 2021-04-01
+
+B153. ID: 2103.10912v1
+      Title: Copula Averaging for Tail Dependence in Insurance Claims Data
+      Authors: Sen Hu; Adrian O'Hagan  Published: 2021-03-19
+
+B154. ID: 2103.05526v1
+      Title: Using AoI Forecasts in Communicating and Robust Distributed Model-Predictive Control
+      Authors: Jannik Hahn; Richard Schoeffauer; Gerhard Wunder et al.  Published: 2021-03-09
+
+B155. ID: 2103.02787v1
+      Title: Effect of Vaccination to COVID-19 Disease Progression
+      Authors: Randy L. Caga-anan; Michelle N. Raza; Grace Shelda G. Labrador et al.  Published: 2021-03-04
+
+B156. ID: 2102.00252v1
+      Title: Synthetic Dataset Generation of Driver Telematics
+      Authors: Banghee So; Jean-Philippe Boucher; Emiliano A. Valdez  Published: 2021-01-30
+
+B157. ID: 2101.10357v3
+      Title: Regret-Optimal Filtering for Prediction and Estimation
+      Authors: Oron Sabag; Babak Hassibi  Published: 2021-01-25
+
+B158. ID: 2012.06756v1
+      Title: Gap Reduced Minimum Error Robust Simultaneous Estimation For Unstable Nano Air Vehicle
+      Authors: Jinraj V Pushpangathan; Harikumar Kandath; Suresh Sundaram et al.  Published: 2020-12-12
+
+B159. ID: 2011.11959v2
+      Title: Provably-Robust Runtime Monitoring of Neuron Activation Patterns
+      Authors: Chih-Hong Cheng  Published: 2020-11-24
+
+B160. ID: 2011.07828v1
+      Title: Ruin probabilities with investments: smoothness, IDE and ODE, asymptotic behavior
+      Authors: Yuri Kabanov; Nikita Pukhlyakov  Published: 2020-11-16
+
+B161. ID: 2011.05839v2
+      Title: Social Diversity and Spread of Pandemic: Evidence from India
+      Authors: Upasak Das; Udayan Rathore; Prasenjit Sarkhel  Published: 2020-11-11
+
+B162. ID: 2009.12071v2
+      Title: Mott transition and electronic excitation of the Gutzwiller wavefunction
+      Authors: Masanori Kohno  Published: 2020-09-25
+
+B163. ID: 2009.08832v4
+      Title: Weakly measured while loops: peeking at quantum states
+      Authors: Pablo Andrés-Martínez; Chris Heunen  Published: 2020-09-18
+
+B164. ID: 2009.04485v1
+      Title: Aspect Classification for Legal Depositions
+      Authors: Saurabh Chakravarty; Satvik Chekuri; Maanav Mehrotra et al.  Published: 2020-09-09
+
+B165. ID: 2008.11193v4
+      Title: Individual Privacy Accounting via a Renyi Filter
+      Authors: Vitaly Feldman; Tijana Zrnic  Published: 2020-08-25
+
+B166. ID: 2008.07564v1  [RELEVANT score=8]
+      Title: Stochastic reserving with a stacked model based on a hybridized Artificial Neural Network
+      Authors: Eduardo Ramos-Pérez; Pablo J. Alonso-González; José Javier Núñez-Velázquez  Published: 2020-08-17
+
+B167. ID: 2008.05693v4  [RELEVANT score=9]
+      Title: SynthETIC: an individual insurance claim simulator with feature control
+      Authors: Benjamin Avanzi; Gregory Clive Taylor; Melantha Wang et al.  Published: 2020-08-13
+
+B168. ID: 2007.15172v1
+      Title: Skewed link regression models for imbalanced binary response with applications to life insurance
+      Authors: Shuang Yin; Dipak K. Dey; Emiliano A. Valdez et al.  Published: 2020-07-30
+
+B169. ID: 2007.15475v1
+      Title: Connecting actuarial judgment to probabilistic learning techniques with graph theory
+      Authors: Roland R. Ramsahai  Published: 2020-07-29
+
+B170. ID: 2007.07068v1  [RELEVANT score=8]
+      Title: Modeling and measuring incurred claims risk liabilities for a multi-line property and casualty insurer
+      Authors: Carlos Andrés Araiza Iturria; Frédéric Godin; Mélina Mailhot  Published: 2020-07-14
+
+B171. ID: 2007.06894v2
+      Title: When stakes are high: balancing accuracy and transparency with Model-Agnostic Interpretable Data-driven suRRogates
+      Authors: Roel Henckaerts; Katrien Antonio; Marie-Pier Côté  Published: 2020-07-14
+
+B172. ID: 2006.14010v2
+      Title: Raising Expectations: Automating Expected Cost Analysis with Types
+      Authors: Di Wang; David M Kahn; Jan Hoffmann  Published: 2020-06-24
+
+B173. ID: 2005.10380v2
+      Title: Phase diagram of an interacting staggered Su-Schrieffer-Heeger two-chain ladder close to a quantum critical point
+      Authors: A. A. Nersesyan  Published: 2020-05-20
+
+B174. ID: 2005.03500v2  [RELEVANT score=8]
+      Title: On unbalanced data and common shock models in stochastic loss reserving
+      Authors: Benjamin Avanzi; Gregory Clive Taylor; Phuong Anh Vu et al.  Published: 2020-05-07
+
+B175. ID: 2004.13455v1
+      Title: DTCA: Decision Tree-based Co-Attention Networks for Explainable Claim Verification
+      Authors: Lianwei Wu; Yuan Rao; Yongqiang Zhao et al.  Published: 2020-04-28
+
+B176. ID: 2004.08032v3  [RELEVANT score=7]
+      Title: A non-convex regularization approach for stable estimation of loss development factors
+      Authors: Himchan Jeong; Hyunwoong Chang; Emiliano A. Valdez  Published: 2020-04-17
+
+B177. ID: 2004.06880v1  [RELEVANT score=8]
+      Title: A multivariate evolutionary generalised linear model framework with adaptive estimation for claims reserving
+      Authors: Benjamin Avanzi; Gregory Clive Taylor; Phuong Anh Vu et al.  Published: 2020-04-15
+
+B178. ID: 2004.08204v1
+      Title: Modeling Institutional Credit Risk with Financial News
+      Authors: Tam Tran-The  Published: 2020-04-14
+
+B179. ID: 2004.06150v1
+      Title: Assessing the Performance of the Discrete Generalised Pareto Distribution in Modelling Non-Life Insurance Claims
+      Authors: S. K-B. Dzidzornu; R. Minkah  Published: 2020-04-13
+
+B180. ID: 1912.10526v1
+      Title: Building and Testing Yield Curve Generators for P&C Insurance
+      Authors: Gary Venter; Kailan Shang  Published: 2019-12-22
+
+B181. ID: 1912.02423v2  [RELEVANT score=7]
+      Title: Generative Synthesis of Insurance Datasets
+      Authors: Kevin Kuo  Published: 2019-12-05
+
+B182. ID: 1911.12405v1  [RELEVANT score=8]
+      Title: Modelling dependence within and across run-off triangles for claims reserving
+      Authors: Luis E. Nieto-Barajas; Rodrigo S. Targino  Published: 2019-11-27
+
+B183. ID: 1911.11484v2
+      Title: Using Depth for Pixel-Wise Detection of Adversarial Attacks in Crowd Counting
+      Authors: Weizhe Liu; Mathieu Salzmann; Pascal Fua  Published: 2019-11-26
+
+B184. ID: 1911.09432v3
+      Title: A Cryptoeconomic Traffic Analysis of Bitcoin's Lightning Network
+      Authors: Ferenc Beres; Istvan Andras Seres; Andras A. Benczur  Published: 2019-11-21
+
+B185. ID: 1911.06187v1
+      Title: Concordance probability in a big data setting: application in non-life insurance
+      Authors: Robin Van Oirbeek; Christopher Grumiau; Tim Verdonck  Published: 2019-11-14
+
+B186. ID: 1911.02418v1
+      Title: Modelling extreme claims via composite models and threshold selection methods
+      Authors: Yinzhi Wang; Ingrid Hobæk Haff; Arne Huseby  Published: 2019-11-06
+
+B187. ID: 1910.12692v3  [RELEVANT score=9]
+      Title: A hierarchical reserving model for reported non-life insurance claims
+      Authors: Jonas Crevecoeur; Jens Robben; Katrien Antonio  Published: 2019-10-28
+
+B188. ID: 1909.02403v3
+      Title: Predictive Claim Scores for Dynamic Multi-Product Risk Classification in Insurance
+      Authors: Robert Matthijs Verschuren  Published: 2019-09-05
+
+B189. ID: 1909.00339v1
+      Title: Estimation of the detected background by the future gamma-ray transient mission CAMELOT
+      Authors: J. Ripa; G. Galgóczi; N. Werner et al.  Published: 2019-09-01
+
+B190. ID: 1908.11529v2
+      Title: On a weighted linear matroid intersection algorithm by deg-det computation
+      Authors: Hiroki Furue; Hiroshi Hirai  Published: 2019-08-30
+
+B191. ID: 1908.05200v1  [RELEVANT score=7]
+      Title: Nonparametric modeling cash flows of insurance company
+      Authors: Valery Baskakov; Nikolay Sheparnev; Evgeny Yanenko  Published: 2019-08-14
+
+B192. ID: 1908.03239v2
+      Title: Hamming and simplex codes for the sum-rank metric
+      Authors: Umberto Martínez-Peñas  Published: 2019-08-08
+
+B193. ID: 1908.03145v1
+      Title: Quantum-Limited Estimation of Phase Gradient
+      Authors: Walker Larson; Bahaa E. A. Saleh  Published: 2019-08-08
+
+B194. ID: 1907.10271v1
+      Title: Multilevel Monte Carlo Simulations of Composite Structures with Uncertain Manufacturing Defects
+      Authors: T. J. Dodwell; S. Kinston; R. Butler et al.  Published: 2019-07-24
+
+B195. ID: 1904.04699v1
+      Title: Bivariate Gamma Mixture of Experts Models for Joint Insurance Claims Modeling
+      Authors: Sen Hu; T Brendan Murphy; Adrian O'Hagan  Published: 2019-04-09
+
+B196. ID: 1904.04609v1  [RELEVANT score=8]
+      Title: A new perspective from a Dirichlet model for forecasting outstanding liabilities of nonlife insurers
+      Authors: Karthik Sriram; Peng Shi  Published: 2019-04-09
+
+B197. ID: 1904.01199v2  [RELEVANT score=8]
+      Title: Continuous chain-ladder with paid data
+      Authors: Stephan M. Bischofberger; Munir Hiabu; Alex Isakson  Published: 2019-04-02
+
+B198. ID: 1903.10447v1
+      Title: Frequency-splitting estimators of single-propagator traces
+      Authors: Leonardo Giusti; Tim Harris; Alessandro Nada et al.  Published: 2019-03-25
+
+B199. ID: 1810.08466v2
+      Title: ALM for insurers with multiple underwriting lines and portfolio constraints: a Lagrangian duality approach
+      Authors: Rafael Serrano; Camilo Castillo  Published: 2018-10-19
+
+B200. ID: 1810.07211v4
+      Title: A Subsampling Line-Search Method with Second-Order Results
+      Authors: El-houcine Bergou; Youssef Diouane; Vladimir Kunc et al.  Published: 2018-10-16
+
+B201. ID: 1810.06893v2
+      Title: Analysis of the infinite server queues with semi-Markovian multivariate discounted inputs
+      Authors: Landy Rabehasaina; Jae-Kyung Woo  Published: 2018-10-16
+
+B202. ID: 1810.10970v1
+      Title: Defining and estimating stochastic rate change in a dynamic general insurance portfolio
+      Authors: Roland R. Ramsahai  Published: 2018-10-04
+
+B203. ID: 1808.07351v2
+      Title: Long monotone trails in random edge-labelings of random graphs
+      Authors: Omer Angel; Asaf Ferber; Benny Sudakov et al.  Published: 2018-08-22
+
+B204. ID: 1808.01369v1
+      Title: Optical Design of PICO, a Concept for a Space Mission to Probe Inflation and Cosmic Origins
+      Authors: Karl Young; Marcelo Alvarez; Nicholas Battaglia et al.  Published: 2018-08-03
+
+B205. ID: 1808.00444v1
+      Title: String tension and robustness of confinement properties of in the Schwinger-Thirring model
+      Authors: Joao C. Pinto Barros; Marcello Dalmonte; Andrea Trombettoni  Published: 2018-08-01
+
+B206. ID: 1806.06853v1  [RELEVANT score=7]
+      Title: A Hybrid Fuzzy Regression Model for Optimal Loss Reserving in Insurance
+      Authors: Woundjiagué Apollinaire; Mbele Bidima Martin Le Doux; Waweru Mwangi Ronald  Published: 2018-06-18
+
+B207. ID: 1806.05939v1  [RELEVANT score=8]
+      Title: Generalized Log-Normal Chain-Ladder
+      Authors: D. Kuang; B. Nielsen  Published: 2018-06-15
+
+B208. ID: 1806.04530v1  [RELEVANT score=7]
+      Title: A Least Squares Estimation of a Hybrid log-Poisson Regression and its Goodness of Fit for Optimal Loss Reserves in Insurance
+      Authors: Apollinaire Woundjiague; Martin Le Doux Mbele Bidima; Ronald Waweru Mwangi  Published: 2018-06-10
+
+B209. ID: 1806.01928v3
+      Title: A unified study of nonparametric inference for monotone functions
+      Authors: Ted Westling; Marco Carone  Published: 2018-06-05
+
+B210. ID: 1806.01513v1
+      Title: Accounting for Uncertainty About Past Values In Probabilistic Projections of the Total Fertility Rate for All Countries
+      Authors: Peiran Liu; Adrian E. Raftery  Published: 2018-06-05
+
+B211. ID: 1805.08593v3
+      Title: Confounding-Robust Policy Improvement
+      Authors: Nathan Kallus; Angela Zhou  Published: 2018-05-22
+
+B212. ID: 1804.09253v4  [RELEVANT score=9]
+      Title: DeepTriangle: A Deep Learning Approach to Loss Reserving
+      Authors: Kevin Kuo  Published: 2018-04-24
+
+B213. ID: 1804.08650v2
+      Title: Bayesian Bandwidth Test and Selection for High-dimensional Banded Precision Matrices
+      Authors: Kyoungjae Lee; Lizhen Lin  Published: 2018-04-23
+
+B214. ID: 1804.06083v2
+      Title: Asymmetric fitting function for condensed-phase Raman spectroscopy
+      Authors: Vitaly I. Korepanov; Darya M. Sedlovets  Published: 2018-04-17
+
+B215. ID: 1802.10010v1
+      Title: Near-IR transmission spectrum of HAT-P-32 b using HST/WFC3
+      Authors: M. Damiano; G. Morello; A. Tsiaras et al.  Published: 2018-02-27
+
+B216. ID: 1802.07741v5
+      Title: Extended Reduced-Form Framework for Non-Life Insurance
+      Authors: Francesca Biagini; Yinglin Zhang  Published: 2018-02-21
+
+B217. ID: 1802.05437v2
+      Title: Optimization of the light intensity for Photodetectors calibration
+      Authors: N. Anfimov; A. Rybnikov; A. Sotnikov  Published: 2018-02-15
+
+B218. ID: 1802.00114v1
+      Title: Low Complexity Time Domain Semi-Blind MIMO-OFDM Channel Estimation Using Adaptive Bussgang Algorithm
+      Authors: Ebrahim Karami; Markku Juntti  Published: 2018-02-01
+
+B219. ID: 1801.06570v1
+      Title: Joint estimation of parameters in Ising model
+      Authors: Promit Ghosal; Sumit Mukherjee  Published: 2018-01-19
+
+B220. ID: 1801.04601v1
+      Title: PACER: Peripheral Activity Completion Estimation and Recognition
+      Authors: Daniel Moore; Alexander Dean  Published: 2018-01-14
+
+B221. ID: 1801.01792v1  [RELEVANT score=8]
+      Title: Dynamic and granular loss reserving with copulae
+      Authors: Matúš Maciak; Ostap Okhrin; Michal Pešta  Published: 2018-01-05
+
+B222. ID: 1711.07753v1
+      Title: Price Optimisation for New Business
+      Authors: Maissa Tamraz; Yaming Yang  Published: 2017-11-21
+
+B223. ID: 1710.07468v2
+      Title: Nonparametric estimation of multivariate distribution function for truncated and censored lifetime data
+      Authors: Valery Baskakov; Anna Bartunova  Published: 2017-10-20
+
+B224. ID: 1710.07448v2
+      Title: Minimax state estimates for abstract Neumann problems
+      Authors: Alexander Nakonechnyi; Sergiy Zhuk  Published: 2017-10-20
+
+B225. ID: 1708.00232v1
+      Title: Pulse-Based Control Using Koopman Operator Under Parametric Uncertainty
+      Authors: Aivar Sootla; Damien Ernst  Published: 2017-08-01
+
+B226. ID: 1708.00059v1
+      Title: Asymptotically optimal private estimation under mean square loss
+      Authors: Min Ye; Alexander Barg  Published: 2017-07-31
+
+B227. ID: 1704.00085v2
+      Title: View Selection with Geometric Uncertainty Modeling
+      Authors: Cheng Peng; Volkan Isler  Published: 2017-03-31
+
+B228. ID: 1701.08514v1
+      Title: A set optimization approach to zero-sum matrix games with multi-dimensional payoffs
+      Authors: Andreas H. Hamel; Andreas Loehne  Published: 2017-01-30
+
+B229. ID: 1701.03934v1  [RELEVANT score=8]
+      Title: Robust bootstrap procedures for the chain-ladder method
+      Authors: Kris Peremans; Pieter Segaert; Stefan Van Aelst et al.  Published: 2017-01-14
+
+B230. ID: 1701.00900v1
+      Title: Robust Localization Using Range Measurements with Unknown and Bounded Errors
+      Authors: Xiufang Shi; Guoqiang Mao; Brian. D. O. Anderson et al.  Published: 2017-01-04
+
+B231. ID: 1612.04126v1  [RELEVANT score=8]
+      Title: The hierarchical generalized linear model and the bootstrap estimator of the error of prediction of loss reserves in a non-life insurance company
+      Authors: Alicja Wolny-Dominiak  Published: 2016-12-13
+
+B232. ID: 1612.03066v2  [RELEVANT score=8]
+      Title: Parameter uncertainty and reserve risk under Solvency II
+      Authors: Andreas Fröhlich; Annegret Weng  Published: 2016-12-09
+
+B233. ID: 1611.02668v1
+      Title: Computing the Laplace eigenvalue and level of Maass cusp forms
+      Authors: Paul Savala  Published: 2016-11-08
+
+B234. ID: 1608.03948v1
+      Title: Quantitative measure for the spin-charge separation in two dimensional Hubbard model
+      Authors: Amir Youssefi; M. Ansari-Fard; S. A. Jafari  Published: 2016-08-13
+
+B235. ID: 1606.08321v1
+      Title: Regular variation of a random length sequence of random variables and application to risk assessment
+      Authors: Charles Tillier; Olivier Wintenberger  Published: 2016-06-27
+
+B236. ID: 1606.02635v1
+      Title: Feedback Scheduling for Energy-Efficient Real-Time Homogeneous Multiprocessor Systems
+      Authors: Mason Thammawichai; Eric C. Kerrigan  Published: 2016-06-08

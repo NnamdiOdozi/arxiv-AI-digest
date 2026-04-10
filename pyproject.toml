@@ -1,0 +1,17 @@
+[project]
+name = "arxiv-daily-digest"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "openai>=2.14.0",
+    "arxiv==2.1.0",
+    "requests",
+    "python-dotenv==1.1.0",
+    "python-dateutil==2.9.0.post0",
+    "tomli==2.2.1",
+    "pandas>=3.0.2",
+    "openpyxl>=3.1.5",
+    "pypdf>=6.9.2",
+]

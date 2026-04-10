@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 import argparse
+import io
 import json
 import os
 import re
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 
 import arxiv
 from dotenv import load_dotenv
 from openai import OpenAI
+from pypdf import PdfReader
 
 from config_loader import PROJECT_ROOT, REVIEW_DIGEST_FIELDS, load_runtime_config
 from review import load_review_questions, enrich_top_papers_with_structured_review
@@ -153,6 +156,40 @@ def _enrich_papers_with_arxiv_metadata(papers_by_id, paper_ids):
             _log(f"[arxiv_enrich] {idx}/{len(paper_ids)} id={paper_id} failed: {exc}")
 
 
+def _download_pdf_text(paper_id, max_chars=32000):
+    """Download arXiv PDF and extract plain text. Returns None on any failure."""
+    url = f"https://arxiv.org/pdf/{paper_id}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "arxiv-daily-digest/1.0"})
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            pdf_bytes = resp.read()
+        reader = PdfReader(io.BytesIO(pdf_bytes))
+        pages = []
+        for page in reader.pages:
+            text = page.extract_text() or ""
+            pages.append(text)
+            if sum(len(p) for p in pages) >= max_chars:
+                break
+        full_text = "\n".join(pages)
+        return full_text[:max_chars] if full_text.strip() else None
+    except Exception:
+        return None
+
+
+def _enrich_papers_with_pdf_text(papers_by_id, paper_ids, log):
+    """Download and extract PDF text for each paper, adding a full_text key."""
+    for idx, paper_id in enumerate(paper_ids, 1):
+        paper = papers_by_id.get(paper_id)
+        if not paper:
+            continue
+        text = _download_pdf_text(paper_id)
+        if text:
+            paper["full_text"] = text
+            log(f"[pdf_download] {idx}/{len(paper_ids)} id={paper_id} chars={len(text)}")
+        else:
+            log(f"[pdf_download] {idx}/{len(paper_ids)} id={paper_id} failed — using abstract")
+
+
 def _format_markdown_value(value):
     if value is None:
         return "unknown"
@@ -258,6 +295,7 @@ def main():
     batch_requests_dir = _resolve_path(PROJECT_ROOT, config["output"].get("batch_requests_dir", "runs/batch_requests"))
     papers_by_id = _load_paper_pool_from_batch_requests(run_timestamp, batch_requests_dir)
     _enrich_papers_with_arxiv_metadata(papers_by_id, paper_ids)
+    _enrich_papers_with_pdf_text(papers_by_id, paper_ids, _log)
 
     top_results = [{"paper_id": paper_id} for paper_id in paper_ids]
     enrich_top_papers_with_structured_review(

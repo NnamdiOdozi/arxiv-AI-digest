@@ -2,6 +2,24 @@ from textwrap import dedent
 
 from prompt1 import TEAM_PROFILE
 
+EVALUATION_SCHEMA = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "paper_evaluation",
+        "strict": True,
+        "schema": {
+            "type": "object",
+            "properties": {
+                "relevance_score": {"type": "integer"},
+                "summary":         {"type": ["string", "null"]},
+                "key_insight":     {"type": "string"},
+            },
+            "required": ["relevance_score", "summary", "key_insight"],
+            "additionalProperties": False,
+        },
+    },
+}
+
 
 def build_paper_evaluation_prompt(paper):
     """Build a stable prompt for LLM paper relevance scoring."""
@@ -39,16 +57,12 @@ def build_paper_evaluation_prompt(paper):
 
         INSTRUCTIONS:
         1. relevance_score: output an integer from 0 to 10.
-        2. is_relevant: true if relevance_score >= 7, else false.
-        3. needs_summary: true if the abstract is more than 60 words, else false.
-        4. summary: if needs_summary is true, write a 1-2 sentence summary; otherwise use null.
-        5. key_insight: write exactly one sentence stating the main takeaway.
+        2. summary: write a 1-2 sentence summary; if the abstract is 60 words or fewer, use null.
+        3. key_insight: write exactly one sentence stating the main takeaway.
 
         Respond ONLY with valid JSON in this format:
         {{
           "relevance_score": 0,
-          "is_relevant": false,
-          "needs_summary": false,
           "summary": null,
           "key_insight": "string"
         }}
@@ -74,7 +88,7 @@ def create_batch_evaluation(papers, model_name, log_fn=None):
             "url": "/v1/chat/completions",
             "body": {
                 "model": model_name,
-                "response_format": {"type": "json_object"},
+                "response_format": EVALUATION_SCHEMA,
                 "temperature": 0,
                 "max_tokens": 4096,
                 "messages": [

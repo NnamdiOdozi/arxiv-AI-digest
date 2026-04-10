@@ -98,14 +98,10 @@ def parse_evaluation_result(content):
             return None
         score = max(0, min(10, score))
 
-        is_relevant = _coerce_bool(payload.get("is_relevant"))
-        if is_relevant is None:
-            is_relevant = score >= 7
+        is_relevant = score >= 7
 
-        needs_summary = _coerce_bool(payload.get("needs_summary"))
-        if needs_summary is None:
-            summary_probe = payload.get("summary")
-            needs_summary = bool(summary_probe and str(summary_probe).strip().lower() != "null")
+        summary_probe = payload.get("summary")
+        needs_summary = bool(summary_probe and str(summary_probe).strip().lower() != "null")
 
         summary = payload.get("summary")
         if summary is None:
@@ -243,22 +239,6 @@ def parse_evaluation_result(content):
             score = None
         if score is not None:
             score = max(0, min(10, score))
-            is_relevant_token = _extract_first(
-                [
-                    r'"(?:is_relevant|_relevant|relevant)"\s*:\s*(true|false|1|0)',
-                    r'(?m)^\s*(?:is_relevant|_relevant|relevant)\s*:\s*(true|false|1|0)',
-                ],
-                content_text,
-                flags=re.IGNORECASE,
-            )
-            needs_summary_token = _extract_first(
-                [
-                    r'"(?:needs_summary|needs)"\s*:\s*(true|false|1|0)',
-                    r'(?m)^\s*(?:needs_summary|needs)\s*:\s*(true|false|1|0)',
-                ],
-                content_text,
-                flags=re.IGNORECASE,
-            )
             summary_token = _extract_first(
                 [
                     r'"summary"\s*:\s*(null|"(?:\\.|[^"\\])*")',
@@ -276,12 +256,8 @@ def parse_evaluation_result(content):
 
             parsed_summary = _parse_json_string_or_null(summary_token)
             parsed_key_insight = _parse_json_string_or_null(key_insight_token) or ""
-            parsed_is_relevant = _parse_bool_token(is_relevant_token)
-            if parsed_is_relevant is None:
-                parsed_is_relevant = score >= 7
-            parsed_needs_summary = _parse_bool_token(needs_summary_token)
-            if parsed_needs_summary is None:
-                parsed_needs_summary = parsed_summary is not None
+            parsed_is_relevant = score >= 7
+            parsed_needs_summary = parsed_summary is not None
 
             return {
                 "relevance_score": score,
