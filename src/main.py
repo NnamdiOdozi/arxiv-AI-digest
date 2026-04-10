@@ -402,12 +402,11 @@ def daily_run(
     log(f"Parsed evaluations: {len(results)}")
     for result in sorted(results, key=lambda r: r.get("relevance_score", -1), reverse=True):
         log(
-            "[score] id=%s score=%s relevant=%s needs_summary=%s"
+            "[score] id=%s score=%s relevant=%s"
             % (
                 result.get("paper_id"),
                 result.get("relevance_score"),
                 result.get("is_relevant"),
-                result.get("needs_summary"),
             )
         )
 

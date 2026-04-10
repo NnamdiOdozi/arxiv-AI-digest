@@ -57,7 +57,7 @@ def send_to_slack(top_results, papers, webhook_url):
         if not paper:
             continue
         
-        summary_text = result.get('summary') if result.get('needs_summary') else paper['abstract'][:200] + "..."
+        summary_text = result.get('summary') or paper['abstract'][:200] + "..."
         
         blocks.append({
             "type": "section",

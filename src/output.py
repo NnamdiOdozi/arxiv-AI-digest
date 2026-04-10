@@ -191,7 +191,7 @@ def write_results_markdown(
                 published = str(published_value)
             else:
                 published = "unknown"
-            summary = result.get("summary") if result.get("needs_summary") else None
+            summary = result.get("summary")
             if not summary and paper:
                 summary = paper["abstract"]
             summary = summary or "No summary available."

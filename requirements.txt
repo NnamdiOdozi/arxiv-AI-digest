@@ -5,3 +5,4 @@ python-dotenv==1.0.0
 python-dateutil==2.9.0.post0
 tomli==2.2.1
 pypdf>=4.0.0
+ftfy>=6.0.0

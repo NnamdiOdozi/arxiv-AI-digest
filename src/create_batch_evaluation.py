@@ -101,14 +101,12 @@ def parse_evaluation_result(content):
         is_relevant = score >= 7
 
         summary_probe = payload.get("summary")
-        needs_summary = bool(summary_probe and str(summary_probe).strip().lower() != "null")
-
         summary = payload.get("summary")
         if summary is None:
             summary_value = None
         elif isinstance(summary, str):
             stripped = summary.strip()
-            summary_value = stripped if stripped and stripped.lower() != "null" else None
+            summary_value = stripped if stripped else None
         else:
             summary_value = str(summary)
 
@@ -121,7 +119,6 @@ def parse_evaluation_result(content):
         return {
             "relevance_score": score,
             "is_relevant": is_relevant,
-            "needs_summary": needs_summary,
             "summary": summary_value,
             "key_insight": key_insight_value,
         }
@@ -257,12 +254,10 @@ def parse_evaluation_result(content):
             parsed_summary = _parse_json_string_or_null(summary_token)
             parsed_key_insight = _parse_json_string_or_null(key_insight_token) or ""
             parsed_is_relevant = score >= 7
-            parsed_needs_summary = parsed_summary is not None
 
             return {
                 "relevance_score": score,
                 "is_relevant": parsed_is_relevant,
-                "needs_summary": parsed_needs_summary,
                 "summary": parsed_summary,
                 "key_insight": parsed_key_insight,
             }

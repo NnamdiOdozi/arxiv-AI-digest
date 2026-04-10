@@ -1,5 +1,6 @@
 import arxiv
 from datetime import datetime, timedelta
+import ftfy
 import json
 import os
 from pathlib import Path
@@ -64,9 +65,9 @@ def filter_unseen_papers_with_trace(papers):
 def _normalize_paper(paper):
     return {
         "id": paper.entry_id.split("/")[-1],
-        "title": paper.title,
-        "authors": [a.name for a in paper.authors],
-        "abstract": paper.summary,
+        "title": ftfy.fix_text(paper.title),
+        "authors": [ftfy.fix_text(a.name) for a in paper.authors],
+        "abstract": ftfy.fix_text(paper.summary),
         "published": paper.published,
         "url": paper.entry_id,
     }

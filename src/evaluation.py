@@ -11,7 +11,7 @@ EVALUATION_SCHEMA = {
             "type": "object",
             "properties": {
                 "relevance_score": {"type": "integer"},
-                "summary":         {"type": ["string", "null"]},
+                "summary":         {"type": "string"},
                 "key_insight":     {"type": "string"},
             },
             "required": ["relevance_score", "summary", "key_insight"],
@@ -57,7 +57,7 @@ def build_paper_evaluation_prompt(paper):
 
         INSTRUCTIONS:
         1. relevance_score: output an integer from 0 to 10.
-        2. summary: write a 1-2 sentence summary; if the abstract is 60 words or fewer, use null.
+        2. summary: always write a 1-2 sentence summary. Never return null or skip this field.
         3. key_insight: write exactly one sentence stating the main takeaway.
 
         Respond ONLY with valid JSON in this format:

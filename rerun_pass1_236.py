@@ -63,33 +63,10 @@ for idx, row in df.iterrows():
         r = results_by_id[pid]
         df.at[idx, "relevance_score"] = r["relevance_score"]
         df.at[idx, "is_relevant"] = r["is_relevant"]
-        df.at[idx, "needs_summary"] = r["needs_summary"]
         df.at[idx, "summary"] = r.get("summary")
         df.at[idx, "key_insight"] = r.get("key_insight", "")
 
+df.drop(columns=["needs_summary"], errors="ignore", inplace=True)
 df.to_csv(CSV_PATH, index=False)
 df.to_excel(XLSX_PATH, index=False)
 print(f"Patched {len(results_by_id)} rows in CSV and XLSX")
-
-# --- 5. Post-check: verify LLM correctly withheld summary for short abstracts ---
-papers_by_id = {p["id"]: p for p in papers}
-null_summary = [(r["paper_id"], r) for r in results if r.get("summary") is None]
-has_summary = [(r["paper_id"], r) for r in results if r.get("summary") is not None]
-
-print(f"\nPost-check: {len(null_summary)} null summaries, {len(has_summary)} with summaries")
-print(f"\n{'paper_id':<22} {'words':>6}  flag")
-print("-" * 55)
-flagged = 0
-for pid, r in sorted(null_summary, key=lambda x: -len((papers_by_id.get(x[0], {}).get("abstract") or "").split())):
-    abstract = papers_by_id.get(pid, {}).get("abstract") or ""
-    words = len(abstract.split())
-    flag = " *** OVER 60 WORDS — LLM MISCOUNTED ***" if words > 60 else ""
-    if flag:
-        flagged += 1
-    print(f"{pid:<22} {words:>6}  {flag}")
-
-print()
-if flagged:
-    print(f"{flagged} papers had null summary despite abstract >60 words — code correction needed.")
-else:
-    print("All null-summary papers had abstracts <=60 words. LLM counted correctly.")
