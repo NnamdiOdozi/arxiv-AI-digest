@@ -15,4 +15,5 @@ dependencies = [
     "openpyxl>=3.1.5",
     "pypdf>=6.9.2",
     "pypandoc>=1.13",
+    "ftfy>=6.0.0",
 ]

@@ -11,7 +11,7 @@ days = 0
 
 [search]
 # Increase this for long lookback windows (for example 1000+ for multi-month/year scans).
-max_results = 2000
+max_results = 500
 # arXiv client page size for each API request (0 = auto => min(max_results, 100)).
 arxiv_page_size = 0
 # Base delay between arXiv requests in seconds (arXiv asks for at least 3s).
