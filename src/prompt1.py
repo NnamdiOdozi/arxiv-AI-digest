@@ -24,11 +24,11 @@ TEAM_PROFILE = {
         "Papers with code, reproducible experiments, realistic datasets or synthetic insurance data generators",
     ],
     "avoid": [
-        "Papers about pricing, underwriting, fraud, marketing or generic insurance analytics unless clearly transferable to reserving",
+        "Papers about underwriting, fraud, marketing or generic insurance analytics unless clearly transferable to reserving",
         "Pure theory with no practical reserving use case",
         "Small benchmark gains with little methodological or actuarial insight",
         "Papers focused on training foundation models from scratch",
-        "Generic machine learning papers with no clear link to claims development, reserve estimation or uncertainty",
+        "Generic machine learning papers with no clear link to pricing claims development, reserve estimation or uncertainty",
         "Papers that report accuracy gains without discussing validation, leakage, calibration or uncertainty",
     ],
 }
