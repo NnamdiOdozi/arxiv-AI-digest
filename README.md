@@ -1,294 +1,133 @@
-# arXiv Daily Digest
+# arXiv Digest — IFoA GI ML in Reserving Working Party
 
-> **Note:** This repository was cloned from Doubleword's original GitHub repo and has since been substantially amended. Changes include: extended lookback windows (days through to years), much larger and more configurable searches, significantly more detailed logging, inline requeueing of papers that fail to parse, evaluation results written to CSV/XLSX, and a second-pass structured review stage. The README below reflects the original upstream documentation and may not accurately describe the current codebase. See `LOCAL_CUSTOMIZATIONS.md` and `architecture.md` for the current state.
+> **Note:** This repository was cloned from Doubleword's original `arxiv-daily-digest` repo and has since been substantially customized for this working party's use. See `LOCAL_CUSTOMIZATIONS.md` for the full changelog and `architecture.md` for the current pipeline design.
 
-**Never miss relevant research papers again.** This tool automatically fetches new papers from arXiv, evaluates them against your team's interests in batch using a LLM provided by Doubleword, and delivers a curated digest to Slack every day.
+Fetches new papers from arXiv, scores them for relevance to general insurance (P&C) claims and loss reserving using an LLM (via Doubleword's batch API), and writes a ranked markdown digest plus a full CSV/XLSX evaluation of every paper considered.
+
+We run this manually, monthly or quarterly, rather than on a schedule — there's no Docker, Kubernetes, cron, or Slack integration to maintain.
 
 ## What It Does
 
-Every day, hundreds of papers get published on arXiv. This tool:
-
-1. **Fetches** new papers matching your keywords
-2. **Evaluates** each paper's relevance using the Doubleword Batch API
-3. **Ranks** papers by how well they match your team's focus
-4. **Delivers** the top 10 most relevant papers directly to Slack
-5. **Tracks** what you've already seen (no duplicates)
-
-Perfect for research teams, AI labs, or anyone who wants to stay current without drowning in papers.
+1. **Fetches** papers from arXiv matching a domain/method term query, over a configurable lookback window (days, months, or years)
+2. **Evaluates** each paper's relevance against the working party's team profile using an LLM, via Doubleword's batch API
+3. **Ranks** papers by relevance score
+4. **Writes** a markdown digest of the top N papers, plus a CSV/XLSX of every paper scored (for manual review)
+5. **Tracks** what's already been seen, so repeat runs don't re-surface the same papers
 
 ## Quick Start
 
 ### Prerequisites
 
-- Python 3.8+
-- A [Doubleword API key](https://doubleword.ai) (for batch evaluations)
-- A [Slack Incoming Webhook URL](https://api.slack.com/messaging/webhooks)
+- Python 3.12
+- A [Doubleword API key](https://doubleword.ai)
 
-### Local Setup
+### Setup
 
-1. **Clone the repo**
+1. **Install dependencies**
    ```bash
-   git clone https://github.com/doublewordai/arxiv-daily-digest.git
-   cd arxiv-daily-digest
+   uv sync
+   # or: pip install -r requirements.txt
    ```
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Set up environment variables**
-   
-   Copy the example file:
+2. **Set up environment variables**
    ```bash
    cp .env.example .env
    ```
-   
-   Edit `.env` with your actual credentials:
+   Edit `.env` with your credentials:
    ```bash
    DW_API_KEY=your_actual_doubleword_api_key
    DW_BASE_URL=https://api.doubleword.ai/v1
-   SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/ACTUAL/WEBHOOK
-   MODEL_NAME=Qwen/Qwen3-VL-30B-A3B-Instruct-FP8
+   MODEL_NAME=Qwen/Qwen3-VL-235B-A22B-Instruct-FP8
    ```
+   The code just calls the standard OpenAI SDK against `DW_BASE_URL`, so any OpenAI-compatible batch endpoint works — swap `DW_BASE_URL`/`DW_API_KEY` for another provider, and set `MODEL_NAME` (or `[inference] model` in `config.toml`) to whatever model that provider exposes. `config.toml` `[inference]` lists a few Doubleword model options as examples, but nothing is Doubleword-specific beyond the default values.
 
-4. **Customize your interests**
-   
-   Edit `main.py` to match your team's focus:
-   ```python
-   KEYWORDS = ["large language models", "LLM", "transformers"]
-   
-   TEAM_PROFILE = {
-       "focus": "Your team's research focus here",
-       "interests": [
-           "Topic 1",
-           "Topic 2",
-       ],
-       "avoid": [
-           "Things you don't care about",
-       ]
-   }
-   ```
-
-5. **Run it**
+3. **Run it**
    ```bash
-   python main.py
+   python src/main.py
    ```
+   Digest and evaluation files land in `runs/results/`.
 
-That's it! Your first digest will appear in Slack.
-
-## How It Works
-
-### The Pipeline
-
-```
-arXiv API → Filter New Papers → Batch Evaluation → Rank by Relevance → Slack Digest
-```
-
-**1. Paper Fetching** (`get_papers.py`)
-- Searches arXiv for papers published in the last 24 hours 
-- Filters by your keywords
-- Removes papers you've already seen
-
-**2. Batch Evaluation** (`main.py` + `create_batch_evaluation.py`)
-- Creates evaluation requests for each paper
-- Uses Doubleword's batch API for cost-efficient processing
-- Scores papers 0-10 based on your team profile
-- Extracts key insights and generates summaries for long abstracts
-- Handles model responses with `<think>` tags if using reasoning model
-
-**3. Slack Delivery** (`send_to_slack.py`)
-- Selects only papers scoring ≥7
-- Ranks by relevance score
-- Formats as rich Slack blocks with links and summaries
-- Sends top 10 to your given channel
-
-### What Makes This Special
-
-1. **Cost-Effective**: Uses batch API processing instead of real-time calls, making it significantly cheaper to evaluate hundreds of papers.
-2. **Smart Filtering**: Papers are evaluated against your specific team profile, not just generic relevance.
-3. **No Duplicates**: Tracks what you've seen so you never get the same paper twice.
-4. **Zero Maintenance**: Set it and forget it. Run daily via cron, Docker, or Kubernetes.
-
-## Running in Production
-
-### Docker (Local Testing)
-
-Build and test the container:
-```bash
-docker build -t arxiv-digest .
-docker run --env-file .env arxiv-digest
-```
-
-### Kubernetes Deployment
-
-1. **Build and push your image:**
+   To test the arXiv search/filtering only, without spending on LLM calls:
    ```bash
-   docker build -t your-registry/arxiv-digest:latest .
-   docker push your-registry/arxiv-digest:latest
+   python src/main.py --arxiv-only
    ```
+   This writes a search snapshot to `runs/search/` and stops before any LLM evaluation.
 
-2. **Create secrets:**
-   ```bash
-   kubectl create secret generic arxiv-secrets \
-     --from-literal=DW_API_KEY='your_actual_key' \
-     --from-literal=SLACK_WEBHOOK_URL='your_actual_webhook'
-     --from-literal=model_name='your_chosen_model_name' \
-     --from-literal=dw_base_url='https://app.doubleword.ai/ai/v1' \
-   -n daily-digest
-   ```
+## Team Profile
 
-3. **Deploy the CronJob:**
-   
-   Create `k8s-deployment.yaml`:
-   ```yaml
-   apiVersion: batch/v1
-   kind: CronJob
-   metadata:
-     name: arxiv-digest
-     namespace: daily-digest
-   spec:
-     schedule: "0 10 * * 1-5"  # 10 AM weekdays
-     timeZone: "Europe/London"  # Adjust to your timezone
-     successfulJobsHistoryLimit: 3
-     failedJobsHistoryLimit: 3
-     concurrencyPolicy: Forbid
-     jobTemplate:
-       spec:
-         template:
-           spec:
-             restartPolicy: OnFailure
-             containers:
-             - name: arxiv-digest
-               image: your-registry/arxiv-digest:latest
-               imagePullPolicy: Always
-               env:
-               - name: DW_API_KEY
-                 valueFrom:
-                   secretKeyRef:
-                     name: arxiv-secrets
-                     key: dw_api_key
-               - name: SLACK_WEBHOOK_URL
-                 valueFrom:
-                   secretKeyRef:
-                     name: arxiv-secrets
-                     key: slack_webhook_url
-               - name: MODEL_NAME
-                 valueFrom:
-                   secretKeyRef:
-                     name: arxiv-secrets
-                     key: model_name
-               - name: DW_BASE_URL
-                 valueFrom:
-                   secretKeyRef:
-                     name: arxiv-secrets
-                     key: dw_base_url
-               volumeMounts:
-               - name: data
-                 mountPath: /app/data
-               resources:
-                 requests:
-                   memory: "256Mi"
-                   cpu: "250m"
-                 limits:
-                   memory: "512Mi"
-                   cpu: "500m"
-             volumes:
-             - name: data
-               persistentVolumeClaim:
-                 claimName: arxiv-data-pvc
-   ```
+`src/prompt1.py` defines `TEAM_PROFILE` — the `focus`, `interests`, and `avoid` lists that tell the LLM what the working party actually cares about (claims/loss reserving, RBNS/IBNR, individual-claim and triangle-based reserving, neural and non-neural methods, etc., versus generic ML or underwriting/fraud papers). This is the main lever for retuning what counts as relevant — edit the lists directly rather than the search query terms.
 
-4. **Apply and verify:**
-   ```bash
-   kubectl apply -f k8s-deployment.yaml
-   kubectl get cronjob arxiv-digest
-   
-   # Test manually
-   kubectl create job --from=cronjob/arxiv-digest arxiv-digest-test
-   kubectl logs -l job-name=arxiv-digest-test -f
-   ```
+`config.toml` `[query]` controls the arXiv-side search terms (`domain_terms`, `method_terms`) and prefilter, which narrow down the candidate pool *before* any paper reaches the LLM.
 
-### Cron Job (Traditional Server)
+## Scoring
 
-Run daily Mondy-Saturday at 9 AM:
-```bash
-0 9 * * *  cd /path/to/arxiv-daily-digest && /usr/bin/python3 main.py
+The scoring rubric lives in `src/evaluation.py`, inside `build_paper_evaluation_prompt()`:
+
+```
+- 9 to 10: directly about reserving and highly useful to the working party
+- 7 to 8: not directly about reserving, but strongly transferable with clear practical value
+- 5 to 6: adjacent and somewhat useful, but not a priority
+- 0 to 4: weak relevance to reserving or little practical value
 ```
 
-## Configuration
+The LLM returns a `relevance_score` (0–10) for every paper, along with a `summary` and `key_insight`. A paper is flagged `is_relevant` if its score is **≥ 7** — that threshold is hardcoded in `src/create_batch_evaluation.py` (search for `is_relevant = score >= 7`). Only `is_relevant` papers are eligible for the digest; the top `selection.top_n` of those (set in `config.toml`, currently 100) are written out. Every scored paper, relevant or not, still appears in the CSV/XLSX evaluation output for manual review.
 
-### Keywords
+An optional second-pass **structured review** (`src/run_structured_review.py`) can additionally ask the LLM a fixed set of questions (from `pipeline_data/review_questions.json`) about each top-N paper — see `config.toml` `[review]`.
 
-Modify the `KEYWORDS` list in `main.py`:
-```python
-KEYWORDS = ["reinforcement learning", "robotics", "computer vision"]
-```
+## Configuration (`config.toml`)
 
-### Team Profile
+| Section | Controls |
+|---|---|
+| `[lookback]` | Search window in years/months/days (0/0/0 = original Monday-3-day / weekday-1-day behavior) |
+| `[search]` | `max_results`, arXiv page size, retry/backoff tuning for HTTP 429s |
+| `[query]` | Domain/method search terms, AND/OR query strategy, prefilter and anchor-term guardrails |
+| `[selection]` | `top_n` — how many relevant papers go into the digest |
+| `[output]` | Output directories for logs, digests, batch requests, search snapshots; `send_to_slack` (kept as `false`) |
+| `[network]` | Retry/backoff for Doubleword/OpenAI API calls and batch polling |
+| `[inference]` | Model choice and batch completion window |
+| `[review]` | Second-pass structured review mode (`off` / `separate` / `inline`) and question source |
 
-The `TEAM_PROFILE` tells the AI what matters to your team:
+Every option is commented in `config.toml` itself — that's the fastest place to look when changing behavior.
 
-```python
-TEAM_PROFILE = {
-    "focus": "One sentence describing your team's work",
-    "interests": [
-        "Specific topics you care about",
-        "Technologies you're exploring",
-    ],
-    "avoid": [
-        "Pure theory without applications",
-        "Topics outside your domain",
-    ]
-}
-```
+## Other Commands
 
-The more specific you are, the better the filtering.
+- **Resume or check a batch** that's still running or was interrupted:
+  ```bash
+  python src/batch_tools.py status
+  python src/batch_tools.py resume
+  ```
+- **Run the structured second-pass review** separately, on an existing digest:
+  ```bash
+  python src/run_structured_review.py
+  ```
+- **Retry papers that failed to parse** (beyond the inline requeue rounds already attempted during a run):
+  ```bash
+  python src/requeue_parse_failures.py
+  ```
 
-### Scoring Threshold
+## Outputs
 
-By default, only papers scoring ≥7 are included. Adjust in `send_to_slack.py`:
-```python
-relevant = [r for r in results if r.get('is_relevant', False)]
-```
-## Customization Ideas
-
-- **Change the source**: Swap arXiv for bioRxiv, medRxiv, or another preprint server
-- **Multiple channels**: Send different topics to different Slack channels
-- **Email digest**: Replace Slack with email delivery
-- **Weekly summaries**: Aggregate top papers from the entire week
-- **Custom scoring**: Modify the evaluation prompt for different criteria
-- **Different models**: Change `MODEL_NAME` to experiment with other models
+| File | Description |
+|---|---|
+| `runs/results/digest_TIMESTAMP.md` | Ranked digest of the top N relevant papers |
+| `runs/results/parsed/evaluation_results_TIMESTAMP.csv/.xlsx` | Every scored paper, for manual review |
+| `runs/search/arxiv_snapshot_TIMESTAMP.json` | Full arXiv search trace (candidates, filters, drops) |
+| `runs/results/detailed_review_TIMESTAMP.md` | Optional structured second-pass review |
+| `runs/logs/run_TIMESTAMP.log` | Full pipeline trace log for the run |
+| `pipeline_data/seen_papers.json` | Dedup registry so re-runs don't resurface the same paper |
+| `pipeline_data/parse_failures.json` | Papers that exhausted inline parse-retry rounds |
 
 ## Troubleshooting
 
-**No papers found on Monday**: This is normal - arXiv doesn't publish on weekends, so the code automatically looks back 3 days to catch Friday's papers.
+**No papers found on Monday**: Normal — arXiv doesn't publish on weekends, so a Monday run looks back further to catch Friday's papers (unless a custom `[lookback]` window is set).
 
-**Batch not completing**: Batch processing takes time. Check batch status with default 30-second intervals. For faster results during testing, adjust `check_interval` in `wait_for_batch()`.
+**Batch not completing**: Batch processing takes time. Check status with `python src/batch_tools.py status --batch-id <id>`. Poll interval is set by `network.poll_interval_seconds` in `config.toml`.
 
-**Slack webhook failing**: Verify your webhook URL is correct and the channel hasn't been archived.
+**`seen_papers.json` corrupted**: Delete `pipeline_data/seen_papers.json` and it will regenerate fresh on the next run.
 
-**`seen_papers.json` corrupted**: Delete the file and it will regenerate fresh on next run.
+**JSON parsing errors**: The code tolerates `<think>` tags and extra text from reasoning models, but persistent parse failures show up in `pipeline_data/parse_failures.json` — retry them with `python src/requeue_parse_failures.py`.
 
-**JSON parsing errors**: The code handles models that output `<think>` tags or extra text, but if you see persistent errors, check `create_batch_evaluation.py`'s parsing logic.
+## Further Reading
 
-**Docker permission errors**: Ensure the `/app/data` directory has proper permissions in the container.
-
-## Development
-
-### Testing Locally
-```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run with your .env file
-python main.py
-```
-
-## Contributing
-
-Have ideas for improvements? Found a bug? Contributions welcome!
+- `architecture.md` — pipeline diagram and component breakdown
+- `LOCAL_CUSTOMIZATIONS.md` — full changelog of local changes vs. the upstream Doubleword repo
