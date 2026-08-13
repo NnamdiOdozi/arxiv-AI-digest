@@ -39,7 +39,7 @@ We run this manually, monthly or quarterly, rather than on a schedule — there'
    DW_BASE_URL=https://api.doubleword.ai/v1
    MODEL_NAME=Qwen/Qwen3-VL-235B-A22B-Instruct-FP8
    ```
-   The code just calls the standard OpenAI SDK against `DW_BASE_URL`, so any OpenAI-compatible batch endpoint works — swap `DW_BASE_URL`/`DW_API_KEY` for another provider, and set `MODEL_NAME` (or `[inference] model` in `config.toml`) to whatever model that provider exposes. `config.toml` `[inference]` lists a few Doubleword model options as examples, but nothing is Doubleword-specific beyond the default values.
+   The code just calls the standard OpenAI SDK against `DW_BASE_URL`, so any OpenAI-compatible batch endpoint works — see [Swapping the LLM Provider](#swapping-the-llm-provider) below if you're not using Doubleword.
 
 3. **Run it**
    ```bash
@@ -77,6 +77,29 @@ An optional second-pass **structured review** (`src/run_structured_review.py`) c
 **Only the title and abstract are sent to the LLM** for scoring — not the paper body. The abstract comes straight from arXiv's metadata for whatever papers survive the `[query]` filter; there's no PDF fetch or full-text extraction in the scoring path today.
 
 *Future development idea*: sending part or all of the paper body (not just the abstract) to the LLM could improve scoring accuracy, at the cost of extra fetch/parse work and higher token spend per paper.
+
+## Swapping the LLM Provider
+
+### Another provider with a batch API (e.g. OpenAI)
+
+The code (`src/main.py`, `src/create_batch_evaluation.py`, `src/batch_tools.py`) calls the plain OpenAI SDK's batch surface — `files.create(purpose="batch")`, `batches.create(endpoint="/v1/chat/completions", ...)`, `batches.retrieve`, `files.content`. Doubleword mirrors that same interface, so this is a config swap, not a code change:
+
+1. `.env`: set `DW_BASE_URL` and `DW_API_KEY` to the new provider's values (e.g. `https://api.openai.com/v1` and an OpenAI key — the `DW_` naming is just leftover from the original Doubleword setup, the values are provider-agnostic).
+2. `.env` / `config.toml` `[inference] model`: set `MODEL_NAME` to a model that provider actually hosts (the Qwen defaults in `config.toml` are Doubleword-hosted and won't exist elsewhere).
+3. `config.toml` `[inference] completion_window`: OpenAI's batch API only accepts `"24h"` — Doubleword allows shorter windows like `"1h"`. Set this to `"24h"` for OpenAI or it'll be rejected at submission.
+
+**Bear in mind**: OpenAI's batch queue is generally slower and less predictable than Doubleword's — turnaround can run well past `completion_window` under load. For a monthly/quarterly run this usually doesn't matter, but don't expect same-day results if you're testing interactively.
+
+### A provider with only a real-time/interactive API (no batch endpoint)
+
+This is a bigger change, not a config tweak — the whole pipeline is built around submit-a-batch-then-poll. If your provider (e.g. a self-hosted Llama endpoint, or a smaller/regional provider) only offers synchronous chat completions, you'd need to:
+
+- Replace the batch submit-and-poll block in `src/create_batch_evaluation.py` with a loop of synchronous `client.chat.completions.create()` calls, one per paper (the `response_format`/structured-output schema in `src/evaluation.py` stays the same either way).
+- Adjust `src/main.py`'s orchestration accordingly, and drop or repurpose `src/batch_tools.py`'s `status`/`resume` commands, since there's no `batch_id` to check.
+- Add your own concurrency and rate-limit handling (`config.toml` `[network]` retry settings still help, but the batch-specific polling config won't apply) — otherwise scoring hundreds of papers serially will be slow.
+- Expect to lose the batch pricing discount most providers give for async batch processing.
+
+This is enough of a structural change that it's worth handing to a coding agent with the file list above as a starting point, rather than reworking it by hand.
 
 ## Configuration (`config.toml`)
 
