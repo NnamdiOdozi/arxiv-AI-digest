@@ -74,6 +74,10 @@ The LLM returns a `relevance_score` (0–10) for every paper, along with a `summ
 
 An optional second-pass **structured review** (`src/run_structured_review.py`) can additionally ask the LLM a fixed set of questions (from `pipeline_data/review_questions.json`) about each top-N paper — see `config.toml` `[review]`.
 
+**Only the title and abstract are sent to the LLM** for scoring — not the paper body. The abstract comes straight from arXiv's metadata for whatever papers survive the `[query]` filter; there's no PDF fetch or full-text extraction in the scoring path today.
+
+*Future development idea*: sending part or all of the paper body (not just the abstract) to the LLM could improve scoring accuracy, at the cost of extra fetch/parse work and higher token spend per paper.
+
 ## Configuration (`config.toml`)
 
 | Section | Controls |
