@@ -18,40 +18,66 @@ We run this manually, monthly or quarterly, rather than on a schedule — there'
 
 ### Prerequisites
 
-- Python 3.12
-- A [Doubleword API key](https://doubleword.ai)
+- **Git**, to download the code. Check with `git --version`; if that errors, install it from [git-scm.com](https://git-scm.com/downloads).
+- **A Doubleword API key**, from [doubleword.ai](https://doubleword.ai). This is what pays for the LLM scoring. Any OpenAI-compatible provider works instead — see [Swapping the LLM Provider](#swapping-the-llm-provider).
+- Python 3.12. You do **not** need to install this yourself if you use `uv` in step 2, which fetches the right version for you.
 
 ### Setup
 
-1. **Install dependencies**
+Every command below is typed into a terminal (Terminal on macOS/Linux, PowerShell on Windows).
+
+1. **Download the code**
+   ```bash
+   git clone https://github.com/NnamdiOdozi/arxiv-AI-digest.git
+   cd arxiv-AI-digest
+   ```
+   The first line copies the repository into a new folder. The second moves you inside it. **Every later command must be run from inside this folder** — if a command fails saying a file cannot be found, this is the first thing to check. `pwd` on macOS/Linux (or `cd` alone on Windows) prints where you currently are.
+
+2. **Install `uv`** (skip if `uv --version` already works)
+
+   `uv` is the tool that installs the project's Python packages. It is used here instead of `pip` because it also fetches the correct Python version automatically.
+   ```bash
+   # macOS / Linux
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+
+   # Windows PowerShell
+   powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+   Close and reopen your terminal afterwards, `cd` back into the folder from step 1, then check it worked with `uv --version`.
+
+3. **Install the dependencies**
    ```bash
    uv sync
-   # or: pip install -r requirements.txt
    ```
+   This reads `pyproject.toml` and `uv.lock` and builds a self-contained environment in a hidden `.venv` folder. It does not touch your system Python. Expect it to take a minute or two the first time.
 
-2. **Set up environment variables**
+4. **Add your API key**
    ```bash
    cp .env.example .env
    ```
-   Edit `.env` with your credentials:
+   On Windows PowerShell use `copy .env.example .env` instead. Now open the new `.env` file in any text editor and fill in your own values:
    ```bash
    DW_API_KEY=your_actual_doubleword_api_key
    DW_BASE_URL=https://api.doubleword.ai/v1
    MODEL_NAME=Qwen/Qwen3-VL-235B-A22B-Instruct-FP8
    ```
-   The code just calls the standard OpenAI SDK against `DW_BASE_URL`, so any OpenAI-compatible batch endpoint works — see [Swapping the LLM Provider](#swapping-the-llm-provider) below if you're not using Doubleword.
+   `.env` is listed in `.gitignore`, so your key will not be committed if you push changes back. Never paste a key into `config.toml` or into any source file.
 
-3. **Run it**
+5. **Do a free test run first**
    ```bash
-   python src/main.py
+   uv run python src/main.py --arxiv-only
    ```
-   Digest and evaluation files land in `runs/results/`.
+   This searches arXiv and applies the filters, then stops before contacting the LLM, so it costs nothing. It proves your setup works and writes a snapshot to `runs/search/`. If you see a list of papers found, you are ready.
 
-   To test the arXiv search/filtering only, without spending on LLM calls:
+6. **Run it properly**
    ```bash
-   python src/main.py --arxiv-only
+   uv run python src/main.py
    ```
-   This writes a search snapshot to `runs/search/` and stops before any LLM evaluation.
+   This scores every paper found and writes the digest. It submits a batch job and then waits for the provider, so it is not instant — allow anything from several minutes to a few hours depending on the provider's queue. Results land in `runs/results/`, and `runs/logs/` gets a full trace of the run.
+
+> **The `uv run` prefix matters.** It runs the command inside the project's environment. If you type plain `uv run python src/main.py`, your computer uses its own system Python, which does not have the packages installed, and you get `ModuleNotFoundError: No module named 'openai'`. This is the single most common first-run problem. Either keep the `uv run` prefix on every command in this README, or activate the environment once per terminal session with `source .venv/bin/activate` (macOS/Linux) or `.venv\Scripts\activate` (Windows) and then drop the prefix.
+
+> **Ignore `main.py` in the top-level folder.** It is an unused leftover from project setup and only prints a greeting. The real entry point is `src/main.py`.
 
 ## Customising This For Your Team
 
@@ -138,16 +164,16 @@ Every option is commented in `config.toml` itself — that's the fastest place t
 
 - **Resume or check a batch** that's still running or was interrupted:
   ```bash
-  python src/batch_tools.py status
-  python src/batch_tools.py resume
+  uv run python src/batch_tools.py status
+  uv run python src/batch_tools.py resume
   ```
 - **Run the structured second-pass review** separately, on an existing digest:
   ```bash
-  python src/run_structured_review.py
+  uv run python src/run_structured_review.py
   ```
 - **Retry papers that failed to parse** (beyond the inline requeue rounds already attempted during a run):
   ```bash
-  python src/requeue_parse_failures.py
+  uv run python src/requeue_parse_failures.py
   ```
 
 ## Outputs
@@ -179,13 +205,19 @@ These are illustrative, not fixtures: no test or code path reads them, and delet
 
 ## Troubleshooting
 
+**`ModuleNotFoundError: No module named 'openai'`**: You ran `python` without the `uv run` prefix, so your system Python was used instead of the project's environment. Re-run the command as `uv run python src/main.py`. See the note at the end of [Setup](#setup).
+
+**`command not found: uv`**: Step 2 of Setup was skipped, or the terminal was not restarted afterwards. Close the terminal, reopen it, `cd` back into the project folder and try `uv --version` again.
+
+**"No such file or directory" on `config.toml` or `.env`**: You are running from the wrong folder. `cd` into the cloned `arxiv-AI-digest` folder and try again.
+
 **No papers found on Monday**: Normal — arXiv doesn't publish on weekends, so a Monday run looks back further to catch Friday's papers (unless a custom `[lookback]` window is set).
 
-**Batch not completing**: Batch processing takes time. Check status with `python src/batch_tools.py status --batch-id <id>`. Poll interval is set by `network.poll_interval_seconds` in `config.toml`.
+**Batch not completing**: Batch processing takes time. Check status with `uv run python src/batch_tools.py status --batch-id <id>`. Poll interval is set by `network.poll_interval_seconds` in `config.toml`.
 
 **`seen_papers.json` corrupted**: Delete `pipeline_data/seen_papers.json` and it will regenerate fresh on the next run.
 
-**JSON parsing errors**: The code tolerates `<think>` tags and extra text from reasoning models, but persistent parse failures show up in `pipeline_data/parse_failures.json` — retry them with `python src/requeue_parse_failures.py`.
+**JSON parsing errors**: The code tolerates `<think>` tags and extra text from reasoning models, but persistent parse failures show up in `pipeline_data/parse_failures.json` — retry them with `uv run python src/requeue_parse_failures.py`.
 
 ## Further Reading
 
