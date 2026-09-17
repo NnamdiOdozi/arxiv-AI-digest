@@ -227,3 +227,6 @@ pipeline_data/*
 # Historical one-off script and personal working data
 rerun_pass1_236.py
 lit_review.csv
+
+# Local working notes, not part of the repo
+DEFERRED_WORK.md
