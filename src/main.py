@@ -590,7 +590,20 @@ def parse_cli_args():
             "Cannot be combined with --arxiv-only."
         ),
     )
+    parser.add_argument(
+        "--review-mode",
+        choices=["off", "separate", "inline"],
+        help=(
+            "Override [review] mode in config.toml FOR THIS RUN ONLY. "
+            "'inline' runs pass 2 automatically after pass 1; 'separate' stops after "
+            "pass 1 so you run run_structured_review.py yourself; 'off' skips pass 2. "
+            "Also sets review.enabled to match, so the flag does what it says "
+            "regardless of the config's enabled value."
+        ),
+    )
     args = parser.parse_args()
+    if args.review_mode and args.arxiv_only:
+        parser.error("--review-mode has no effect with --arxiv-only, which stops before any scoring.")
     if args.from_snapshot and args.arxiv_only:
         parser.error("--from-snapshot cannot be combined with --arxiv-only "
                      "(--arxiv-only stops before any scoring, which is the point of --from-snapshot).")
@@ -607,6 +620,17 @@ def run_main():
     try:
         arxiv_only = bool(cli_args.arxiv_only)
         run_logger.info(f"CLI mode override: {'arxiv_only' if arxiv_only else 'full'}")
+        if cli_args.review_mode:
+            # One-run override so config.toml stays the permanent default. Setting
+            # `enabled` too: otherwise --review-mode inline silently does nothing
+            # when the config has enabled = false.
+            previous = runtime_config["review"]["mode"]
+            runtime_config["review"]["mode"] = cli_args.review_mode
+            runtime_config["review"]["enabled"] = cli_args.review_mode != "off"
+            run_logger.info(
+                "CLI review-mode override: %s -> %s (enabled=%s). config.toml unchanged."
+                % (previous, cli_args.review_mode, runtime_config["review"]["enabled"])
+            )
         results_file_path = daily_run(
             lookback_config=runtime_config["lookback"],
             max_results=runtime_config["max_results"],

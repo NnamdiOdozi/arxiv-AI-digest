@@ -138,6 +138,15 @@ Scoring runs in two stages, and `[review] mode` in `config.toml` decides how the
 | `"inline"` | `main.py` runs pass 1, then pass 2 immediately, in one command. | Unattended or scheduled runs where nobody is around to trigger the second step. |
 | `"off"` | Pass 2 never runs. Pass 1 only. | You only want the ranked digest and do not need the structured answers. |
 
+**Overriding the mode for one run.** The table above describes `config.toml`, which is your permanent default. To change it for a single run without editing the file:
+
+```bash
+uv run python src/main.py --review-mode inline      # this run only
+uv run python src/main.py                            # back to the config default
+```
+
+This matters because the config setting is sticky: edit it for a one-off, forget to change it back, and a later full run quietly does pass 2 on every shortlisted paper. The flag leaves `config.toml` untouched and logs the override in the run log. It also sets `enabled` to match, so `--review-mode inline` works even if the config has `enabled = false`.
+
 In `"separate"` mode, run pass 2 like this:
 
 ```bash
