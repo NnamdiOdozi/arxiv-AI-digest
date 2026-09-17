@@ -41,7 +41,13 @@ We run this manually, monthly or quarterly, rather than on a schedule — there'
    ```
    The code just calls the standard OpenAI SDK against `DW_BASE_URL`, so any OpenAI-compatible batch endpoint works — see [Swapping the LLM Provider](#swapping-the-llm-provider) below if you're not using Doubleword.
 
-3. **Run it**
+3. **Set up the structured review questions** (optional, but needed if `[review]` is enabled in `config.toml`, which it is by default)
+   ```bash
+   cp pipeline_data/review_questions.example.json pipeline_data/review_questions.json
+   ```
+   These are the questions the optional second pass asks about each shortlisted paper. The example file is a generic starting point — edit it for your own subject area. If you skip this step the pipeline still runs; it logs that it cannot find the file and quietly skips the second pass.
+
+4. **Run it**
    ```bash
    python src/main.py
    ```
@@ -53,11 +59,25 @@ We run this manually, monthly or quarterly, rather than on a schedule — there'
    ```
    This writes a search snapshot to `runs/search/` and stops before any LLM evaluation.
 
-## Team Profile
+## Customising This For Your Team
 
-`src/prompt1.py` defines `TEAM_PROFILE` — the `focus`, `interests`, and `avoid` lists that tell the LLM what the working party actually cares about (claims/loss reserving, RBNS/IBNR, individual-claim and triangle-based reserving, neural and non-neural methods, etc., versus generic ML or underwriting/fraud papers). This is the main lever for retuning what counts as relevant — edit the lists directly rather than the search query terms.
+**Read this section before your first real run.** This repository ships configured for one specific group: the IFoA General Insurance Machine Learning in Reserving Working Party. Out of the box it will hunt for claims-reserving papers and score everything against that group's priorities. If your interest is something else — generative AI in reserving, machine learning in life assurance, anything at all — the tool will appear to work while returning papers that are useless to you. Nothing errors. It just quietly answers the wrong question.
 
-`config.toml` `[query]` controls the arXiv-side search terms (`domain_terms`, `method_terms`) and prefilter, which narrow down the candidate pool *before* any paper reaches the LLM.
+There are three separate places to change, and they act at different stages of the pipeline. You need all three.
+
+| # | What it controls | Where to edit | Stage |
+|---|---|---|---|
+| 1 | Which papers arXiv returns at all | `[query]` in `config.toml` — the `domain_terms` and `method_terms` lists | Before any LLM call |
+| 2 | What the LLM treats as relevant and scores highly | `TEAM_PROFILE` in `src/prompt1.py` | Scoring pass |
+| 3 | What the optional second pass asks about each shortlisted paper | `pipeline_data/review_questions.json` | Review pass |
+
+**1. Search terms (`config.toml` `[query]`).** These are the literal terms sent to the arXiv API. They decide the candidate pool. A paper that does not match here is never seen by the LLM at all, no matter how relevant it is — so this is the one place where being too narrow silently costs you papers. The shipped lists are full of terms like `claims reserving` and `non-life insurance`. Replace them wholesale with your own domain vocabulary. `use_and_query = true` means a paper must match a domain term *and* a method term; set it to `false` to widen to either.
+
+**2. Team profile (`src/prompt1.py`).** `TEAM_PROFILE` is a Python dictionary with three keys — `focus` (a prose paragraph describing who the team is and what it wants), `interests` (a list of topics to reward), and `avoid` (a list of topics to penalise). This text is injected into the prompt for every paper. It is the main lever on what counts as relevant, and it is where you say, in plain English, what your working party is for. Rewrite all three keys. Leaving the shipped reserving text here while changing only the search terms is the most common way to get confusing results: arXiv hands you generative-AI papers and the LLM scores them low because the profile still says it wants reserving.
+
+**3. Review questions (`pipeline_data/review_questions.json`).** Not tracked in git, because these are yours. Copy `review_questions.example.json` alongside it and rewrite. Each entry is an object with a `question` string and a `keys` list naming the output fields that question produces, so a question asking for a value plus a justification declares two keys. Keep the question text explicit about the allowed answers — the LLM follows an enumerated list far more reliably than an open instruction.
+
+Everything else — lookback window, how many papers reach the digest, which model is used — is ordinary configuration and is covered under [Configuration](#configuration-configtoml) below.
 
 ## Scoring
 
@@ -72,7 +92,7 @@ The scoring rubric lives in `src/evaluation.py`, inside `build_paper_evaluation_
 
 The LLM returns a `relevance_score` (0–10) for every paper, along with a `summary` and `key_insight`. A paper is flagged `is_relevant` if its score is **≥ 7** — that threshold is hardcoded in `src/create_batch_evaluation.py` (search for `is_relevant = score >= 7`). Only `is_relevant` papers are eligible for the digest; the top `selection.top_n` of those (set in `config.toml`, currently 100) are written out. Every scored paper, relevant or not, still appears in the CSV/XLSX evaluation output for manual review.
 
-An optional second-pass **structured review** (`src/run_structured_review.py`) can additionally ask the LLM a fixed set of questions (from `pipeline_data/review_questions.json`) about each top-N paper — see `config.toml` `[review]`.
+An optional second-pass **structured review** (`src/run_structured_review.py`) asks the LLM a fixed set of questions about each top-N paper, and folds the answers into the digest. The questions come from `pipeline_data/review_questions.json`, which you supply yourself — see step 3 above.
 
 **Only the title and abstract are sent to the LLM** for scoring — not the paper body. The abstract comes straight from arXiv's metadata for whatever papers survive the `[query]` filter; there's no PDF fetch or full-text extraction in the scoring path today.
 
@@ -143,6 +163,8 @@ Every option is commented in `config.toml` itself — that's the fastest place t
 | `runs/logs/run_TIMESTAMP.log` | Full pipeline trace log for the run |
 | `pipeline_data/seen_papers.json` | Dedup registry so re-runs don't resurface the same paper |
 | `pipeline_data/parse_failures.json` | Papers that exhausted inline parse-retry rounds |
+
+None of these are tracked in git. `runs/` and the generated files in `pipeline_data/` are ignored, so a fresh clone starts empty and every directory is created automatically on the first run. There is nothing to set up by hand.
 
 ## Troubleshooting
 

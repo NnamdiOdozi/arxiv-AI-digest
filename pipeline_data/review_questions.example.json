@@ -1,0 +1,23 @@
+[
+  {
+    "question": "What modelling techniques are used in this paper? Select one or more from [Neural network, Gradient boosting machine, Regression tree, Random forest, GLM/statistical learning, Survey/literature review, Non-ML, Hybrid]. If unclear, use Unknown. Explain briefly.",
+    "keys": [
+      "modelling_technique_values",
+      "modelling_technique_explanation"
+    ]
+  },
+  {
+    "question": "Does the paper use real-world data, synthetic/simulated data, or both? Answer with one of [Real, Synthetic, Both, Unknown] and name the datasets if they are stated.",
+    "keys": [
+      "data_type_value",
+      "data_type_explanation"
+    ]
+  },
+  {
+    "question": "Is code or a reproducible implementation made available? Answer Yes, No, or Unknown, and give the repository URL if one is mentioned.",
+    "keys": [
+      "code_available_value",
+      "code_available_explanation"
+    ]
+  }
+]

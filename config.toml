@@ -199,11 +199,13 @@ requeue_max_rounds = 1
 # - "off": disable pass-2 entirely.
 mode = "separate"
 enabled = true
-# Source question template file.
+# Source question template file. This file is NOT shipped in the repo, because the
+# questions are specific to your team. Copy pipeline_data/review_questions.example.json
+# to the path below and rewrite the questions for your own subject area.
 # Prefer the compact schema (question + keys only) to avoid carrying sample answers.
 questions_file = "pipeline_data/review_questions.json"
-# Keep this low to control extra token cost; 0 = all questions from file.
-# Set to 15 to answer all questions currently in review_questions.json.
+# Keep this low to control extra token cost. 0 = ask every question in the file.
+# Any positive number caps it at that many questions, in file order.
 max_questions = 15
 # Include the structured profile answers in the digest markdown.
 include_in_digest = true

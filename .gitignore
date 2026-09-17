@@ -206,3 +206,16 @@ data/converted_for_batch/
 
 aide-memoire
 TO_DO.txt
+
+# Run outputs: logs, batch request payloads, digests, search snapshots.
+# Regenerated on every run and specific to whoever ran it.
+runs/
+
+# Pipeline state and the team's own structured-review questions.
+# Everything in here is local to your clone; only the example template is tracked.
+pipeline_data/*
+!pipeline_data/review_questions.example.json
+
+# Historical one-off script and personal working data
+rerun_pass1_236.py
+lit_review.csv
