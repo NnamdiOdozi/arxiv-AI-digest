@@ -78,6 +78,45 @@ def _persist_parse_failures(failed_paper_ids, papers_by_id, batch_id, run_timest
         log_fn("[parse_failures] Persisted %s unresolved failures to %s" % (len(failed_paper_ids), failures_file))
 
 
+def _load_papers_from_snapshot(snapshot_path, log):
+    """Replay a saved arXiv snapshot instead of re-querying arXiv.
+
+    Reads `papers_unseen_after_seen_filter` - the papers that survived every
+    filter last time. The seen-registry filter is deliberately re-applied here:
+    a snapshot can be days old, and anything scored since must not be paid for
+    twice.
+    """
+    path = Path(snapshot_path)
+    if not path.exists():
+        raise FileNotFoundError(f"Snapshot not found: {path}")
+    with open(path, "r", encoding="utf-8") as f:
+        snapshot = json.load(f)
+
+    candidates = snapshot.get("papers_unseen_after_seen_filter")
+    if candidates is None:
+        candidates = snapshot.get("papers_after_combined_filter")
+    if not isinstance(candidates, list):
+        raise ValueError(
+            f"{path} has no usable paper list "
+            f"(expected 'papers_unseen_after_seen_filter'). Keys: {sorted(snapshot)}"
+        )
+
+    log(f"Replaying snapshot: {path}")
+    log(f"  snapshot run_timestamp: {snapshot.get('run_timestamp')}")
+    log(f"  snapshot cutoff_date:   {snapshot.get('cutoff_date')}")
+    log(f"  papers in snapshot:     {len(candidates)}")
+    if snapshot.get("papers_unseen_after_seen_filter_note"):
+        log(f"  [warn] {snapshot['papers_unseen_after_seen_filter_note']}")
+
+    # Re-apply the dedup filter against the CURRENT registry, not the snapshot's.
+    papers, dropped = filter_unseen_papers_with_trace(candidates)
+    for paper in dropped:
+        log(f"[drop_seen_since_snapshot] id={paper['id']} title={paper['title']}")
+    log(f"  dropped as seen since snapshot: {len(dropped)}")
+    log(f"  papers to score from snapshot:  {len(papers)}")
+    return papers
+
+
 def daily_run(
     lookback_config=None,
     max_results=DEFAULT_MAX_RESULTS,
@@ -89,6 +128,7 @@ def daily_run(
     network_config=None,
     review_config=None,
     arxiv_only=False,
+    from_snapshot=None,
     run_timestamp=None,
     logger=None,
 ):
@@ -153,119 +193,124 @@ def daily_run(
     else:
         log("Anchor terms: disabled")
 
-    # 1) Fetch papers
-    log("Fetching papers from arXiv")
-    try:
-        papers_after_filters, search_trace = get_daily_papers(
-            max_results=max_results,
-            cutoff_date=cutoff_date,
-            return_trace=True,
-            query_override=arxiv_query,
-            required_text_terms=required_terms,
-            required_text_min_matches=required_min_matches,
-            required_anchor_terms=anchor_terms,
-            term_match_mode=term_match_mode,
-            arxiv_page_size=search_tuning_config["arxiv_page_size"],
-            arxiv_delay_seconds=search_tuning_config["arxiv_delay_seconds"],
-            arxiv_num_retries=search_tuning_config["arxiv_num_retries"],
-            arxiv_max_attempts=search_tuning_config["arxiv_max_attempts"],
-            arxiv_backoff_seconds=search_tuning_config["arxiv_backoff_seconds"],
-            log_fn=log,
-        )
-    except Exception as exc:
-        error_note = f"arXiv fetch failed after retries: {exc}"
-        log(error_note)
-        results_path = write_results_markdown(
-            top_results=[],
-            paper_pool=[],
-            all_scores=[],
-            run_timestamp=run_timestamp,
-            output_dir=output_config["results_dir"],
-            cutoff_date=cutoff_date,
-            max_results=max_results,
-            top_n=top_n,
-            run_notes=[error_note],
-        )
-        log(f"Results markdown written to {results_path}")
-        return results_path
-    log(f"arXiv candidates returned: {len(search_trace)}")
-    for idx, entry in enumerate(search_trace, 1):
-        log(
-            "[arxiv_raw] %s/%s id=%s in_window=%s domain_match=%s prefilter_hits=%s anchor_hits=%s published=%s lead_author=%s title=%s"
-            % (
-                idx,
-                len(search_trace),
-                entry["id"],
-                entry["in_lookback_window"],
-                entry["matches_required_terms"],
-                entry.get("matched_required_terms", []),
-                entry.get("matched_anchor_terms", []),
-                entry["published"],
-                entry.get("lead_author"),
-                entry["title"],
+    # 1) Get papers: either fetch from arXiv, or replay a saved snapshot.
+    if from_snapshot:
+        papers = _load_papers_from_snapshot(from_snapshot, log)
+        papers_after_filters = papers
+    else:
+        # 1) Fetch papers
+        log("Fetching papers from arXiv")
+        try:
+            papers_after_filters, search_trace = get_daily_papers(
+                max_results=max_results,
+                cutoff_date=cutoff_date,
+                return_trace=True,
+                query_override=arxiv_query,
+                required_text_terms=required_terms,
+                required_text_min_matches=required_min_matches,
+                required_anchor_terms=anchor_terms,
+                term_match_mode=term_match_mode,
+                arxiv_page_size=search_tuning_config["arxiv_page_size"],
+                arxiv_delay_seconds=search_tuning_config["arxiv_delay_seconds"],
+                arxiv_num_retries=search_tuning_config["arxiv_num_retries"],
+                arxiv_max_attempts=search_tuning_config["arxiv_max_attempts"],
+                arxiv_backoff_seconds=search_tuning_config["arxiv_backoff_seconds"],
+                log_fn=log,
             )
-        )
-
-    lookback_pass = [entry for entry in search_trace if entry["in_lookback_window"]]
-    dropped_by_domain_prefilter = [
-        entry for entry in search_trace if entry["in_lookback_window"] and not entry["matches_required_terms"]
-    ]
-    log(f"After lookback filter: {len(lookback_pass)}")
-    log(f"Dropped by domain prefilter: {len(dropped_by_domain_prefilter)}")
-    for entry in dropped_by_domain_prefilter:
-        log(
-            "[drop_domain_prefilter] id=%s title=%s prefilter_hits=%s anchor_hits=%s"
-            % (
-                entry["id"],
-                entry["title"],
-                entry.get("matched_required_terms", []),
-                entry.get("matched_anchor_terms", []),
+        except Exception as exc:
+            error_note = f"arXiv fetch failed after retries: {exc}"
+            log(error_note)
+            results_path = write_results_markdown(
+                top_results=[],
+                paper_pool=[],
+                all_scores=[],
+                run_timestamp=run_timestamp,
+                output_dir=output_config["results_dir"],
+                cutoff_date=cutoff_date,
+                max_results=max_results,
+                top_n=top_n,
+                run_notes=[error_note],
             )
-        )
+            log(f"Results markdown written to {results_path}")
+            return results_path
+        log(f"arXiv candidates returned: {len(search_trace)}")
+        for idx, entry in enumerate(search_trace, 1):
+            log(
+                "[arxiv_raw] %s/%s id=%s in_window=%s domain_match=%s prefilter_hits=%s anchor_hits=%s published=%s lead_author=%s title=%s"
+                % (
+                    idx,
+                    len(search_trace),
+                    entry["id"],
+                    entry["in_lookback_window"],
+                    entry["matches_required_terms"],
+                    entry.get("matched_required_terms", []),
+                    entry.get("matched_anchor_terms", []),
+                    entry["published"],
+                    entry.get("lead_author"),
+                    entry["title"],
+                )
+            )
 
-    papers, dropped_seen = filter_unseen_papers_with_trace(papers_after_filters)
-    seen_registry = load_seen_papers()
-    log(f"After combined query+prefilter: {len(papers_after_filters)}")
-    log(f"Dropped as already seen: {len(dropped_seen)}")
-    log(f"Seen registry total: {len(seen_registry)}")
-    for paper in dropped_seen:
-        log(f"[drop_seen] id={paper['id']} title={paper['title']}")
+        lookback_pass = [entry for entry in search_trace if entry["in_lookback_window"]]
+        dropped_by_domain_prefilter = [
+            entry for entry in search_trace if entry["in_lookback_window"] and not entry["matches_required_terms"]
+        ]
+        log(f"After lookback filter: {len(lookback_pass)}")
+        log(f"Dropped by domain prefilter: {len(dropped_by_domain_prefilter)}")
+        for entry in dropped_by_domain_prefilter:
+            log(
+                "[drop_domain_prefilter] id=%s title=%s prefilter_hits=%s anchor_hits=%s"
+                % (
+                    entry["id"],
+                    entry["title"],
+                    entry.get("matched_required_terms", []),
+                    entry.get("matched_anchor_terms", []),
+                )
+            )
 
-    snapshot_path = write_arxiv_snapshot_json(
-        run_timestamp=run_timestamp,
-        output_dir=output_config["search_results_dir"],
-        cutoff_date=cutoff_date,
-        max_results=max_results,
-        query_text=arxiv_query,
-        search_trace=search_trace,
-        papers_after_combined_filter=papers_after_filters,
-        papers_unseen=papers,
-        dropped_seen=dropped_seen,
-        seen_registry=seen_registry,
-        include_search_trace=output_config["arxiv_snapshot_include_search_trace"],
-    )
-    log(f"Search snapshot written to {snapshot_path}")
+        papers, dropped_seen = filter_unseen_papers_with_trace(papers_after_filters)
+        seen_registry = load_seen_papers()
+        log(f"After combined query+prefilter: {len(papers_after_filters)}")
+        log(f"Dropped as already seen: {len(dropped_seen)}")
+        log(f"Seen registry total: {len(seen_registry)}")
+        for paper in dropped_seen:
+            log(f"[drop_seen] id={paper['id']} title={paper['title']}")
 
-    if arxiv_only:
-        log(f"arXiv-only snapshot written to {snapshot_path}")
-        results_path = write_results_markdown(
-            top_results=[],
-            paper_pool=papers_after_filters,
-            all_scores=[],
+        snapshot_path = write_arxiv_snapshot_json(
             run_timestamp=run_timestamp,
-            output_dir=output_config["results_dir"],
+            output_dir=output_config["search_results_dir"],
             cutoff_date=cutoff_date,
             max_results=max_results,
-            top_n=top_n,
-            run_notes=[
-                "Run executed in arXiv-only mode (no Doubleword/OpenAI inference).",
-                f"Snapshot JSON: {snapshot_path}",
-                f"Candidates after combined filter: {len(papers_after_filters)}",
-                f"Unseen candidates after seen filter: {len(papers)}",
-            ],
+            query_text=arxiv_query,
+            search_trace=search_trace,
+            papers_after_combined_filter=papers_after_filters,
+            papers_unseen=papers,
+            dropped_seen=dropped_seen,
+            seen_registry=seen_registry,
+            include_search_trace=output_config["arxiv_snapshot_include_search_trace"],
         )
-        log(f"Results markdown written to {results_path}")
-        return results_path
+        log(f"Search snapshot written to {snapshot_path}")
+
+        if arxiv_only:
+            log(f"arXiv-only snapshot written to {snapshot_path}")
+            results_path = write_results_markdown(
+                top_results=[],
+                paper_pool=papers_after_filters,
+                all_scores=[],
+                run_timestamp=run_timestamp,
+                output_dir=output_config["results_dir"],
+                cutoff_date=cutoff_date,
+                max_results=max_results,
+                top_n=top_n,
+                run_notes=[
+                    "Run executed in arXiv-only mode (no Doubleword/OpenAI inference).",
+                    f"Snapshot JSON: {snapshot_path}",
+                    f"Candidates after combined filter: {len(papers_after_filters)}",
+                    f"Unseen candidates after seen filter: {len(papers)}",
+                ],
+            )
+            log(f"Results markdown written to {results_path}")
+            return results_path
 
     if not papers:
         log("No new unseen papers after filtering")
@@ -535,7 +580,21 @@ def parse_cli_args():
         action="store_true",
         help="Force full pipeline mode (default behavior).",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--from-snapshot",
+        metavar="PATH",
+        help=(
+            "Skip the arXiv search and score the papers saved in an existing "
+            "runs/search/arxiv_search_*.json snapshot instead. The seen-papers "
+            "filter is re-applied, so papers scored since the snapshot are dropped. "
+            "Cannot be combined with --arxiv-only."
+        ),
+    )
+    args = parser.parse_args()
+    if args.from_snapshot and args.arxiv_only:
+        parser.error("--from-snapshot cannot be combined with --arxiv-only "
+                     "(--arxiv-only stops before any scoring, which is the point of --from-snapshot).")
+    return args
 
 
 def run_main():
@@ -559,6 +618,7 @@ def run_main():
             network_config=runtime_config["network"],
             review_config=runtime_config["review"],
             arxiv_only=arxiv_only,
+            from_snapshot=cli_args.from_snapshot,
             run_timestamp=run_timestamp,
             logger=run_logger,
         )

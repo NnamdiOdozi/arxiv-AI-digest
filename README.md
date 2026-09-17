@@ -124,8 +124,6 @@ An optional second-pass **structured review** (`src/run_structured_review.py`) a
 
 The second pass is different: it **does** download the full PDF. `_download_pdf_text()` in `src/run_structured_review.py` fetches `arxiv.org/pdf/<id>`, extracts the text with `pypdf`, and passes up to 32,000 characters to the LLM, falling back to the abstract if the download or parse fails. Because that is a much heavier call, it runs only over the shortlist rather than every candidate.
 
-*Future development idea*: using full text in pass 1 as well could improve scoring accuracy, at the cost of fetching and parsing a PDF for every candidate rather than just the shortlist.
-
 ## The Two Passes, and the Review Modes
 
 Scoring runs in two stages, and `[review] mode` in `config.toml` decides how they are sequenced.
@@ -218,6 +216,26 @@ Every option is commented in `config.toml` itself — that's the fastest place t
   ```bash
   uv run python src/requeue_parse_failures.py
   ```
+- **Score a search you already ran**, without querying arXiv again:
+  ```bash
+  uv run python src/main.py --from-snapshot runs/search/arxiv_search_20260917_115817.json
+  ```
+  This is the companion to `--arxiv-only`. Run the free search first, look at what it found, then score exactly those papers when you are happy — instead of re-querying arXiv and possibly getting a different set because new papers appeared in between.
+
+  The seen-papers filter is re-applied against your *current* registry, not the snapshot's. A snapshot can be days old, and anything scored since is dropped and logged as `[drop_seen_since_snapshot]`, so you never pay twice for the same paper. It cannot be combined with `--arxiv-only`, which stops before any scoring.
+
+## Resuming a run from the middle
+
+Long batches and interrupted runs are normal, so most stages can be re-entered without repeating the ones before:
+
+| Where you are | How to carry on |
+|---|---|
+| Search done, not scored yet | `uv run python src/main.py --from-snapshot runs/search/arxiv_search_*.json` |
+| Batch submitted, run interrupted | `uv run python src/batch_tools.py resume --batch-id <id>` (omit `--batch-id` to use the latest from the run logs) |
+| Digest exists, want the second pass | `uv run python src/run_structured_review.py` |
+| Some papers failed to parse | `uv run python src/requeue_parse_failures.py` |
+
+`resume` is the one worth remembering. It finds the run log for that batch, recovers the paper metadata from `runs/batch_requests/batch_requests_<timestamp>.jsonl`, then parses, ranks and writes the digest — so an interrupted poll never costs you the batch you already paid for.
 
 ## Outputs
 
