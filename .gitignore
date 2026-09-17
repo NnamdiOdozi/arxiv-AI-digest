@@ -214,7 +214,7 @@ runs/
 # Pipeline state and the team's own structured-review questions.
 # Everything in here is local to your clone; only the example template is tracked.
 pipeline_data/*
-!pipeline_data/review_questions.example.json
+!pipeline_data/review_questions.json
 
 # Historical one-off script and personal working data
 rerun_pass1_236.py

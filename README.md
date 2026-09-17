@@ -41,13 +41,7 @@ We run this manually, monthly or quarterly, rather than on a schedule — there'
    ```
    The code just calls the standard OpenAI SDK against `DW_BASE_URL`, so any OpenAI-compatible batch endpoint works — see [Swapping the LLM Provider](#swapping-the-llm-provider) below if you're not using Doubleword.
 
-3. **Set up the structured review questions** (optional, but needed if `[review]` is enabled in `config.toml`, which it is by default)
-   ```bash
-   cp pipeline_data/review_questions.example.json pipeline_data/review_questions.json
-   ```
-   These are the questions the optional second pass asks about each shortlisted paper. The example file is a generic starting point — edit it for your own subject area. If you skip this step the pipeline still runs; it logs that it cannot find the file and quietly skips the second pass.
-
-4. **Run it**
+3. **Run it**
    ```bash
    python src/main.py
    ```
@@ -61,9 +55,13 @@ We run this manually, monthly or quarterly, rather than on a schedule — there'
 
 ## Customising This For Your Team
 
-**Read this section before your first real run.** This repository ships configured for one specific group: the IFoA General Insurance Machine Learning in Reserving Working Party. Out of the box it will hunt for claims-reserving papers and score everything against that group's priorities. If your interest is something else — generative AI in reserving, machine learning in life assurance, anything at all — the tool will appear to work while returning papers that are useless to you. Nothing errors. It just quietly answers the wrong question.
+**Read this section before your first real run.**
 
-There are three separate places to change, and they act at different stages of the pipeline. You need all three.
+This repository ships fully configured and working, tuned for the IFoA General Insurance Machine Learning in Reserving Working Party. That is deliberate. You can clone it and run it immediately, and the settings below double as a worked example of what a well-tuned setup actually looks like.
+
+But those settings are ours. If your interest is something else — generative AI in reserving, machine learning in life assurance, anything at all — you must retune them before the output means anything to you. The failure mode here is unpleasant, because nothing breaks: the pipeline runs, produces a digest, and reports success. It just hands you reserving papers. Nothing errors. It quietly answers our question instead of yours.
+
+There are three places to change. They act at different stages of the pipeline, and you need all three.
 
 | # | What it controls | Where to edit | Stage |
 |---|---|---|---|
@@ -75,7 +73,7 @@ There are three separate places to change, and they act at different stages of t
 
 **2. Team profile (`src/prompt1.py`).** `TEAM_PROFILE` is a Python dictionary with three keys — `focus` (a prose paragraph describing who the team is and what it wants), `interests` (a list of topics to reward), and `avoid` (a list of topics to penalise). This text is injected into the prompt for every paper. It is the main lever on what counts as relevant, and it is where you say, in plain English, what your working party is for. Rewrite all three keys. Leaving the shipped reserving text here while changing only the search terms is the most common way to get confusing results: arXiv hands you generative-AI papers and the LLM scores them low because the profile still says it wants reserving.
 
-**3. Review questions (`pipeline_data/review_questions.json`).** Not tracked in git, because these are yours. Copy `review_questions.example.json` alongside it and rewrite. Each entry is an object with a `question` string and a `keys` list naming the output fields that question produces, so a question asking for a value plus a justification declares two keys. Keep the question text explicit about the allowed answers — the LLM follows an enumerated list far more reliably than an open instruction.
+**3. Review questions (`pipeline_data/review_questions.json`).** The 15 questions shipped here are the working party's own, asking about modelling technique, dataset type, reserving-specific keywords and so on. Rewrite them for your subject area. Use them as a format guide first: each entry is an object with a `question` string and a `keys` list naming the output fields that question produces, so a question asking for a value plus a justification declares two keys, conventionally named `something_value` and `something_explanation`. Note how the shipped questions enumerate their allowed answers in square brackets — the LLM follows an explicit list far more reliably than an open-ended instruction, so keep that pattern when you write your own. `[review] max_questions` in `config.toml` caps how many are asked; it is set to 15 to cover the current file.
 
 Everything else — lookback window, how many papers reach the digest, which model is used — is ordinary configuration and is covered under [Configuration](#configuration-configtoml) below.
 
@@ -92,7 +90,7 @@ The scoring rubric lives in `src/evaluation.py`, inside `build_paper_evaluation_
 
 The LLM returns a `relevance_score` (0–10) for every paper, along with a `summary` and `key_insight`. A paper is flagged `is_relevant` if its score is **≥ 7** — that threshold is hardcoded in `src/create_batch_evaluation.py` (search for `is_relevant = score >= 7`). Only `is_relevant` papers are eligible for the digest; the top `selection.top_n` of those (set in `config.toml`, currently 100) are written out. Every scored paper, relevant or not, still appears in the CSV/XLSX evaluation output for manual review.
 
-An optional second-pass **structured review** (`src/run_structured_review.py`) asks the LLM a fixed set of questions about each top-N paper, and folds the answers into the digest. The questions come from `pipeline_data/review_questions.json`, which you supply yourself — see step 3 above.
+An optional second-pass **structured review** (`src/run_structured_review.py`) asks the LLM a fixed set of questions about each top-N paper, and folds the answers into the digest. The questions come from `pipeline_data/review_questions.json` — see [Customising This For Your Team](#customising-this-for-your-team), which explains why you will want to rewrite them.
 
 **Only the title and abstract are sent to the LLM** for scoring — not the paper body. The abstract comes straight from arXiv's metadata for whatever papers survive the `[query]` filter; there's no PDF fetch or full-text extraction in the scoring path today.
 

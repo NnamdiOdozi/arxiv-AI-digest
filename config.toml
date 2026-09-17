@@ -199,9 +199,9 @@ requeue_max_rounds = 1
 # - "off": disable pass-2 entirely.
 mode = "separate"
 enabled = true
-# Source question template file. This file is NOT shipped in the repo, because the
-# questions are specific to your team. Copy pipeline_data/review_questions.example.json
-# to the path below and rewrite the questions for your own subject area.
+# Source question template file. The questions shipped in the repo are the ML in
+# Reserving working party's own -- rewrite them for your own subject area.
+# See "Customising This For Your Team" in README.md.
 # Prefer the compact schema (question + keys only) to avoid carrying sample answers.
 questions_file = "pipeline_data/review_questions.json"
 # Keep this low to control extra token cost. 0 = ask every question in the file.
