@@ -1,0 +1,114 @@
+{
+  "run_timestamp": "20260810_171603",
+  "cutoff_date": "2026-04-10T17:16:03.716406",
+  "max_results": 100,
+  "query": "(\"general insurance\" OR \"P&C insurance\" OR \"P&C business\" OR \"property and casualty insurance\" OR \"non-life insurance\" OR \"non-life business\" OR \"property and casualty\" OR \"claims reserving\" OR \"claim loss\" OR \"claims loss\" OR \"claim reserving\" OR \"claim liabilities\" OR \"claims liabilities\" OR \"claim experience\" OR \"claims experience\" OR \"case estimates\" OR \"case reserving\" OR \"claims analytics\" OR \"claims forecasting\" OR \"loss reserving\" OR \"IBNR\" OR \"claim development\" OR \"claims development\" OR \"claims incurred\" OR \"incurred claims\" OR \"claims run-off\" OR \"individual claims reserving\" OR \"individual loss reserving\" OR \"micro-level reserving\" OR \"micro reserving\" OR \"granular reserving\" OR \"insurance reserving\" OR \"chain ladder\" OR \"actuarial reserving\") AND (\"machine learning\" OR \"artificial intelligence\" OR \"generative artificial intelligence\" OR \"simulation\" OR \"forecast\" OR \"forecasting\" OR \"predict\" OR \"estimation\" OR \"model\" OR \"modelling\" OR \"generalized linear model\" OR \"glm\" OR \"neural network\" OR \"network\" OR \"transformer\" OR \"recurrent neural network\" OR \"rnn\" OR \"lstm\" OR \"gru\" OR \"arima\" OR \"time series\" OR \"mixture density network\")",
+  "snapshot_focus": "post_filter_candidates",
+  "includes_search_trace": false,
+  "section_order": [
+    "papers_after_combined_filter",
+    "dropped_as_seen",
+    "papers_unseen_after_seen_filter"
+  ],
+  "counts": {
+    "search_trace_total": 100,
+    "lookback_window_pass_count": 16,
+    "domain_prefilter_pass_count": 100,
+    "after_combined_filter": 16,
+    "unseen_after_seen_filter": 16,
+    "dropped_seen": 0,
+    "seen_registry_total": 236,
+    "seen_matched_in_trace_count": 72,
+    "seen_matched_in_combined_filter_count": 0
+  },
+  "papers_after_combined_filter": [
+    {
+      "id": "2607.21162v1",
+      "title": "Agree on the Model, Verify the Inference: GKR Protocols for HND-Based Transformer Inference",
+      "authors": [
+        "Xiaolong Liang",
+        "Juanjuan Li",
+        "Rui Qin",
+        "Yisheng Lv"
+      ],
+      "abstract": "Outsourced Transformer inference exposes clients to model substitution and incomplete execution, while direct replay removes the computational benefit of delegation. We present GKR-HND, a registered-model protocol for verifying the polynomial backbone of Homomorphic--Nonhomomorphic Decomposition Transformers. The retained verifier checks the GKR transcript and registered-weight openings, but delegates expensive public evaluations to an assigned computation worker. Assuming an honest retained verifier and prover--worker non-collusion, the verifier accepts only when the worker's signed, request-bound response agrees with the proof claims. Experiments with pretrained HND models validate the proof path and the delegated public computation without dense-matrix replay.",
+      "published": "2026-07-23T10:52:53+00:00",
+      "url": "http://arxiv.org/abs/2607.21162v1",
+      "combined_filter_index": 1
+    },
+    {
+      "id": "2607.09899v1",
+      "title": "A Distributionally Robust Multi-agent Reinforcement Learning Framework for Intelligent Intersection Control",
+      "authors": [
+        "Shuwei Pei",
+        "Joran Borger",
+        "Arda Kosay",
+        "Bayu Jayawardhana",
+        "Muhammed O. Sayin",
+        "Saeed Ahmed"
+      ],
+      "abstract": "Multi-agent reinforcement learning (MARL) has emerged as a promising approach for traffic signal control. However, standard MARL policies typically optimize for expected returns under nominal conditions, leaving them highly vulnerable to spatial-temporal demand shifts and catastrophic congestion under adverse scenarios. To address this critical limitation, this paper proposes an algorithm-agnostic Distributionally Robust (DR) MARL framework integrating an adaptive Contextual-Bandit Worst-Case Estimator (CB-WCE). Operating on a slower timescale, the CB-WCE co-evolves with the traffic controllers by dynamically generating adversarial demand mixtures during training. This steers the learning process to fortify policies against bottleneck scenarios without requiring modifications to the underlying MARL architectures. The framework is evaluated across value-based, actor-critic, and policy-gradient methods on both a synthetic 5x5 grid and a heterogeneous Monaco City network. Empirical results demonstrate that the DR framework prevents unbounded queue growth and profoundly enhances both worst-case robustness and average-case efficiency. Notably, for the Proximal Policy Optimization (PPO) architecture in the Monaco environment, on average, robust retraining reduced the worst-case queue length by 74.39% and improved the average-case network-wide queue length by 75.45%. Furthermore, the retrained policies exhibit strong zero-shot generalization to unseen traffic distributions, highlighting the framework's scalability and potential for resilient real-world urban deployment.",
+      "published": "2026-07-10T18:44:36+00:00",
+      "url": "http://arxiv.org/abs/2607.09899v1",
+      "combined_filter_index": 2
+    },
+    {
+      "id": "2607.04526v1",
+      "title": "Training-Free Model Selection and Domain-Aware Score Calibration for First-Shot Anomalous Sound Detection",
+      "authors": [
+        "Grach Mkrtchian"
+      ],
+      "abstract": "First-shot anomalous sound detection in DCASE Challenge Task 2 must flag anomalies of unseen machine types with a single threshold, without knowing whether a test clip comes from the data-rich source domain (990 normal training clips) or the data-scarce target domain (10). Two organizer-reported problems remain open: source- and target-domain AUC are negatively correlated across systems, and development-set performance does not predict evaluation-set performance. We address both with a training-free post-hoc layer over frozen audio embeddings: (i) per-domain quantile calibration shrunk toward a pooled map by a prior strength m, tracing a source/target balance frontier, and (ii) a label-free cross-validated domain-balance criterion that ranks candidate configurations from training normals only, paired with a coarse development-labeled viability veto. On DCASE 2025, the criterion rank-predicts the official evaluation score across a 45-configuration grid (Spearman rho = +0.91; family-block bootstrap 95% CI [+0.83, +0.95]) while development score is uninformative (+0.06). Criterion-based selection raises the evaluation score from 55.83 to 59.34 (jackknife CI [2.2, 4.8]) and, on an extended grid, to 61.05 -- retrospectively fourth of 35 teams. Replicating on DCASE 2023 and 2024 bounds the claim: development score is uninformative in all three years and degenerate configurations recur (vetoed every time), but under family-clustered uncertainty the criterion's predictive evidence survives only in 2025; in both replication years a fixed full-equalization default matches or beats criterion-based selection. A DCASE 2026 forward test is frozen before the 2026 evaluation ground truth is released; all headline numbers are reproduced by the official evaluator.",
+      "published": "2026-07-05T22:22:31+00:00",
+      "url": "http://arxiv.org/abs/2607.04526v1",
+      "combined_filter_index": 3
+    }
+  ],
+  "dropped_as_seen": [],
+  "papers_unseen_after_seen_filter": [
+    {
+      "id": "2607.21162v1",
+      "title": "Agree on the Model, Verify the Inference: GKR Protocols for HND-Based Transformer Inference",
+      "authors": [
+        "Xiaolong Liang",
+        "Juanjuan Li",
+        "Rui Qin",
+        "Yisheng Lv"
+      ],
+      "abstract": "Outsourced Transformer inference exposes clients to model substitution and incomplete execution, while direct replay removes the computational benefit of delegation. We present GKR-HND, a registered-model protocol for verifying the polynomial backbone of Homomorphic--Nonhomomorphic Decomposition Transformers. The retained verifier checks the GKR transcript and registered-weight openings, but delegates expensive public evaluations to an assigned computation worker. Assuming an honest retained verifier and prover--worker non-collusion, the verifier accepts only when the worker's signed, request-bound response agrees with the proof claims. Experiments with pretrained HND models validate the proof path and the delegated public computation without dense-matrix replay.",
+      "published": "2026-07-23T10:52:53+00:00",
+      "url": "http://arxiv.org/abs/2607.21162v1",
+      "unseen_index": 1
+    },
+    {
+      "id": "2607.09899v1",
+      "title": "A Distributionally Robust Multi-agent Reinforcement Learning Framework for Intelligent Intersection Control",
+      "authors": [
+        "Shuwei Pei",
+        "Joran Borger",
+        "Arda Kosay",
+        "Bayu Jayawardhana",
+        "Muhammed O. Sayin",
+        "Saeed Ahmed"
+      ],
+      "abstract": "Multi-agent reinforcement learning (MARL) has emerged as a promising approach for traffic signal control. However, standard MARL policies typically optimize for expected returns under nominal conditions, leaving them highly vulnerable to spatial-temporal demand shifts and catastrophic congestion under adverse scenarios. To address this critical limitation, this paper proposes an algorithm-agnostic Distributionally Robust (DR) MARL framework integrating an adaptive Contextual-Bandit Worst-Case Estimator (CB-WCE). Operating on a slower timescale, the CB-WCE co-evolves with the traffic controllers by dynamically generating adversarial demand mixtures during training. This steers the learning process to fortify policies against bottleneck scenarios without requiring modifications to the underlying MARL architectures. The framework is evaluated across value-based, actor-critic, and policy-gradient methods on both a synthetic 5x5 grid and a heterogeneous Monaco City network. Empirical results demonstrate that the DR framework prevents unbounded queue growth and profoundly enhances both worst-case robustness and average-case efficiency. Notably, for the Proximal Policy Optimization (PPO) architecture in the Monaco environment, on average, robust retraining reduced the worst-case queue length by 74.39% and improved the average-case network-wide queue length by 75.45%. Furthermore, the retrained policies exhibit strong zero-shot generalization to unseen traffic distributions, highlighting the framework's scalability and potential for resilient real-world urban deployment.",
+      "published": "2026-07-10T18:44:36+00:00",
+      "url": "http://arxiv.org/abs/2607.09899v1",
+      "unseen_index": 2
+    },
+    {
+      "id": "2607.04526v1",
+      "title": "Training-Free Model Selection and Domain-Aware Score Calibration for First-Shot Anomalous Sound Detection",
+      "authors": [
+        "Grach Mkrtchian"
+      ],
+      "abstract": "First-shot anomalous sound detection in DCASE Challenge Task 2 must flag anomalies of unseen machine types with a single threshold, without knowing whether a test clip comes from the data-rich source domain (990 normal training clips) or the data-scarce target domain (10). Two organizer-reported problems remain open: source- and target-domain AUC are negatively correlated across systems, and development-set performance does not predict evaluation-set performance. We address both with a training-free post-hoc layer over frozen audio embeddings: (i) per-domain quantile calibration shrunk toward a pooled map by a prior strength m, tracing a source/target balance frontier, and (ii) a label-free cross-validated domain-balance criterion that ranks candidate configurations from training normals only, paired with a coarse development-labeled viability veto. On DCASE 2025, the criterion rank-predicts the official evaluation score across a 45-configuration grid (Spearman rho = +0.91; family-block bootstrap 95% CI [+0.83, +0.95]) while development score is uninformative (+0.06). Criterion-based selection raises the evaluation score from 55.83 to 59.34 (jackknife CI [2.2, 4.8]) and, on an extended grid, to 61.05 -- retrospectively fourth of 35 teams. Replicating on DCASE 2023 and 2024 bounds the claim: development score is uninformative in all three years and degenerate configurations recur (vetoed every time), but under family-clustered uncertainty the criterion's predictive evidence survives only in 2025; in both replication years a fixed full-equalization default matches or beats criterion-based selection. A DCASE 2026 forward test is frozen before the 2026 evaluation ground truth is released; all headline numbers are reproduced by the official evaluator.",
+      "published": "2026-07-05T22:22:31+00:00",
+      "url": "http://arxiv.org/abs/2607.04526v1",
+      "unseen_index": 3
+    }
+  ],
+  "papers_after_combined_filter_note": "TRUNCATED FOR THIS EXAMPLE: showing 3 of 16 entries.",
+  "papers_unseen_after_seen_filter_note": "TRUNCATED FOR THIS EXAMPLE: showing 3 of 16 entries.",
+  "_example_note": "Truncated copy of a real arXiv search snapshot, kept to show the file's structure. The 'counts' block below reports the real run's numbers, not the truncated list lengths."
+}

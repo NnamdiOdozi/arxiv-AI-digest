@@ -162,7 +162,20 @@ Every option is commented in `config.toml` itself — that's the fastest place t
 | `pipeline_data/seen_papers.json` | Dedup registry so re-runs don't resurface the same paper |
 | `pipeline_data/parse_failures.json` | Papers that exhausted inline parse-retry rounds |
 
-None of these are tracked in git. `runs/` and the generated files in `pipeline_data/` are ignored, so a fresh clone starts empty and every directory is created automatically on the first run. There is nothing to set up by hand.
+None of these are tracked in git. `runs/` and the generated state in `pipeline_data/` are ignored, so a fresh clone starts empty and every directory is created automatically on the first run. There is nothing to set up by hand.
+
+### Example outputs
+
+Four files are committed as exceptions to that rule, so you can see what the pipeline produces before running it yourself. They are real output from past runs, kept in place so the folder layout is the one you will actually get, and all named `*_example.*`:
+
+| Example file | What it shows you |
+|---|---|
+| `runs/results/digest_20260810_171603_example.md` | A complete five-paper digest — the run metadata block, then each paper with its score, `is_relevant` flag, `key_insight` and summary. This is the product; start here. |
+| `runs/results/parsed/evaluation_results_20260408_example.csv` | The per-paper scoring table, header plus five rows, showing all 17 columns that go to manual review. The full version has a row for every paper scored, not just the selected ones. |
+| `runs/logs/run_20260810_171015_example.log` | A run trace. The opening lines echo the whole resolved configuration, which makes this a useful known-good reference when your own run behaves unexpectedly. |
+| `runs/search/arxiv_search_20260810_171603_example.json` | The arXiv search snapshot written by `--arxiv-only`, truncated to three papers. Shows the generated query string and the candidate/filter/drop counts. |
+
+These are illustrative, not fixtures: no test or code path reads them, and deleting them breaks nothing. Because the ignore rule keys on the `_example` suffix, any file you name that way inside `runs/` will also be tracked — worth knowing before you name a real run output that way by accident.
 
 ## Troubleshooting
 

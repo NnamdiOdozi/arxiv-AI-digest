@@ -209,7 +209,15 @@ TO_DO.txt
 
 # Run outputs: logs, batch request payloads, digests, search snapshots.
 # Regenerated on every run and specific to whoever ran it.
-runs/
+#
+# Files ending _example.* are the exception: a few are committed so that a new
+# user (or a coding agent) can see what each output actually looks like.
+# Note the three lines are load-bearing and order matters. Git will not
+# re-include a file whose parent directory is excluded, so "!runs/**/" must
+# keep the directories walkable before the _example negation can apply.
+runs/**
+!runs/**/
+!runs/**/*_example.*
 
 # Pipeline state and the team's own structured-review questions.
 # Everything in here is local to your clone; only the example template is tracked.
