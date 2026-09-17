@@ -284,3 +284,5 @@ These are illustrative, not fixtures: no test or code path reads them, and delet
 
 - `architecture.md` — pipeline diagram and component breakdown
 - `LOCAL_CUSTOMIZATIONS.md` — full changelog of local changes vs. the upstream Doubleword repo
+- `DEFERRED_WORK.md` — scoped-but-unstarted work, kept as a local note. It is gitignored, so it
+  will not be in your clone; create your own if you want to track the same thing.
