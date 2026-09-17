@@ -100,6 +100,18 @@ method_terms = [
   "mixture density network",
 ]
 # Explicit prefilter list (safer than broad domain terms for false-positive control).
+# ---------------------------------------------------------------------------
+# NOTE: prefilter_terms and anchor_terms below are CURRENTLY INERT.
+# Both switches above are false (enforce_domain_prefilter, require_anchor_match),
+# so neither list has any effect on a run -- the search uses domain_terms and
+# method_terms only. The logic IS implemented (main.py logs prefilter_hits and
+# anchor_hits per paper); it is gated off, not abandoned.
+# Flip the switch above to true to turn a list on. It is a second guardrail that
+# filters on title/abstract text AFTER arXiv returns results, catching papers
+# that satisfy the arXiv query but are not really about your domain.
+# Gotcha: DEFAULT_QUERY_CONFIG in src/config_loader.py defaults BOTH flags to
+# true. They are off only because this file sets them false explicitly.
+# ---------------------------------------------------------------------------
 prefilter_terms = [
   "claims reserving",
   "claim reserving",
@@ -135,6 +147,7 @@ prefilter_terms = [
   "property and casualty insurance"
 ]
 
+# Inert unless require_anchor_match = true (see note above prefilter_terms).
 anchor_terms = [
   "claims reserving",
   "loss reserving",
