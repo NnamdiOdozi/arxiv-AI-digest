@@ -209,3 +209,10 @@ questions_file = "pipeline_data/review_questions.json"
 max_questions = 15
 # Include the structured profile answers in the digest markdown.
 include_in_digest = true
+# Characters of extracted PDF text sent to the LLM per paper in pass 2.
+# At ~3.4 chars/token, 200000 chars is ~59k tokens - comfortably inside the
+# 262144 window of Qwen3-VL-235B, and enough for a whole arXiv paper.
+# The old hardcoded 32000 cut typical papers at 38-53%, losing Results and
+# Conclusions. Lower this if you switch to a smaller-context model; check
+# ~/.config/opencode/opencode.jsonc for the model's real limit.
+pdf_max_chars = 200000

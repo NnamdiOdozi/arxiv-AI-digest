@@ -457,8 +457,18 @@ def daily_run(
     if top_papers and review_config["enabled"] and review_mode == "inline":
         if review_config["include_in_digest"]:
             question_specs = load_review_questions(review_config, log)
-            log("Structured review input source: title + abstract only (no PDF/full-text fetch).")
             papers_by_id = {paper["id"]: paper for paper in papers}
+            # Inline pass 2 must read the PDF, not the abstract it already saw in pass 1.
+            # Without this the 15 questions are asked of evidence that cannot answer them.
+            from run_structured_review import _enrich_papers_with_pdf_text
+
+            log("Structured review input source: full PDF text (falls back to abstract on failure).")
+            _enrich_papers_with_pdf_text(
+                papers_by_id,
+                [p["paper_id"] for p in top_papers],
+                log,
+                review_config["pdf_max_chars"],
+            )
             enrich_top_papers_with_structured_review(
                 top_results=top_papers,
                 papers_by_id=papers_by_id,

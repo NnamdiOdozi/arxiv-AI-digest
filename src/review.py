@@ -78,6 +78,81 @@ def _compact_review_question_text(text):
     return normalized.strip()
 
 
+_ESCAPE_VALUE_RE = re.compile(r"^(unknown|unclear|not[_ ]stated|none|n/a)$", re.I)
+
+
+def _split_allowed_values(raw):
+    """Split a bracketed value list on commas, ignoring commas inside parentheses."""
+    values, depth, current = [], 0, []
+    for ch in raw:
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        if ch == "," and depth == 0:
+            values.append("".join(current).strip())
+            current = []
+            continue
+        current.append(ch)
+    values.append("".join(current).strip())
+    return [v for v in values if v]
+
+
+def extract_allowed_values(question_text):
+    """Pull the allowed answers out of a question's [A, B, C] list.
+
+    Returns (values, multi_select), or (None, False) when the question has no
+    bracketed list - free-text questions keep the old nullable-string treatment.
+    """
+    match = re.search(r"\[([^\]]+)\]", question_text or "")
+    if not match:
+        return None, False
+    values = _split_allowed_values(match.group(1))
+    if not values:
+        return None, False
+    # An enum with no escape hatch FORCES a wrong answer when the paper is silent,
+    # which is worse than a null. Guarantee one.
+    if not any(_ESCAPE_VALUE_RE.match(v) for v in values):
+        values.append("Unknown")
+    multi_select = bool(re.search(r"one or more", question_text or "", re.I))
+    return values, multi_select
+
+
+def build_review_schema(question_specs):
+    """Build a json_schema response format with enums for every bounded field.
+
+    Bounded values must be enums: the schema is the only thing enforced during
+    token generation, so a free nullable string lets the model answer null and
+    bury the real answer in the prose (observed 15/15 nulls on one paper).
+    """
+    properties = {}
+    for spec in question_specs:
+        values, multi_select = extract_allowed_values(spec.get("question", ""))
+        for key in spec.get("keys", []):
+            if key.endswith("_explanation") or not values:
+                properties[key] = {"type": ["string", "null"]}
+            elif multi_select:
+                properties[key] = {
+                    "type": "array",
+                    "items": {"type": "string", "enum": values},
+                }
+            else:
+                properties[key] = {"type": "string", "enum": values}
+    return {
+        "type": "json_schema",
+        "json_schema": {
+            "name": "paper_structured_review",
+            "strict": True,
+            "schema": {
+                "type": "object",
+                "properties": properties,
+                "required": sorted(properties),
+                "additionalProperties": False,
+            },
+        },
+    }
+
+
 def parse_structured_review_result(content):
     """Parse a pass-2 structured review response into a plain dict.
 
@@ -232,6 +307,8 @@ def enrich_top_papers_with_structured_review(
     if not top_results or not question_specs:
         return
 
+    response_format = build_review_schema(question_specs)
+
     def _review_one(idx_result):
         idx, result = idx_result
         paper_id = result.get("paper_id")
@@ -247,7 +324,7 @@ def enrich_top_papers_with_structured_review(
         def _request():
             return client.chat.completions.create(
                 model=model_name,
-                response_format=REVIEW_SCHEMA,
+                response_format=response_format,
                 messages=[
                     {"role": "system", "content": "Return only valid JSON. Do not wrap JSON in markdown."},
                     {"role": "user", "content": prompt},

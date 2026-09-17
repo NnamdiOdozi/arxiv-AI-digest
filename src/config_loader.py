@@ -86,6 +86,7 @@ DEFAULT_NETWORK_CONFIG = {
     "max_consecutive_poll_errors": 0,
 }
 DEFAULT_REVIEW_CONFIG = {
+    "pdf_max_chars": 200000,
     "enabled": True,
     "mode": "separate",
     "questions_file": "pipeline_data/review_questions.json",
@@ -391,6 +392,10 @@ def load_runtime_config(config_path=None):
         "max_questions": _parse_non_negative_int(
             review.get("max_questions", DEFAULT_REVIEW_CONFIG["max_questions"]),
             "review.max_questions",
+        ),
+        "pdf_max_chars": _parse_non_negative_int(
+            review.get("pdf_max_chars", DEFAULT_REVIEW_CONFIG["pdf_max_chars"]),
+            "review.pdf_max_chars",
         ),
         "include_in_digest": _parse_bool(
             review.get("include_in_digest", DEFAULT_REVIEW_CONFIG["include_in_digest"]),

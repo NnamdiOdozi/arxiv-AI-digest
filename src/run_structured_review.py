@@ -162,7 +162,7 @@ def _enrich_papers_with_arxiv_metadata(papers_by_id, paper_ids):
             _log(f"[arxiv_enrich] {idx}/{len(paper_ids)} id={paper_id} failed: {exc}")
 
 
-def _download_pdf_text(paper_id, max_chars=32000):
+def _download_pdf_text(paper_id, max_chars):
     """Download arXiv PDF and extract plain text. Returns None on any failure."""
     url = f"https://arxiv.org/pdf/{paper_id}"
     try:
@@ -182,13 +182,13 @@ def _download_pdf_text(paper_id, max_chars=32000):
         return None
 
 
-def _enrich_papers_with_pdf_text(papers_by_id, paper_ids, log):
+def _enrich_papers_with_pdf_text(papers_by_id, paper_ids, log, max_chars):
     """Download and extract PDF text for each paper, adding a full_text key."""
     for idx, paper_id in enumerate(paper_ids, 1):
         paper = papers_by_id.get(paper_id)
         if not paper:
             continue
-        text = _download_pdf_text(paper_id)
+        text = _download_pdf_text(paper_id, max_chars)
         if text:
             paper["full_text"] = text
             log(f"[pdf_download] {idx}/{len(paper_ids)} id={paper_id} chars={len(text)}")
@@ -301,7 +301,9 @@ def main():
     batch_requests_dir = _resolve_path(PROJECT_ROOT, config["output"].get("batch_requests_dir", "runs/batch_requests"))
     papers_by_id = _load_paper_pool_from_batch_requests(run_timestamp, batch_requests_dir)
     _enrich_papers_with_arxiv_metadata(papers_by_id, paper_ids)
-    _enrich_papers_with_pdf_text(papers_by_id, paper_ids, _log)
+    _enrich_papers_with_pdf_text(
+        papers_by_id, paper_ids, _log, config["review"]["pdf_max_chars"]
+    )
 
     top_results = [{"paper_id": paper_id} for paper_id in paper_ids]
     enrich_top_papers_with_structured_review(
