@@ -163,7 +163,7 @@ log_dir = "runs/logs"
 results_dir = "runs/results"
 # Batch request payload files written before submission.
 batch_requests_dir = "runs/batch_requests"
-# arXiv-only snapshot JSON output directory (used by `python main.py --arxiv-only`).
+# arXiv-only snapshot JSON output directory (used by `uv run python src/main.py --arxiv-only`).
 search_results_dir = "runs/search"
 # Include full raw pre-filter arXiv trace in snapshot JSON.
 # Set false to focus file contents on post-filter candidates.

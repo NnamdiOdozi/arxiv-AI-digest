@@ -35,7 +35,7 @@ Every command below is typed into a terminal (Terminal on macOS/Linux, PowerShel
 
 2. **Install `uv`** (skip if `uv --version` already works)
 
-   `uv` is the tool that installs the project's Python packages. It is used here instead of `pip` because it also fetches the correct Python version automatically.
+   `uv` is the tool that installs this project's Python packages. It does the same job as `pip`, which you may have used before, but it is dramatically faster — usually seconds rather than minutes — and it also downloads the correct version of Python for you, so you do not have to install Python 3.12 yourself. It is a drop-in replacement, not something exotic, and it will not interfere with any Python setup you already have.
    ```bash
    # macOS / Linux
    curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -49,7 +49,9 @@ Every command below is typed into a terminal (Terminal on macOS/Linux, PowerShel
    ```bash
    uv sync
    ```
-   This reads `pyproject.toml` and `uv.lock` and builds a self-contained environment in a hidden `.venv` folder. It does not touch your system Python. Expect it to take a minute or two the first time.
+   This reads `pyproject.toml` and `uv.lock` and builds a self-contained environment in a hidden `.venv` folder. It does not touch your system Python. Expect it to take under a minute.
+
+   If you would rather use `pip` and manage your own virtual environment, `requirements.txt` is kept up to date for that — but then the `uv run` prefix in the commands below does not apply, and you must activate your environment yourself.
 
 4. **Add your API key**
    ```bash
@@ -76,8 +78,6 @@ Every command below is typed into a terminal (Terminal on macOS/Linux, PowerShel
    This scores every paper found and writes the digest. It submits a batch job and then waits for the provider, so it is not instant — allow anything from several minutes to a few hours depending on the provider's queue. Results land in `runs/results/`, and `runs/logs/` gets a full trace of the run.
 
 > **The `uv run` prefix matters.** It runs the command inside the project's environment. If you type plain `uv run python src/main.py`, your computer uses its own system Python, which does not have the packages installed, and you get `ModuleNotFoundError: No module named 'openai'`. This is the single most common first-run problem. Either keep the `uv run` prefix on every command in this README, or activate the environment once per terminal session with `source .venv/bin/activate` (macOS/Linux) or `.venv\Scripts\activate` (Windows) and then drop the prefix.
-
-> **Ignore `main.py` in the top-level folder.** It is an unused leftover from project setup and only prints a greeting. The real entry point is `src/main.py`.
 
 ## Customising This For Your Team
 
