@@ -229,3 +229,8 @@ include_in_digest = true
 # Conclusions. Lower this if you switch to a smaller-context model; check
 # ~/.config/opencode/opencode.jsonc for the model's real limit.
 pdf_max_chars = 200000
+# How pass 2 calls the LLM (async Responses API, one request per paper).
+#   "flex"     - 1 hour SLA, materially cheaper. Right for anything but a tiny shortlist.
+#   "priority" - real-time, costs more. Worth it for 2-3 papers when you are waiting.
+# Doubleword normalises "auto"/"default" to priority, so only these two are accepted.
+service_tier = "flex"

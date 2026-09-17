@@ -1,7 +1,7 @@
 import json
 import os
 import re
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 from textwrap import dedent
 
 from create_batch_evaluation import parse_evaluation_result
@@ -294,6 +294,17 @@ def build_structured_review_prompt(paper, question_specs):
     )
 
 
+def _review_text_format(response_format):
+    """Convert the chat-completions `response_format` into Responses-API `text.format`.
+
+    Same schema, different envelope: chat completions nests it under
+    `json_schema`, the Responses API flattens `name`/`schema`/`strict` one level up.
+    """
+    js = response_format["json_schema"]
+    return {"format": {"type": "json_schema", "name": js["name"],
+                       "strict": js.get("strict", True), "schema": js["schema"]}}
+
+
 def enrich_top_papers_with_structured_review(
     top_results,
     papers_by_id,
@@ -302,50 +313,100 @@ def enrich_top_papers_with_structured_review(
     network_config,
     log,
     client,
+    service_tier="flex",
+    poll_interval_seconds=3.0,
+    on_result=None,
 ):
-    """Run a second-pass structured review for selected top papers only."""
+    """Run a second-pass structured review for the selected top papers only.
+
+    Uses the async Responses API: every paper is submitted with background=True
+    (returning immediately), then all outstanding responses are polled together.
+    `service_tier` picks the SLA -- "flex" is the cheaper 1-hour tier, "priority"
+    is real-time and costs more. Submitting first and polling second means no
+    thread pool: nothing blocks waiting on a single paper.
+    """
     if not top_results or not question_specs:
         return
 
     response_format = build_review_schema(question_specs)
+    text_format = _review_text_format(response_format)
 
-    def _review_one(idx_result):
-        idx, result = idx_result
+    # --- phase 1: submit every paper, keep {paper_id: response_id} -------------
+    pending = {}
+    results_by_id = {}
+    for idx, result in enumerate(top_results, 1):
         paper_id = result.get("paper_id")
         paper = papers_by_id.get(paper_id)
         if not paper:
-            return
+            continue
         prompt = build_structured_review_prompt(paper, question_specs)
         log(
-            "[dw_structured_review] request=%s/%s paper_id=%s title=%s"
-            % (idx, len(top_results), paper_id, paper["title"])
+            "[dw_structured_review] request=%s/%s paper_id=%s tier=%s title=%s"
+            % (idx, len(top_results), paper_id, service_tier, paper["title"])
         )
 
-        def _request():
-            return client.chat.completions.create(
+        def _submit(prompt=prompt):
+            return client.responses.create(
                 model=model_name,
-                response_format=response_format,
-                messages=[
-                    {"role": "system", "content": "Return only valid JSON. Do not wrap JSON in markdown."},
-                    {"role": "user", "content": prompt},
-                ],
+                input=prompt,
+                service_tier=service_tier,
+                background=True,
+                text=text_format,
             )
 
         response = call_with_network_retry(
-            f"structured review for {paper_id}",
-            _request,
-            network_config,
-            log,
+            f"structured review submit for {paper_id}", _submit, network_config, log
         )
-        content = response.choices[0].message.content if response.choices else ""
-        parsed = parse_structured_review_result(content)
-        if isinstance(parsed, dict):
-            result["structured_review"] = parsed
-            log(f"[dw_structured_review_ok] paper_id={paper_id} keys={len(parsed)}")
-        else:
-            log(f"[dw_structured_review_parse_failed] paper_id={paper_id}")
+        pending[paper_id] = response.id
+        results_by_id[paper_id] = result
+        log(f"[dw_structured_review_queued] paper_id={paper_id} response_id={response.id}")
 
-    with ThreadPoolExecutor(max_workers=10) as pool:
-        futures = [pool.submit(_review_one, (idx, result)) for idx, result in enumerate(top_results, 1)]
-        for future in as_completed(futures):
-            future.result()
+    if not pending:
+        return
+    log(f"[dw_structured_review] submitted {len(pending)} papers on tier={service_tier}; polling")
+
+    # --- phase 2: poll all outstanding responses until each finishes ----------
+    while pending:
+        for paper_id, response_id in list(pending.items()):
+
+            def _retrieve(response_id=response_id):
+                return client.responses.retrieve(response_id)
+
+            response = call_with_network_retry(
+                f"structured review poll for {paper_id}", _retrieve, network_config, log
+            )
+            status = getattr(response, "status", None)
+            if status in ("queued", "in_progress"):
+                continue
+
+            del pending[paper_id]
+            if status != "completed":
+                log(f"[dw_structured_review_failed] paper_id={paper_id} status={status}")
+                continue
+
+            content = getattr(response, "output_text", "") or ""
+            if not content.strip():
+                # Distinct from a parse failure: the API reported success and
+                # charged for it, but handed back nothing. Log the id so it can
+                # be looked up on the provider's portal.
+                log(
+                    "[dw_structured_review_empty] paper_id=%s response_id=%s "
+                    "status=completed but output was empty - nothing to parse"
+                    % (paper_id, response_id)
+                )
+                continue
+            parsed = parse_structured_review_result(content)
+            if isinstance(parsed, dict):
+                results_by_id[paper_id]["structured_review"] = parsed
+                log(f"[dw_structured_review_ok] paper_id={paper_id} keys={len(parsed)}")
+                if on_result:
+                    # Persist as each paper lands: a long run must not lose
+                    # everything already paid for if it is interrupted.
+                    on_result()
+            else:
+                log(
+                    f"[dw_structured_review_parse_failed] paper_id={paper_id} "
+                    f"response_id={response_id} chars={len(content)}"
+                )
+        if pending:
+            time.sleep(poll_interval_seconds)

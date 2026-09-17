@@ -519,6 +519,7 @@ def daily_run(
                 papers_by_id=papers_by_id,
                 question_specs=question_specs,
                 model_name=model_name,
+                service_tier=review_config["service_tier"],
                 network_config=network_config,
                 log=log,
                 client=client,

@@ -147,6 +147,8 @@ uv run python src/main.py                            # back to the config defaul
 
 This matters because the config setting is sticky: edit it for a one-off, forget to change it back, and a later full run quietly does pass 2 on every shortlisted paper. The flag leaves `config.toml` untouched and logs the override in the run log. It also sets `enabled` to match, so `--review-mode inline` works even if the config has `enabled = false`.
 
+`[review] service_tier` sets how pass 2 calls the LLM: `flex` (cheaper, ~1 hour SLA) or `priority` (real-time, faster — measured at roughly 2 minutes versus 14 for the same two papers).
+
 In `"separate"` mode, run pass 2 like this:
 
 ```bash

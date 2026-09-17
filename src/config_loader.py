@@ -86,6 +86,7 @@ DEFAULT_NETWORK_CONFIG = {
     "max_consecutive_poll_errors": 0,
 }
 DEFAULT_REVIEW_CONFIG = {
+    "service_tier": "flex",
     "pdf_max_chars": 200000,
     "enabled": True,
     "mode": "separate",
@@ -154,6 +155,17 @@ def _parse_term_match_mode(value):
     if mode not in allowed:
         raise ValueError(f"Invalid query.term_match_mode: {value!r}. Expected one of {sorted(allowed)}")
     return mode
+
+
+def _parse_service_tier(value):
+    tier = _parse_string(value, "review.service_tier").lower()
+    allowed = {"flex", "priority"}
+    if tier not in allowed:
+        raise ValueError(
+            f"Invalid review.service_tier: {value!r}. Expected one of {sorted(allowed)}. "
+            "Doubleword normalises 'auto'/'default' to priority, so they are not offered."
+        )
+    return tier
 
 
 def _parse_review_mode(value):
@@ -392,6 +404,9 @@ def load_runtime_config(config_path=None):
         "max_questions": _parse_non_negative_int(
             review.get("max_questions", DEFAULT_REVIEW_CONFIG["max_questions"]),
             "review.max_questions",
+        ),
+        "service_tier": _parse_service_tier(
+            review.get("service_tier", DEFAULT_REVIEW_CONFIG["service_tier"])
         ),
         "pdf_max_chars": _parse_non_negative_int(
             review.get("pdf_max_chars", DEFAULT_REVIEW_CONFIG["pdf_max_chars"]),

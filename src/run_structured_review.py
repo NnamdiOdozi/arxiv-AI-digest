@@ -306,31 +306,38 @@ def main():
     )
 
     top_results = [{"paper_id": paper_id} for paper_id in paper_ids]
+    output_json = results_dir / f"detailed_review_{run_timestamp}.json"
+    output_md = results_dir / f"detailed_review_{run_timestamp}.md"
+
+    def _persist():
+        """Write what we have so far. Called as each paper lands, so an
+        interrupted run keeps the results already paid for."""
+        output_json.write_text(
+            json.dumps(
+                {
+                    "source_digest": str(digest_path),
+                    "generated_at": datetime.now().isoformat(),
+                    "paper_ids": paper_ids,
+                    "results": top_results,
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
     enrich_top_papers_with_structured_review(
         top_results=top_results,
         papers_by_id=papers_by_id,
         question_specs=question_specs,
         model_name=config["inference"]["model"],
+        service_tier=config["review"]["service_tier"],
         network_config=config["network"],
         log=_log,
         client=_client,
+        on_result=_persist,
     )
 
-    output_json = results_dir / f"detailed_review_{run_timestamp}.json"
-    output_md = results_dir / f"detailed_review_{run_timestamp}.md"
-
-    output_json.write_text(
-        json.dumps(
-            {
-                "source_digest": str(digest_path),
-                "generated_at": datetime.now().isoformat(),
-                "paper_ids": paper_ids,
-                "results": top_results,
-            },
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
+    _persist()
     _write_detailed_markdown(top_results, papers_by_id, str(digest_path), output_md)
 
     _log(f"Structured review JSON written: {output_json}")

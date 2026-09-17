@@ -44,7 +44,10 @@ REQUIREMENTS
 ------------
 Needs a working DW_API_KEY in `.env`, because pass 2 makes a real LLM call. It
 downloads two PDFs from arXiv, so it needs network access. Cost is small (two
-long-context calls) but not zero.
+long-context calls, roughly $0.01) but not zero.
+
+It forces `service_tier = "priority"` regardless of your config, so it finishes in
+about two minutes rather than the ~15 it takes on "flex".
 
 USAGE
 -----
@@ -139,6 +142,10 @@ def build_temp_config(tmp, out_dir):
     text = (REPO / "config.toml").read_text()
     text = re.sub(r"^mode = .*$", 'mode = "inline"', text, count=1, flags=re.M)
     text = re.sub(r"^max_results = .*$", "max_results = 10", text, count=1, flags=re.M)
+    # Force the fast tier. On "flex" this test takes ~15 minutes (5 min compute per
+    # paper plus queue); on "priority" it takes ~2. A test that slow is a test nobody
+    # runs. Use flex for bulk work, not for anything you are waiting on.
+    text = re.sub(r'^service_tier = .*$', 'service_tier = "priority"', text, count=1, flags=re.M)
     for key, sub in [
         ("log_dir", "logs"),
         ("results_dir", "results"),

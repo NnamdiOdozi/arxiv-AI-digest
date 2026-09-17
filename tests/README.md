@@ -6,8 +6,12 @@
 uv run python tests/test_inline_mock.py
 ```
 
-Takes about a minute. Needs `DW_API_KEY` in `.env` and network access, because
-part of it deliberately runs for real.
+Takes about two minutes and costs roughly $0.01. Needs `DW_API_KEY` in `.env` and
+network access, because part of it deliberately runs for real.
+
+It forces `service_tier = "priority"` regardless of your config. On `"flex"` the same
+test takes ~15 minutes — 5 minutes compute per paper plus queue — and a test that slow
+is a test nobody runs. Use `flex` for bulk work, not for anything you are waiting on.
 
 ### What problem this solves
 
