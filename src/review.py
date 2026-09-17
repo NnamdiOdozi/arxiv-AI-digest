@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from textwrap import dedent
 
@@ -75,6 +76,30 @@ def _compact_review_question_text(text):
     if marker in normalized:
         normalized = normalized.split(marker, 1)[0].strip()
     return normalized.strip()
+
+
+def parse_structured_review_result(content):
+    """Parse a pass-2 structured review response into a plain dict.
+
+    Pass 1's parse_evaluation_result() must NOT be used here: it requires a
+    relevance_score (absent from REVIEW_SCHEMA) and rebuilds the payload as its
+    own four fields, silently discarding every review answer. Pass-2 keys vary
+    with whatever questions the team wrote, so accept any JSON object as-is.
+    """
+    text = content if isinstance(content, str) else str(content or "")
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"```(?:json)?", "", text, flags=re.IGNORECASE).strip()
+    try:
+        parsed = json.loads(text)
+    except Exception:
+        match = re.search(r"\{[\s\S]*\}", text)
+        if not match:
+            return None
+        try:
+            parsed = json.loads(match.group(0))
+        except Exception:
+            return None
+    return parsed if isinstance(parsed, dict) else None
 
 
 def load_review_questions(review_config, log):
@@ -236,7 +261,7 @@ def enrich_top_papers_with_structured_review(
             log,
         )
         content = response.choices[0].message.content if response.choices else ""
-        parsed = parse_evaluation_result(content or "")
+        parsed = parse_structured_review_result(content)
         if isinstance(parsed, dict):
             result["structured_review"] = parsed
             log(f"[dw_structured_review_ok] paper_id={paper_id} keys={len(parsed)}")

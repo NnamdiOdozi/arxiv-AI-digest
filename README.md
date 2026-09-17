@@ -175,7 +175,7 @@ The code (`src/main.py`, `src/create_batch_evaluation.py`, `src/batch_tools.py`)
 2. `config.toml` `[inference] model`: set this to a model the new provider actually hosts (the Qwen defaults are Doubleword-hosted and will not exist elsewhere). **`config.toml` wins over `.env` here.** `MODEL_NAME` in `.env` is only a fallback used when `config.toml` omits the `model` key, so editing `.env` alone will appear to do nothing — see `src/config_loader.py:342`.
 3. `config.toml` `[inference] completion_window`: OpenAI's batch API only accepts `"24h"` — Doubleword allows shorter windows like `"1h"`. Set this to `"24h"` for OpenAI or it'll be rejected at submission.
 
-**Bear in mind**: OpenAI's batch queue is generally slower and less predictable than Doubleword's — turnaround can run well past `completion_window` under load. For a monthly/quarterly run this usually doesn't matter, but don't expect same-day results if you're testing interactively.
+**Bear in mind**: batch endpoints are asynchronous queues, and turnaround varies with the provider's load. Doubleword typically returns within the hour when `completion_window = "1h"`. OpenAI only accepts a 24-hour window, so plan around that figure rather than expecting a particular latency. For a monthly or quarterly run neither matters much, but do not expect an immediate answer if you are testing interactively.
 
 ### A provider with only a real-time/interactive API (no batch endpoint)
 
