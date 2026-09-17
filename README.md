@@ -4,6 +4,8 @@
 
 Fetches new papers from arXiv, scores them for relevance to general insurance (P&C) claims and loss reserving using an LLM (via Doubleword's batch API), and writes a ranked markdown digest plus a full CSV/XLSX evaluation of every paper considered.
 
+**Why Doubleword, and why batch.** Two deliberate choices keep the running cost low. First, the pipeline uses the **batch API** rather than the ordinary real-time one. You submit all the papers as a single job and collect the answers when the provider gets to them, instead of asking one question at a time and waiting for each reply. Providers charge substantially less for this, because they can fit the work around their spare capacity. The trade is that results are not immediate — which suits a digest you run monthly or quarterly, and would not suit an interactive tool. Second, Doubleword serves **open-weight models** — Qwen3 in the 30B and 235B sizes, among others — rather than proprietary frontier models. For reading an abstract and scoring its relevance, these are more than capable, and they cost a fraction of the proprietary equivalents. The combination is what makes it practical to score several hundred papers per run.
+
 We run this manually, monthly or quarterly, rather than on a schedule — there's no Docker, Kubernetes, cron, or Slack integration to maintain.
 
 ## What It Does
@@ -118,9 +120,50 @@ The LLM returns a `relevance_score` (0–10) for every paper, along with a `summ
 
 An optional second-pass **structured review** (`src/run_structured_review.py`) asks the LLM a fixed set of questions about each top-N paper, and folds the answers into the digest. The questions come from `pipeline_data/review_questions.json` — see [Customising This For Your Team](#customising-this-for-your-team), which explains why you will want to rewrite them.
 
-**Only the title and abstract are sent to the LLM** for scoring — not the paper body. The abstract comes straight from arXiv's metadata for whatever papers survive the `[query]` filter; there's no PDF fetch or full-text extraction in the scoring path today.
+**Only the title and abstract are sent to the LLM in this first pass** — not the paper body. The abstract comes straight from arXiv's metadata for whatever papers survive the `[query]` filter. That keeps pass 1 cheap, since it runs across every candidate paper.
 
-*Future development idea*: sending part or all of the paper body (not just the abstract) to the LLM could improve scoring accuracy, at the cost of extra fetch/parse work and higher token spend per paper.
+The second pass is different: it **does** download the full PDF. `_download_pdf_text()` in `src/run_structured_review.py` fetches `arxiv.org/pdf/<id>`, extracts the text with `pypdf`, and passes up to 32,000 characters to the LLM, falling back to the abstract if the download or parse fails. Because that is a much heavier call, it runs only over the shortlist rather than every candidate.
+
+*Future development idea*: using full text in pass 1 as well could improve scoring accuracy, at the cost of fetching and parsing a PDF for every candidate rather than just the shortlist.
+
+## The Two Passes, and the Review Modes
+
+Scoring runs in two stages, and `[review] mode` in `config.toml` decides how they are sequenced.
+
+**Pass 1 (always runs)** scores every candidate paper on title and abstract, producing the 0–10 relevance score and the ranked digest. It is cheap and wide.
+
+**Pass 2 (optional)** takes only the papers that made the digest, downloads each full PDF, and asks the LLM your fixed list of questions from `pipeline_data/review_questions.json`. It is expensive and narrow, so it is kept separate rather than folded into pass 1.
+
+| `mode` | What happens | When to use it |
+|---|---|---|
+| `"separate"` | `main.py` runs pass 1 and stops. You run pass 2 yourself afterwards, against the digest that already exists. | **The default, and usually right.** You can look at the digest before committing to the PDF downloads, and re-run pass 2 with different questions without re-scoring anything. |
+| `"inline"` | `main.py` runs pass 1, then pass 2 immediately, in one command. | Unattended or scheduled runs where nobody is around to trigger the second step. |
+| `"off"` | Pass 2 never runs. Pass 1 only. | You only want the ranked digest and do not need the structured answers. |
+
+In `"separate"` mode, run pass 2 like this:
+
+```bash
+uv run python src/run_structured_review.py
+```
+
+It picks the most recent `digest_*.md` in your results directory automatically. Use `--digest <path>` to choose a specific one, or `--config <path>` to read a different config file.
+
+Two things to know. `enabled = true` must also be set, alongside the mode. And if you have already run pass 1, do **not** switch to `"inline"` to get pass 2 — that re-runs pass 1 from scratch and pays for the scoring twice. Use `"separate"` and run the script.
+
+## Controlling the seen-papers registry
+
+`pipeline_data/seen_papers.json` is a plain list of arXiv IDs, one per line, that the pipeline has already processed. Anything in it is dropped before scoring, so repeat runs do not resurface the same papers or pay to re-score them.
+
+There is **no setting in `config.toml`** for this. Two other controls exist:
+
+- **`SEEN_PAPERS_FILE`** — an environment variable holding the path to the registry. Point it somewhere else and the real one is never touched:
+  ```bash
+  SEEN_PAPERS_FILE=/tmp/seen_test.json uv run python src/main.py
+  ```
+  This is the clean way to do a **test run without polluting your history**. Copy the real file to a temporary path first if you want dedup to behave realistically during the test; start from an empty file if you want every paper to come through.
+- **`--no-save-seen`** — a flag on `src/batch_tools.py` that parses a completed batch without recording those papers as seen.
+
+To make papers eligible again, delete their IDs from the file, or delete the file entirely to start fresh.
 
 ## Swapping the LLM Provider
 
@@ -129,7 +172,7 @@ An optional second-pass **structured review** (`src/run_structured_review.py`) a
 The code (`src/main.py`, `src/create_batch_evaluation.py`, `src/batch_tools.py`) calls the plain OpenAI SDK's batch surface — `files.create(purpose="batch")`, `batches.create(endpoint="/v1/chat/completions", ...)`, `batches.retrieve`, `files.content`. Doubleword mirrors that same interface, so this is a config swap, not a code change:
 
 1. `.env`: set `DW_BASE_URL` and `DW_API_KEY` to the new provider's values (e.g. `https://api.openai.com/v1` and an OpenAI key — the `DW_` naming is just leftover from the original Doubleword setup, the values are provider-agnostic).
-2. `.env` / `config.toml` `[inference] model`: set `MODEL_NAME` to a model that provider actually hosts (the Qwen defaults in `config.toml` are Doubleword-hosted and won't exist elsewhere).
+2. `config.toml` `[inference] model`: set this to a model the new provider actually hosts (the Qwen defaults are Doubleword-hosted and will not exist elsewhere). **`config.toml` wins over `.env` here.** `MODEL_NAME` in `.env` is only a fallback used when `config.toml` omits the `model` key, so editing `.env` alone will appear to do nothing — see `src/config_loader.py:342`.
 3. `config.toml` `[inference] completion_window`: OpenAI's batch API only accepts `"24h"` — Doubleword allows shorter windows like `"1h"`. Set this to `"24h"` for OpenAI or it'll be rejected at submission.
 
 **Bear in mind**: OpenAI's batch queue is generally slower and less predictable than Doubleword's — turnaround can run well past `completion_window` under load. For a monthly/quarterly run this usually doesn't matter, but don't expect same-day results if you're testing interactively.
