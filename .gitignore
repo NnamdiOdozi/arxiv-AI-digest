@@ -230,3 +230,12 @@ lit_review.csv
 
 # Local working notes, not part of the repo
 DEFERRED_WORK.md
+
+# Claude Code per-machine settings and backups.
+# settings.local.json holds this machine's permission allowlist, defaultMode and
+# absolute PATH - the ".local" name is the convention for exactly that, the same
+# way .env is local and .env.example is shared. Commit .claude/settings.json
+# instead if you want to share project-level config.
+.claude/settings.local.json
+.claude/*.bak
+*.bak
